@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+bundle exec rubocop -a
+yarn lint:eslint
+yarn lint:prettier
