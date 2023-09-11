@@ -18,6 +18,16 @@ module RouletteTalk
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.generators.template_engine = :slim
+    config.time_zone = "Tokyo"
+    config.generators do |g|
+      g.template_engine = :slim
+      g.test_framework :rspec,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       request_specs: false
+      g.factory_bot false
+      g.factory_bot dir: "spec/factories"
+    end
   end
 end
