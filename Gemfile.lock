@@ -224,6 +224,9 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.23.1)
       rubocop (~> 1.33)
+    rubocop-fjord (0.3.0)
+      rubocop (>= 1.0)
+      rubocop-performance
     rubocop-performance (1.19.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
@@ -301,6 +304,7 @@ DEPENDENCIES
   rails (~> 7.0.7)
   rspec-rails
   rubocop
+  rubocop-fjord
   rubocop-performance
   rubocop-rails
   rubocop-rspec
