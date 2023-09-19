@@ -1,4 +1,26 @@
 h2.text-2xl.font-bold.mb-3
   | Roulette page
-p
-  = @roulette.id
+div.flex
+  div.w-auto
+    div class="text-center relative w-[500px]"
+      div.roulette__theme
+      ul.theme__labelContainer
+        li.theme__label style="left: -1.005050633883343px; top: 88.99494936611664px; transform: rotate(45deg);"
+          | トークテーマ1
+        li.theme__label style="left: -198.99494936611666px; top: 88.99494936611664px; transform: rotate(135deg);"
+          | トークテーマ2
+        li.theme__label style="left: -198.99494936611666px; top: -108.99494936611664px; transform: rotate(-135deg);"
+          | トークテーマ3
+        li.theme__label style="left: -1.0050506338833571px; top: -108.99494936611666px; transform: rotate(-45deg);"
+          | トークテーマ4
+      div.roulette__speaker
+      / ul.speaker__labelContainer
+      /   li.speaker__label style=""
+      /     | ユーザー1
+      /   li.speaker__label style=""
+      /     | ユーザー2
+      /   li.speaker__label style=""
+      /     | ユーザー3
+      /   li.speaker__label style=""
+      /     | ユーザー4
+

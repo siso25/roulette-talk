@@ -1,0 +1,63 @@
+.roulette__theme {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(
+    #d7f4ff 0deg 90deg,
+    #5ed4ff 90deg 180deg,
+    #d7f4ff 180deg 270deg,
+    #5ed4ff 270deg 360deg
+  );
+}
+
+.roulette__speaker {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 2;
+  background: conic-gradient(
+    #a4a4a4 0deg 90deg,
+    #e8e8e8 90deg 180deg,
+    #a4a4a4 180deg 270deg,
+    #e8e8e8 270deg 360deg
+  );
+}
+
+.theme__labelContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .theme__label {
+    position: absolute;
+    display: block;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+/* .speaker__labelContainer { */
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 50%; */
+/*   transform: translate(-50%, -50%); */
+/**/
+/*   .speaker__label { */
+/*     position: absolute; */
+/*     display: block; */
+/*     width: 200px; */
+/*     font-size: 16px; */
+/*     font-weight: bold; */
+/*     text-align: right; */
+/*     white-space: nowrap; */
+/*   } */
+/* } */

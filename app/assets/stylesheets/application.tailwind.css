@@ -3,4 +3,4 @@
 @import "tailwindcss/utilities";
 
 /* app components */
-/* @import "./custom.css" */
+@import "./roulette.css"
