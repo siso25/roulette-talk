@@ -12,7 +12,6 @@
 }
 
 .roulette__speaker {
-  position: absolute;
   top: 25%;
   left: 25%;
   width: 250px;
@@ -29,13 +28,11 @@
 }
 
 .theme__labelContainer {
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   .theme__label {
-    position: absolute;
     display: block;
     width: 200px;
     font-size: 16px;
@@ -45,19 +42,18 @@
   }
 }
 
-/* .speaker__labelContainer { */
-/*   position: absolute; */
-/*   top: 50%; */
-/*   left: 50%; */
-/*   transform: translate(-50%, -50%); */
-/**/
-/*   .speaker__label { */
-/*     position: absolute; */
-/*     display: block; */
-/*     width: 200px; */
-/*     font-size: 16px; */
-/*     font-weight: bold; */
-/*     text-align: right; */
-/*     white-space: nowrap; */
-/*   } */
-/* } */
+.speaker__labelContainer {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  .speaker__label {
+    display: block;
+    width: 100px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
