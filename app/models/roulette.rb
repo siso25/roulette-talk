@@ -1,0 +1,2 @@
+class Roulette < ApplicationRecord
+end
