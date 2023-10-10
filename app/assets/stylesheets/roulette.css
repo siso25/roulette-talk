@@ -1,3 +1,22 @@
+.roulette__needle-theme {
+  margin: 0 auto;
+  top: 238px;
+  left: 470px;
+  border-right: 30px solid black;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.roulette__needle-speaker {
+  margin: 0 auto;
+  top: 238px;
+  left: 345px;
+  border-right: 30px solid black;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  z-index: 5;
+}
+
 .roulette__theme {
   width: 500px;
   height: 500px;
