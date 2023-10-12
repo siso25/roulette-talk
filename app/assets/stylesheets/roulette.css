@@ -5,6 +5,7 @@
   border-right: 30px solid black;
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
+  z-index: 1;
 }
 
 .roulette__needle-speaker {
@@ -14,7 +15,7 @@
   border-right: 30px solid black;
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
-  z-index: 5;
+  z-index: 3;
 }
 
 .roulette__theme {
@@ -28,6 +29,7 @@
     #d7f4ff 180deg 270deg,
     #5ed4ff 270deg 360deg
   );
+  z-index: 0;
 }
 
 .roulette__speaker {
