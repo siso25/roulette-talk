@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import RouletteController from "./roulette_controller"
+application.register("roulette", RouletteController)
+
 import StartController from "./start_controller"
 application.register("start", StartController)
