@@ -1,9 +1,8 @@
 h2.text-2xl.font-bold.mb-3
   | Roulette page
 div.flex
-  div.w-auto
+  div class="flex-initial w-[500px]"
     div class="text-center relative w-[500px]"
-      div.absolute.roulette__needle-theme
       div#roulette.roulette__theme
         ul.absolute.theme__labelContainer
           li.absolute.theme__label value="1" style="left: -1.005050633883343px; top: 88.99494936611664px; transform: rotate(45deg);"
@@ -14,7 +13,6 @@ div.flex
             | トークテーマ3
           li.absolute.theme__label value="4" style="left: -1.0050506338833571px; top: -108.99494936611666px; transform: rotate(-45deg);"
             | トークテーマ4
-      div.absolute.roulette__needle-speaker
       div#roulette2.absolute.roulette__speaker
         ul.absolute.speaker__labelContainer
           li.absolute.speaker__label style="left: -7.573593128807147px; top: 32.426406871192846px; transform: rotate(45deg)"
@@ -25,7 +23,9 @@ div.flex
             | ユーザー3
           li.absolute.speaker__label style="left: -7.573593128807147px; top: -52.426406871192846px; transform: rotate(-45deg)"
             | ユーザー4
-    div data-controller="start"
-      button.btn.btn-primary data-action="click->start#execute"
-        | スタート
+  div.flex-initial.w-8.relative
+    div.absolute.roulette__needle
+div data-controller="start"
+  button.btn.btn-primary data-action="click->start#execute"
+    | スタート
 

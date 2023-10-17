@@ -26,8 +26,7 @@ export default class extends Controller {
       ],
       {
         duration: duration_time,
-        easing: "cubic-bezier(0.83, 0, 0.17, 1)",
-        // easing: "cubic-bezier(0, 0.4, 0.4, 1)",
+        easing: "cubic-bezier(0, 0.4, 0.4, 1)",
         fill: "forwards"
       }
     );
