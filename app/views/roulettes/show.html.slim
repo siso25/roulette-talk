@@ -25,7 +25,11 @@ div.flex data-controller="roulette"
             | ユーザー4
   div.flex-initial.w-8.relative
     div.absolute.roulette__needle
-div data-controller="start"
-  button.btn.btn-primary data-action="click->start#execute"
-    | スタート
+div.flex
+  div data-controller="start"
+    button.btn.btn-primary.mr-2 data-action="click->start#execute"
+      | スタート
+  div data-controller="reset"
+    button.btn data-action="click->reset#execute"
+      | リセット
 
