@@ -5,26 +5,27 @@ export default class extends Controller {
   execute() {
     const talkTargets = getLotteryTargets('talk')
     const position = this.lottery(talkTargets)
-    const animation = this.rotate(talkTargets[position], 'roulette', 1800)
+    const animation = this.rotate(talkTargets[position], 'roulette', 2800)
     animation.finished.then(() => {
-      console.log('talk theme finish')
       this.deleteTarget(talkTargets, position)
       createLotteryTargets('talk', talkTargets)
     })
 
     const speakerTargets = getLotteryTargets('speaker')
     const position2 = this.lottery(speakerTargets)
-    const animation2 = this.rotate(speakerTargets[position2], 'roulette2', 2000)
+    const animation2 = this.rotate(speakerTargets[position2], 'roulette2', 3000)
     animation2.finished.then(() => {
-      console.log('speaker finish')
       this.deleteTarget(speakerTargets, position2)
       createLotteryTargets('speaker', speakerTargets)
     })
   }
 
+  private
+
   rotate(stopping_position, element_id, duration_time) {
     const element = document.getElementById(element_id)
-    const endDeg = 360 * 9 - 90 * stopping_position + 45
+    const rotateDeg = 90
+    const endDeg = 360 * 9 - rotateDeg * stopping_position + this.stopPosition(rotateDeg)
     const animation = element.animate(
       [
         { transform: 'rotate(0)' },
@@ -32,11 +33,17 @@ export default class extends Controller {
       ],
       {
         duration: duration_time,
-        easing: "cubic-bezier(0, 0.4, 0.4, 1)",
+        easing: "cubic-bezier(0,0.4,.3,1)",
         fill: "forwards"
       }
     );
     return animation
+  }
+
+  stopPosition(deg) {
+    const max = deg - 1
+    const min = 1
+    return Math.floor(Math.random() * (max - min) + min) - deg / 2
   }
 
   lottery(targets) {
