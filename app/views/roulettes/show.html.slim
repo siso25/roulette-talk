@@ -1,35 +1,37 @@
 h2.text-2xl.font-bold.mb-3
   | Roulette page
-div.flex data-controller="roulette"
-  div class="flex-initial w-[500px]"
-    div class="text-center relative w-[500px]"
-      div#roulette.roulette__theme
-        ul.absolute.theme__labelContainer
-          li.absolute.theme__label style="left: -1.005050633883343px; top: 88.99494936611664px; transform: rotate(45deg);"
-            | トークテーマ1
-          li.absolute.theme__label style="left: -198.99494936611666px; top: 88.99494936611664px; transform: rotate(135deg);"
-            | トークテーマ2
-          li.absolute.theme__label style="left: -198.99494936611666px; top: -108.99494936611664px; transform: rotate(-135deg);"
-            | トークテーマ3
-          li.absolute.theme__label style="left: -1.0050506338833571px; top: -108.99494936611666px; transform: rotate(-45deg);"
-            | トークテーマ4
-      div#roulette2.absolute.roulette__speaker
-        ul.absolute.speaker__labelContainer
-          li.absolute.speaker__label style="left: -7.573593128807147px; top: 32.426406871192846px; transform: rotate(45deg)"
-            | ユーザー1
-          li.absolute.speaker__label style="left: -92.42640687119285px; top: 32.426406871192846px; transform: rotate(135deg)"
-            | ユーザー2
-          li.absolute.speaker__label style="left: -92.42640687119285px; top: -52.426406871192846px; transform: rotate(-135deg)"
-            | ユーザー3
-          li.absolute.speaker__label style="left: -7.573593128807147px; top: -52.426406871192846px; transform: rotate(-45deg)"
-            | ユーザー4
-  div.flex-initial.w-8.relative
-    div.absolute.roulette__needle
 div.flex
-  div data-controller="start"
-    button.btn.btn-primary.mr-2 data-action="click->start#execute"
-      | スタート
-  div data-controller="reset"
-    button.btn data-action="click->reset#execute"
-      | リセット
+  div data-controller="roulette"
+    div.flex
+      div class="flex-initial w-[500px]"
+        div#rou class="text-center relative w-[500px]"
+          div#roulette.roulette__theme
+            ul.absolute.theme__labelContainer
+              li.absolute.theme__label style="left: -1.005050633883343px; top: 88.99494936611664px; transform: rotate(45deg);"
+                | トークテーマ1
+              li.absolute.theme__label style="left: -198.99494936611666px; top: 88.99494936611664px; transform: rotate(135deg);"
+                | トークテーマ2
+              li.absolute.theme__label style="left: -198.99494936611666px; top: -108.99494936611664px; transform: rotate(-135deg);"
+                | トークテーマ3
+              li.absolute.theme__label style="left: -1.0050506338833571px; top: -108.99494936611666px; transform: rotate(-45deg);"
+                | トークテーマ4
+          div#roulette2.absolute.roulette__speaker
+            ul.absolute.speaker__labelContainer
+              li.absolute.speaker__label style="left: -7.573593128807147px; top: 32.426406871192846px; transform: rotate(45deg)"
+                | ユーザー1
+              li.absolute.speaker__label style="left: -92.42640687119285px; top: 32.426406871192846px; transform: rotate(135deg)"
+                | ユーザー2
+              li.absolute.speaker__label style="left: -92.42640687119285px; top: -52.426406871192846px; transform: rotate(-135deg)"
+                | ユーザー3
+              li.absolute.speaker__label style="left: -7.573593128807147px; top: -52.426406871192846px; transform: rotate(-45deg)"
+                | ユーザー4
+      div.flex-initial.w-8.relative
+        div.absolute.roulette__needle
+    div.flex
+      div data-controller="start"
+        button.btn.btn-primary.mr-2 data-action="click->start#execute"
+          | スタート
+      div data-controller="reset"
+        button.btn data-action="click->reset#execute"
+          | リセット
 

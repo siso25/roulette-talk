@@ -6,15 +6,13 @@ export default class extends Controller {
     const talkTargets = getLotteryTargets('talk')
     const position = this.lottery(talkTargets)
     const animation = this.rotate(talkTargets[position], 'roulette', 2800)
-    animation.finished.then(() => {
-      this.deleteTarget(talkTargets, position)
-      createLotteryTargets('talk', talkTargets)
-    })
-
     const speakerTargets = getLotteryTargets('speaker')
     const position2 = this.lottery(speakerTargets)
     const animation2 = this.rotate(speakerTargets[position2], 'roulette2', 3000)
-    animation2.finished.then(() => {
+
+    Promise.all([animation.finished, animation2.finished]).then(() => {
+      this.deleteTarget(talkTargets, position)
+      createLotteryTargets('talk', talkTargets)
       this.deleteTarget(speakerTargets, position2)
       createLotteryTargets('speaker', speakerTargets)
     })
