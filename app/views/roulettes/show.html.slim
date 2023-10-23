@@ -28,8 +28,8 @@ div.flex
       div.flex-initial.w-8.relative
         div.absolute.roulette__needle
     div.flex
-      button.btn.btn-primary.mr-2 data-action="click->rotate#start"
+      button.btn.btn-primary.mr-2 data-rotate-target="startButton" data-action="click->rotate#start"
         | スタート
-      button.btn data-action="click->roulette#reset"
+      button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
         | リセット
 

@@ -2,14 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 import { saveTargets, getTargets } from "../helpers/storage"
 
 export default class extends Controller {
-  static targets = ['talk', 'speaker']
+  static targets = ['talk', 'speaker', 'startButton', 'resetButton']
 
   start() {
+    this.startButtonTarget.disabled = true
+    this.resetButtonTarget.disabled = true
     const talkAnimation = this.rotate(this.talkTarget, 'talk', 2800)
     const speakerAnimation = this.rotate(this.speakerTarget, 'speaker', 3000)
 
     Promise.all([talkAnimation.finished, speakerAnimation.finished]).then(() => {
-      console.log('finished')
+      this.startButtonTarget.disabled = false
+      this.resetButtonTarget.disabled = false
     })
   }
 
@@ -18,6 +21,7 @@ export default class extends Controller {
   rotate(roulette, rouletteName, duration_time) {
     const lotteryTargets = getTargets(rouletteName)
     const lotteryResult = this.lottery(lotteryTargets)
+    this.deleteTarget(rouletteName, lotteryTargets, lotteryResult)
     const rotateDeg = 90
     const endDeg = 360 * 9 - rotateDeg * lotteryResult + this.stoppingPosition(rotateDeg)
     const animation = roulette.animate(
