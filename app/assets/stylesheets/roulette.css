@@ -1,3 +1,11 @@
+.roulette__needle {
+  border-top: 12px solid transparent;
+  border-right: 30px solid black;
+  border-bottom: 12px solid transparent;
+  margin: 0 auto;
+  top: 238px;
+}
+
 .roulette__theme {
   width: 500px;
   height: 500px;
@@ -9,6 +17,7 @@
     #d7f4ff 180deg 270deg,
     #5ed4ff 270deg 360deg
   );
+  z-index: 0;
 }
 
 .roulette__speaker {
