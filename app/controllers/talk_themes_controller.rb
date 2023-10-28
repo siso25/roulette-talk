@@ -1,0 +1,2 @@
+class TalkThemesController < ApplicationController
+end

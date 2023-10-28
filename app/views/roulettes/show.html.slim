@@ -32,4 +32,12 @@ div.flex
         | スタート
       button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
         | リセット
-
+  div
+    - @talk_themes.each do |talk_theme|
+      div.flex
+        p.hidden
+          = talk_theme.id
+        p
+          = talk_theme.theme
+        div
+          = link_to "×", "#", class: "btn btn-sm btn-circle"
