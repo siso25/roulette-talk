@@ -1,5 +1,6 @@
 class TalkTheme < ApplicationRecord
   belongs_to :roulette
+  validates :theme, presence: true
 
   class << self
     def create_initial_records(roulette)

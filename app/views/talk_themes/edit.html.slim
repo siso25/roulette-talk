@@ -1,4 +1,5 @@
 = turbo_frame_tag @talk_theme
   div.flex
-    input.input.input-bordered type="text" name="theme"
-    = link_to '更新', roulette_path(@roulette), class: 'btn btn-secondary'
+    = form_with model: [@roulette, @talk_theme] do |f|
+      = f.text_field :theme, class: 'input input-bordered'
+      = f.submit '更新', class: 'btn btn-secondary'

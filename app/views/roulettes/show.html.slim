@@ -33,15 +33,4 @@ div.flex
       button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
         | リセット
   div
-    - @talk_themes.each do |talk_theme|
-      = turbo_frame_tag talk_theme do
-        div.flex
-          p.hidden
-            = talk_theme.id
-          div
-            = link_to talk_theme.theme, edit_roulette_talk_theme_path(@roulette, talk_theme)
-          div
-            = link_to "×", "#", class: "btn btn-sm btn-circle"
-    = turbo_frame_tag 'new_talk_theme' do
-      div
-        = link_to "＋ トークテーマを追加する", new_roulette_talk_theme_path(@roulette)
+    = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
