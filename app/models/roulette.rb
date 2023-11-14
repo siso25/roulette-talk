@@ -25,5 +25,39 @@ class Roulette < ApplicationRecord
 
       color_array
     end
+
+    def label_position_and_angle(radius, count, index)
+      angle = 360 / count
+      item_position_angle = angle / 2 + angle * index
+      radian = calc_radian(item_position_angle) * Math::PI / 180
+      x = Math.cos(radian) * radius
+      y = Math.sin(radian) * radius
+
+      if item_position_angle >= 270
+        x *= -1
+        y *= -1
+      elsif item_position_angle >= 180
+        x *= -1
+      elsif item_position_angle < 90
+        y *= -1
+      end
+
+      rotate_angle = calc_rotate_angle(item_position_angle)
+      "left: #{x - 100}px; top: #{y - 10}px; transform: rotate(#{rotate_angle}deg);"
+    end
+
+    def calc_radian(angle)
+      return 90 - angle if angle < 90
+      return angle - 90 if angle < 180
+      return 270 - angle if angle < 270
+
+      angle - 270
+    end
+
+    def calc_rotate_angle(angle)
+      return angle - 540 if (angle - 90) > 270
+
+      angle - 90
+    end
   end
 end
