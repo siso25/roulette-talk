@@ -5,16 +5,11 @@ div.flex
     div.flex
       div class="flex-initial w-[500px]"
         div class="text-center relative w-[500px]"
-          div.roulette__theme data-rotate-target="talk"
+          div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes)}"
             ul.absolute.theme__labelContainer
-              li.absolute.theme__label style="left: -1.005050633883343px; top: 88.99494936611664px; transform: rotate(45deg);"
-                | トークテーマ1
-              li.absolute.theme__label style="left: -198.99494936611666px; top: 88.99494936611664px; transform: rotate(135deg);"
-                | トークテーマ2
-              li.absolute.theme__label style="left: -198.99494936611666px; top: -108.99494936611664px; transform: rotate(-135deg);"
-                | トークテーマ3
-              li.absolute.theme__label style="left: -1.0050506338833571px; top: -108.99494936611666px; transform: rotate(-45deg);"
-                | トークテーマ4
+              - @talk_themes.each_with_index do |talk_theme, idx|
+                li.absolute.theme__label style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx)}"
+                  = talk_theme.theme
           div.absolute.roulette__speaker data-rotate-target="speaker"
             ul.absolute.speaker__labelContainer
               li.absolute.speaker__label style="left: -7.573593128807147px; top: 32.426406871192846px; transform: rotate(45deg)"
@@ -32,4 +27,5 @@ div.flex
         | スタート
       button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
         | リセット
-
+  div
+    = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }

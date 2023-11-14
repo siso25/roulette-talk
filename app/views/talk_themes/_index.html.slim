@@ -1,0 +1,15 @@
+h2
+  | トークテーマ
+= turbo_frame_tag 'talk_themes_list'
+  - talk_themes.each do |talk_theme|
+    = turbo_frame_tag talk_theme do
+      div.flex
+        p.hidden
+          = talk_theme.id
+        div
+          = link_to talk_theme.theme, edit_roulette_talk_theme_path(@roulette, talk_theme)
+        div
+          = link_to "×", roulette_talk_theme_path(@roulette, talk_theme), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
+  = turbo_frame_tag 'new_talk_theme' do
+    div
+      = link_to "＋ トークテーマを追加する", new_roulette_talk_theme_path(@roulette)
