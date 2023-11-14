@@ -9,7 +9,7 @@ h2
         div
           = link_to talk_theme.theme, edit_roulette_talk_theme_path(@roulette, talk_theme)
         div
-          = link_to "×", roulette_talk_theme_path(@roulette, talk_theme), data: { turbo_method: :delete, turbo_frame: 'talk_themes_list' }, class: "btn btn-sm btn-circle"
+          = link_to "×", roulette_talk_theme_path(@roulette, talk_theme), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
   = turbo_frame_tag 'new_talk_theme' do
     div
       = link_to "＋ トークテーマを追加する", new_roulette_talk_theme_path(@roulette)
