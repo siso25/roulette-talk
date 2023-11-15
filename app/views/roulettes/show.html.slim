@@ -8,18 +8,13 @@ div.flex
           div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes)}"
             ul.absolute.theme__labelContainer
               - @talk_themes.each_with_index do |talk_theme, idx|
-                li.absolute.theme__label style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx)}"
+                li.absolute.theme__label style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx, 100, 10)}"
                   = talk_theme.theme
-          div.absolute.roulette__speaker data-rotate-target="speaker"
+          div.absolute.roulette__speaker data-rotate-target="speaker" style="#{Roulette.conic_gradient_text(@speakers)}"
             ul.absolute.speaker__labelContainer
-              li.absolute.speaker__label style="left: -7.573593128807147px; top: 32.426406871192846px; transform: rotate(45deg)"
-                | ユーザー1
-              li.absolute.speaker__label style="left: -92.42640687119285px; top: 32.426406871192846px; transform: rotate(135deg)"
-                | ユーザー2
-              li.absolute.speaker__label style="left: -92.42640687119285px; top: -52.426406871192846px; transform: rotate(-135deg)"
-                | ユーザー3
-              li.absolute.speaker__label style="left: -7.573593128807147px; top: -52.426406871192846px; transform: rotate(-45deg)"
-                | ユーザー4
+              - @speakers.each_with_index do |speaker, idx|
+                li.absolute.speaker__label style="#{Roulette.label_position_and_angle(70, @speakers.count, idx, 50, 10)}"
+                  = speaker.name
       div.flex-initial.w-8.relative
         div.absolute.roulette__needle
     div.flex
@@ -27,5 +22,7 @@ div.flex
         | スタート
       button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
         | リセット
-  div
+  div.ml-10
     = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
+  div.ml-10
+    = render partial: 'speakers/index', locals: { speakers: @speakers }

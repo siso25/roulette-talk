@@ -1,0 +1,15 @@
+h2.font-bold.mb-4
+  | 話す人
+= turbo_frame_tag 'speakers_list'
+  - speakers.each do |speaker|
+    = turbo_frame_tag speaker do
+      div.flex.mb-2
+        p.hidden
+          = speaker.id
+        div
+          = link_to speaker.name, edit_roulette_speaker_path(@roulette, speaker)
+        div
+          = link_to "×", roulette_speaker_path(@roulette, speaker), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
+  = turbo_frame_tag 'new_speaker' do
+    div
+      = link_to "＋ トークテーマを追加する", new_roulette_speaker_path(@roulette)
