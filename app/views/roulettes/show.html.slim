@@ -8,12 +8,12 @@ div.flex
           div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes)}"
             ul.absolute.theme__labelContainer
               - @talk_themes.each_with_index do |talk_theme, idx|
-                li.absolute.theme__label style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx, 100, 10)}"
+                li.absolute.theme__label data-roulette-target="talkTheme" data-rotate-target="talkTheme" style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx, 100, 10)}"
                   = talk_theme.theme
-          div.absolute.roulette__speaker data-rotate-target="speaker" style="#{Roulette.conic_gradient_text(@speakers)}"
+          div.absolute.roulette__speaker data-rotate-target="speaker"style="#{Roulette.conic_gradient_text(@speakers)}"
             ul.absolute.speaker__labelContainer
               - @speakers.each_with_index do |speaker, idx|
-                li.absolute.speaker__label style="#{Roulette.label_position_and_angle(70, @speakers.count, idx, 50, 10)}"
+                li.absolute.speaker__label data-roulette-target="speakerName" data-rotate-target="speakerName" style="#{Roulette.label_position_and_angle(70, @speakers.count, idx, 50, 10)}"
                   = speaker.name
       div.flex-initial.w-8.relative
         div.absolute.roulette__needle
