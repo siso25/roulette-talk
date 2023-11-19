@@ -2,13 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 import { saveTargets, getTargets } from "../helpers/storage"
 
 export default class extends Controller {
-  static targets = ['talk', 'speaker', 'startButton', 'resetButton']
+  static targets = ['talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
 
   start() {
     this.startButtonTarget.disabled = true
     this.resetButtonTarget.disabled = true
-    const talkAnimation = this.rotate(this.talkTarget, 'talk', 2800)
-    const speakerAnimation = this.rotate(this.speakerTarget, 'speaker', 3000)
+    const talkAnimation = this.rotate(this.talkTarget, this.talkThemeTargets, 'talk', 2800)
+    const speakerAnimation = this.rotate(this.speakerTarget, this.speakerNameTargets, 'speaker', 3000)
 
     Promise.all([talkAnimation.finished, speakerAnimation.finished]).then(() => {
       this.startButtonTarget.disabled = false
@@ -18,12 +18,13 @@ export default class extends Controller {
 
   private
 
-  rotate(roulette, rouletteName, duration_time) {
+  rotate(roulette, rouletteItems, rouletteName, duration_time) {
     const lotteryTargets = getTargets(rouletteName)
-    const lotteryResult = this.lottery(lotteryTargets)
-    this.deleteTarget(rouletteName, lotteryTargets, lotteryResult)
-    const rotateDeg = 90
-    const endDeg = 360 * 9 - rotateDeg * lotteryResult + this.stoppingPosition(rotateDeg)
+    const lotteryResultIndex = this.lottery(lotteryTargets)
+    const lotteryResult = lotteryTargets[lotteryResultIndex]
+    this.deleteTarget(rouletteName, lotteryTargets, lotteryResultIndex)
+    const rotateDeg = 360 / rouletteItems.length
+    const endDeg = 360 * 9 + (90 - rotateDeg + rotateDeg / 2) - rotateDeg * lotteryResult + this.stoppingPosition(rotateDeg)
     const animation = roulette.animate(
       [
         { transform: 'rotate(0)' },

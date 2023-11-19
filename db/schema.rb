@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_120744) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_111733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "roulettes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "speakers", force: :cascade do |t|
+    t.uuid "roulette_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roulette_id"], name: "index_speakers_on_roulette_id"
   end
 
   create_table "talk_themes", force: :cascade do |t|
@@ -27,5 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_120744) do
     t.index ["roulette_id"], name: "index_talk_themes_on_roulette_id"
   end
 
+  add_foreign_key "speakers", "roulettes"
   add_foreign_key "talk_themes", "roulettes"
 end

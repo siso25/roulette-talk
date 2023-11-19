@@ -11,12 +11,6 @@
   height: 500px;
   margin: 0 auto;
   border-radius: 50%;
-  background: conic-gradient(
-    #d7f4ff 0deg 90deg,
-    #5ed4ff 90deg 180deg,
-    #d7f4ff 180deg 270deg,
-    #5ed4ff 270deg 360deg
-  );
   z-index: 0;
 }
 
@@ -28,12 +22,6 @@
   margin: 0 auto;
   border-radius: 50%;
   z-index: 2;
-  background: conic-gradient(
-    #a4a4a4 0deg 90deg,
-    #e8e8e8 90deg 180deg,
-    #a4a4a4 180deg 270deg,
-    #e8e8e8 270deg 360deg
-  );
 }
 
 .theme__labelContainer {

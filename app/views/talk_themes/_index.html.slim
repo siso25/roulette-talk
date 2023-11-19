@@ -1,9 +1,9 @@
-h2
+h2.font-bold.mb-4
   | トークテーマ
 = turbo_frame_tag 'talk_themes_list'
   - talk_themes.each do |talk_theme|
     = turbo_frame_tag talk_theme do
-      div.flex
+      div.flex.mb-2
         p.hidden
           = talk_theme.id
         div

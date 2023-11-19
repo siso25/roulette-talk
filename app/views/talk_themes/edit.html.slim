@@ -1,5 +1,5 @@
 = turbo_frame_tag @talk_theme
   div.flex
-    = form_with model: [@roulette, @talk_theme] do |f|
+    = form_with model: [@roulette, @talk_theme], html: { data: { turbo_frame: '_top' } } do |f|
       = f.text_field :theme, class: 'input input-bordered'
       = f.submit '更新', class: 'btn btn-secondary'
