@@ -1,18 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
-import { saveTargets, getTargets } from "../helpers/storage"
+import { saveTargets, save, getTargets, find } from "../helpers/storage"
 
 export default class extends Controller {
-  static targets = ['talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
+  static targets = ['result', 'talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
 
   start() {
     this.startButtonTarget.disabled = true
     this.resetButtonTarget.disabled = true
+    this.resultTarget.value = ''
     const talkAnimation = this.rotate(this.talkTarget, this.talkThemeTargets, 'talk', 2800)
     const speakerAnimation = this.rotate(this.speakerTarget, this.speakerNameTargets, 'speaker', 3000)
 
     Promise.all([talkAnimation.finished, speakerAnimation.finished]).then(() => {
       this.startButtonTarget.disabled = false
       this.resetButtonTarget.disabled = false
+      this.resultTarget.innerText = `トークテーマは「${find('talkResult')}」話すのは「${find('speakerResult')}」さんです。`
     })
   }
 
@@ -22,6 +24,7 @@ export default class extends Controller {
     const lotteryTargets = getTargets(rouletteName)
     const lotteryResultIndex = this.lottery(lotteryTargets)
     const lotteryResult = lotteryTargets[lotteryResultIndex]
+    save(`${rouletteName}Result`, rouletteItems[lotteryResult].innerText)
     this.deleteTarget(rouletteName, lotteryTargets, lotteryResultIndex)
     const rotateDeg = 360 / rouletteItems.length
     const endDeg = 360 * 9 + (90 - rotateDeg + rotateDeg / 2) - rotateDeg * lotteryResult + this.stoppingPosition(rotateDeg)
