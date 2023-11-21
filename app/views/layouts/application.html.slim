@@ -11,4 +11,7 @@ html data-theme="winter"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
   body
+    - unless current_page?(root_path)
+      = render partial: 'shared/header'
     = yield
+    = render partial: 'shared/footer'
