@@ -1,8 +1,10 @@
-footer.flex
-  div.flex
-    = link_to '利用規約', '#'
-    = link_to 'プライバシーポリシー', '#'
-  div.flex
-    p
-      | © 2023 siso25
-    = image_tag 'github-mark.svg', alt: 'GitHub'
+footer.footer.absolute.bottom-0
+  div.flex.relative.w-screen.justify-center.items-center.p-3.bg-base-300.text-neutral
+    div.flex
+      = link_to '利用規約', '#', class: 'mr-3'
+      = link_to 'プライバシーポリシー', '#'
+    div.flex.h-6.ml-auto.absolute.right-10
+      div.flex.items-center.h-full.mr-3
+        p.text-base
+          | © 2023 siso25
+      = link_to image_tag('github-mark.svg', class: 'h-auto w-full'), 'https://github.com/siso25/roulette-talk', class: 'w-6'
