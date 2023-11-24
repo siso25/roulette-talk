@@ -10,7 +10,7 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
-  body.relative.min-h-screen
+  body.relative.min-h-screen.bg-base-200
     - unless current_page?(root_path)
       = render partial: 'shared/header'
     = yield
