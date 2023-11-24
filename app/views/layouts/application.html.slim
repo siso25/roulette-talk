@@ -1,5 +1,5 @@
 doctype html
-html data-theme="winter"
+html
   head
     title
       | RouletteTalk
@@ -10,7 +10,7 @@ html data-theme="winter"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
-  body
+  body.relative.min-h-screen
     - unless current_page?(root_path)
       = render partial: 'shared/header'
     = yield
