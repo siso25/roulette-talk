@@ -13,5 +13,6 @@ html
   body.relative.min-h-screen.bg-base-200
     - unless current_page?(root_path)
       = render partial: 'shared/header'
-    = yield
+    main.px-28
+      = yield
     = render partial: 'shared/footer'

@@ -3,12 +3,12 @@
   border-right: 30px solid black;
   border-bottom: 12px solid transparent;
   margin: 0 auto;
-  top: 238px;
+  top: 313px;
 }
 
 .roulette__theme {
-  width: 500px;
-  height: 500px;
+  width: 650px;
+  height: 650px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 0;
@@ -17,8 +17,8 @@
 .roulette__speaker {
   top: 25%;
   left: 25%;
-  width: 250px;
-  height: 250px;
+  width: 325px;
+  height: 325px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 2;
