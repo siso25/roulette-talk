@@ -1,15 +1,17 @@
-h2.font-bold.mb-4
+h2.font-bold.text-lg.mb-2
   | トークテーマ
 = turbo_frame_tag 'talk_themes_list'
-  - talk_themes.each do |talk_theme|
-    = turbo_frame_tag talk_theme do
-      div.flex.mb-2
-        p.hidden
-          = talk_theme.id
-        div
-          = link_to talk_theme.theme, edit_roulette_talk_theme_path(@roulette, talk_theme)
-        div
-          = link_to "×", roulette_talk_theme_path(@roulette, talk_theme), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
+  ul.rounded.border.border-gray-400
+    - talk_themes.each do |talk_theme|
+      li.border-b.last:border-b-0.border-gray-400.h-10.w-80
+        = turbo_frame_tag talk_theme do
+          div.flex.items-center.px-4.h-full
+            p.hidden
+              = talk_theme.id
+            div
+              = link_to talk_theme.theme, edit_roulette_talk_theme_path(@roulette, talk_theme)
+            div.ml-auto
+              = link_to "×", roulette_talk_theme_path(@roulette, talk_theme), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
   = turbo_frame_tag 'new_talk_theme' do
-    div
-      = link_to "＋ トークテーマを追加する", new_roulette_talk_theme_path(@roulette)
+    div.mt-3.px-1
+      = link_to "＋ トークテーマを追加する", new_roulette_talk_theme_path(@roulette), class: 'text-neutral'
