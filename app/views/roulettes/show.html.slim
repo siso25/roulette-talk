@@ -1,29 +1,37 @@
-div data-controller="rotate"
-  div.h-6.mb-10
-    p.font-bold.text-2xl data-rotate-target="result"
+div.mt-6 data-controller="rotate"
   div.flex
-    div data-controller="roulette"
-      div.flex
-        div class="flex-initial w-[500px]"
-          div class="text-center relative w-[500px]"
-            div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes)}"
-              ul.absolute.theme__labelContainer
-                - @talk_themes.each_with_index do |talk_theme, idx|
-                  li.absolute.theme__label data-roulette-target="talkTheme" data-rotate-target="talkTheme" style="#{Roulette.label_position_and_angle(140, @talk_themes.count, idx, 100, 10)}"
-                    = talk_theme.theme
-            div.absolute.roulette__speaker data-rotate-target="speaker"style="#{Roulette.conic_gradient_text(@speakers)}"
-              ul.absolute.speaker__labelContainer
-                - @speakers.each_with_index do |speaker, idx|
-                  li.absolute.speaker__label data-roulette-target="speakerName" data-rotate-target="speakerName" style="#{Roulette.label_position_and_angle(70, @speakers.count, idx, 50, 10)}"
-                    = speaker.name
-        div.flex-initial.w-8.relative
-          div.absolute.roulette__needle
-      div.flex
-        button.btn.btn-primary.mr-2 data-rotate-target="startButton" data-action="click->rotate#start"
-          | スタート
-        button.btn data-rotate-target="resetButton" data-action="click->roulette#reset"
-          | リセット
-    div.ml-10
-      = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
-    div.ml-10
-      = render partial: 'speakers/index', locals: { speakers: @speakers }
+    div
+      div.h-16
+        p.text-2xl.text-left.w-fit.mx-auto.tracking-wider.invisible data-rotate-target="resultText"
+          | トークテーマは
+          span.text-accent.font-bold.mx-3 data-rotate-target="talkThemeResult"
+          | <br>話すのは
+          span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
+          | さんです。
+      div.mt-8 data-controller="roulette"
+        div.flex
+          div class="flex-initial w-[600px] h-[600px]"
+            div class="text-center relative w-[600px]"
+              div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes, TalkTheme::COLOR_SET)}"
+                ul.absolute.theme__labelContainer
+                  - @talk_themes.each_with_index do |talk_theme, idx|
+                    li.absolute.theme__label data-roulette-target="talkTheme" data-rotate-target="talkTheme" style="#{Roulette.label_position_and_angle(170, @talk_themes.count, idx, 100, 10)}"
+                      = talk_theme.theme
+              div.absolute.roulette__speaker data-rotate-target="speaker"style="#{Roulette.conic_gradient_text(@speakers, Speaker::COLOR_SET)}"
+                ul.absolute.speaker__labelContainer
+                  - @speakers.each_with_index do |speaker, idx|
+                    li.absolute.speaker__label data-roulette-target="speakerName" data-rotate-target="speakerName" style="#{Roulette.label_position_and_angle(70, @speakers.count, idx, 50, 10)}"
+                      = speaker.name
+              div.absolute.theme__needle
+              div.absolute.speaker__needle
+        div.flex.justify-center.mt-8
+          div.flex.justify-center.w-5/6.ml-auto
+            button class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider" data-rotate-target="startButton" data-action="click->rotate#start"
+              | スタート
+            button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
+              | リセット
+    div.ml-44
+      div.mt-24.h-80
+        = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
+      div.mt-10.h-80
+        = render partial: 'speakers/index', locals: { speakers: @speakers }

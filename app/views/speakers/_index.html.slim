@@ -1,15 +1,20 @@
-h2.font-bold.mb-4
+h2.font-bold.text-lg.mb-2
   | 話す人
 = turbo_frame_tag 'speakers_list'
-  - speakers.each do |speaker|
-    = turbo_frame_tag speaker do
-      div.flex.mb-2
-        p.hidden
-          = speaker.id
-        div
-          = link_to speaker.name, edit_roulette_speaker_path(@roulette, speaker)
-        div
-          = link_to "×", roulette_speaker_path(@roulette, speaker), data: { turbo_method: :delete, turbo_frame: '_top' }, class: "btn btn-sm btn-circle"
+  ul.rounded.border.border-gray-400.max-h-60.overflow-y-auto.w-80
+    - speakers.each do |speaker|
+      li.border-b.last:border-b-0.border-gray-400.h-10.w-full.group
+        = turbo_frame_tag speaker do
+          div.flex.items-center.px-4.h-full
+            p.hidden
+              = speaker.id
+            div.flex-1
+              = link_to speaker.name, edit_roulette_speaker_path(@roulette, speaker), class: 'w-full block'
+            div.ml-auto.opacity-0.group-hover:opacity-80
+              = link_to image_tag('delete-icon.png', size: '10x10'),
+                roulette_speaker_path(@roulette, speaker),
+                data: { turbo_method: :delete, turbo_frame: '_top' },
+                class: "btn btn-sm btn-circle btn-ghost"
   = turbo_frame_tag 'new_speaker' do
-    div
-      = link_to "＋ トークテーマを追加する", new_roulette_speaker_path(@roulette)
+    div.mt-3.px-1
+      = link_to "＋ トークテーマを追加する", new_roulette_speaker_path(@roulette), class: 'text-neutral'

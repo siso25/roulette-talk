@@ -1,14 +1,26 @@
-.roulette__needle {
-  border-top: 12px solid transparent;
-  border-right: 30px solid black;
-  border-bottom: 12px solid transparent;
+.theme__needle {
+  border-top: 10px solid transparent;
+  border-right: 24px solid #475569;
+  border-bottom: 10px solid transparent;
   margin: 0 auto;
-  top: 238px;
+  top: 290px;
+  right: -5px;
+  z-index: 2;
+}
+
+.speaker__needle {
+  border-top: 10px solid transparent;
+  border-right: 24px solid #475569;
+  border-bottom: 10px solid transparent;
+  margin: 0 auto;
+  top: 290px;
+  right: 145px;
+  z-index: 4;
 }
 
 .roulette__theme {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 0;
@@ -17,8 +29,8 @@
 .roulette__speaker {
   top: 25%;
   left: 25%;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 2;
