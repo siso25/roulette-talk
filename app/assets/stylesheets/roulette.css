@@ -1,9 +1,21 @@
-.roulette__needle {
-  border-top: 12px solid transparent;
-  border-right: 30px solid black;
-  border-bottom: 12px solid transparent;
+.theme__needle {
+  border-top: 10px solid transparent;
+  border-right: 20px solid #475569;
+  border-bottom: 10px solid transparent;
   margin: 0 auto;
-  top: 288px;
+  top: 290px;
+  right: 0;
+  z-index: 2;
+}
+
+.speaker__needle {
+  border-top: 10px solid transparent;
+  border-right: 20px solid #475569;
+  border-bottom: 10px solid transparent;
+  margin: 0 auto;
+  top: 290px;
+  right: 150px;
+  z-index: 4;
 }
 
 .roulette__theme {
