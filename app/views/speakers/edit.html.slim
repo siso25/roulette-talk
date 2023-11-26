@@ -1,5 +1,5 @@
 = turbo_frame_tag @speaker
-  div.flex
-    = form_with model: [@roulette, @speaker], html: { data: { turbo_frame: '_top' } } do |f|
-      = f.text_field :name, class: 'input input-bordered'
-      = f.submit '更新', class: 'btn btn-secondary'
+  div.flex.items-center.px-1.h-full
+    = form_with model: [@roulette, @speaker], html: { data: { turbo_frame: '_top' } }, class: 'w-full flex' do |f|
+      = f.text_field :name, class: 'input input-bordered input-sm w-4/5'
+      = f.submit '更新', class: 'btn btn-outline btn-sm btn-primary ml-auto'
