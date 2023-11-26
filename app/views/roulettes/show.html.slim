@@ -31,8 +31,8 @@ div.mt-6 data-controller="rotate"
             | スタート
           button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
             | リセット
-    div.ml-10
-      div.mt-10
+    div.ml-44
+      div.mt-24.h-80
         = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
-      div.mt-10
+      div.mt-10.h-80
         = render partial: 'speakers/index', locals: { speakers: @speakers }

@@ -10,9 +10,9 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
-  body.relative.min-h-screen.bg-base-200
+  body.relative.min-h-screen.bg-base-200.w-screen
     - unless current_page?(root_path)
       = render partial: 'shared/header'
-    main.px-28
+    main.w-fit.mx-auto
       = yield
     = render partial: 'shared/footer'
