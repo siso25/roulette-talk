@@ -2,13 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 import { saveTargets, save, getTargets, find } from "../helpers/storage"
 
 export default class extends Controller {
-  static targets = ['talkThemeResult', 'speakerResult', 'talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
+  static targets = ['resultText', 'talkThemeResult', 'speakerResult', 'talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
 
   start() {
     this.startButtonTarget.disabled = true
     this.resetButtonTarget.disabled = true
-    this.talkThemeResultTarget.innerText = ''
-    this.speakerResultTarget.innerText = ''
+    this.resultTextTarget.style.visibility = 'hidden'
     const talkAnimation = this.rotate(this.talkTarget, this.talkThemeTargets, 'talk', 2800)
     const speakerAnimation = this.rotate(this.speakerTarget, this.speakerNameTargets, 'speaker', 3000)
 
@@ -17,6 +16,7 @@ export default class extends Controller {
       this.resetButtonTarget.disabled = false
       this.talkThemeResultTarget.innerText = find('talkResult')
       this.speakerResultTarget.innerText = find('speakerResult')
+      this.resultTextTarget.style.visibility = 'visible'
     })
   }
 

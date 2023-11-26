@@ -2,13 +2,11 @@ div.mt-6 data-controller="rotate"
   div.flex
     div
       div.h-16
-        p.text-2xl.text-left.w-fit.mx-auto.tracking-wider
+        p.text-2xl.text-left.w-fit.mx-auto.tracking-wider.invisible data-rotate-target="resultText"
           | トークテーマは
           span.text-accent.font-bold.mx-3 data-rotate-target="talkThemeResult"
-            | トークテーマ3
           | <br>話すのは
           span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
-            | ユーザー2
           | さんです。
       div.mt-8 data-controller="roulette"
         div.flex
