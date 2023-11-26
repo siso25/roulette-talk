@@ -1,20 +1,20 @@
 .theme__needle {
   border-top: 10px solid transparent;
-  border-right: 20px solid #475569;
+  border-right: 24px solid #475569;
   border-bottom: 10px solid transparent;
   margin: 0 auto;
   top: 290px;
-  right: 0;
+  right: -5px;
   z-index: 2;
 }
 
 .speaker__needle {
   border-top: 10px solid transparent;
-  border-right: 20px solid #475569;
+  border-right: 24px solid #475569;
   border-bottom: 10px solid transparent;
   margin: 0 auto;
   top: 290px;
-  right: 150px;
+  right: 145px;
   z-index: 4;
 }
 

@@ -25,10 +25,11 @@ div.mt-6 data-controller="rotate"
               div.absolute.theme__needle
               div.absolute.speaker__needle
         div.flex.justify-center.mt-8
-          button class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider" data-rotate-target="startButton" data-action="click->rotate#start"
-            | スタート
-          button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
-            | リセット
+          div.flex.justify-center.w-5/6.ml-auto
+            button class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider" data-rotate-target="startButton" data-action="click->rotate#start"
+              | スタート
+            button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
+              | リセット
     div.ml-44
       div.mt-24.h-80
         = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
