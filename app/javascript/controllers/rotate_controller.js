@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { saveTargets, save, getTargets, find } from "../helpers/storage"
+import { save, findByKey } from "../helpers/storage"
 
 export default class extends Controller {
   static targets = ['resultText', 'talkThemeResult', 'speakerResult', 'talk', 'talkTheme', 'speaker', 'speakerName', 'startButton', 'resetButton']
@@ -14,8 +14,8 @@ export default class extends Controller {
     Promise.all([talkAnimation.finished, speakerAnimation.finished]).then(() => {
       this.startButtonTarget.disabled = false
       this.resetButtonTarget.disabled = false
-      this.talkThemeResultTarget.innerText = find('talkResult')
-      this.speakerResultTarget.innerText = find('speakerResult')
+      this.talkThemeResultTarget.innerText = findByKey('talkResult')
+      this.speakerResultTarget.innerText = findByKey('speakerResult')
       this.resultTextTarget.style.visibility = 'visible'
     })
   }
@@ -23,7 +23,8 @@ export default class extends Controller {
   private
 
   rotate(roulette, rouletteItems, rouletteName, duration_time) {
-    const lotteryTargets = getTargets(rouletteName)
+    const storageTartgets = findByKey(rouletteName)
+    const lotteryTargets = storageTartgets.length !== 0 ? storageTartgets : this.createLotteryString(rouletteItems.length)
     const lotteryResultIndex = this.lottery(lotteryTargets)
     const lotteryResult = lotteryTargets[lotteryResultIndex]
     save(`${rouletteName}Result`, rouletteItems[lotteryResult].innerText)
@@ -62,6 +63,15 @@ export default class extends Controller {
 
   deleteTarget(rouletteName, targets, index) {
     targets.splice(index, 1)
-    saveTargets(rouletteName, targets)
+    save(rouletteName, targets)
+  }
+
+  createLotteryString(element_count) {
+    let numbers = []
+    for (let i = 0; i < element_count; i++) {
+      numbers.push(i)
+    }
+
+    return numbers
   }
 }

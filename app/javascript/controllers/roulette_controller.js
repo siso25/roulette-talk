@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { saveTargets } from "../helpers/storage"
+import { save } from "../helpers/storage"
 
 export default class extends Controller {
   static targets = ['talkTheme', 'speakerName']
@@ -9,8 +9,8 @@ export default class extends Controller {
   }
 
   reset() {
-    saveTargets('talk', this.createLotteryString(this.talkThemeTargets.length))
-    saveTargets('speaker', this.createLotteryString(this.speakerNameTargets.length))
+    save('talk', this.createLotteryString(this.talkThemeTargets.length))
+    save('speaker', this.createLotteryString(this.speakerNameTargets.length))
   }
 
   private
@@ -21,6 +21,6 @@ export default class extends Controller {
       numbers.push(i)
     }
 
-    return numbers.join()
+    return numbers
   }
 }
