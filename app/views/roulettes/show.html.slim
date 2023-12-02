@@ -31,6 +31,12 @@ div.mt-6 data-controller="rotate"
             button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
               | リセット
     div.ml-44
+      div.flex.justify-end
+        = button_tag  onclick: 'help_modal.showModal()', class: 'btn bg-neutral-content flex items-center'
+          = image_tag 'help-icon.png', size: '16x16'
+          p.leading-4
+            | 使い方
+      = render partial: 'roulettes/modal'
       div.mt-24.h-80
         = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
       div.mt-10.h-80
