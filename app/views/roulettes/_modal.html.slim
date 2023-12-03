@@ -1,0 +1,44 @@
+dialog#help_modal.modal
+  form.modal-backdrop method="dialog"
+    button
+  div.modal-box.w-2/3.max-w-3xl.h-4/5.bg-base-200.overflow-hidden.pr-3.pl-10.pt-10.pb-10
+    div.w-full.h-full.overflow-y-auto
+      form method="dialog"
+        = button_tag class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
+          = image_tag 'delete-icon.png', size: '15x15'
+      div
+        h2.font-bold.text-xl.text-primary
+          | トークテーマ、話す人を入力する
+        = image_tag 'help_talk_theme.png', class: 'mt-6'
+        div.flex.mt-6
+          div.rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
+            p class="text-sm leading-[22px]"
+              | 1
+          p.ml-2
+            | 既存の選択肢をクリックすると、文言を編集できます。
+        div.flex.mt-3
+          div.rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
+            p class="text-sm leading-[22px]"
+              | 2
+          p.ml-2
+            | ルーレットの選択肢が一件追加されます。
+        div.flex.mt-3
+          div.rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
+            p class="text-sm leading-[22px]"
+              | 3
+          p.ml-2
+            | ルーレットの選択肢が削除されます。
+      div.mt-10
+        h2.font-bold.text-xl.text-primary
+          | ルーレットを開始する
+        p.mt-2.leading-7
+          | 作成したルーレットを開始するには、ルーレット下部の「スタート」ボタンをクリックしてください。<br>
+            ルーレットを最初からやり直す場合は、「リセット」ボタンをクリックしてください。
+        = image_tag 'help_start_reset_button.png', class: 'mt-4'
+      div.mt-10
+        h2.font-bold.text-xl.text-primary
+          | 作成済みのルーレットを表示する
+        p.mt-2.leading-7
+          | 作成したルーレットのURLにアクセスすることで、入力済みのルーレットを表示できます。<br>
+            当ページをブックマークしていただくか、画面上部の「リンクのコピー」ボタンをクリックしてURLを保管してください。<br>
+            ※URLを忘れた場合、作成済みのルーレットにアクセスできなくなりますのでご注意ください。
