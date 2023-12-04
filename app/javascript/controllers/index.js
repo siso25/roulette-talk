@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import RouletteController from "./roulette_controller"
-application.register("roulette", RouletteController)
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
 
 import RotateController from "./rotate_controller"
 application.register("rotate", RotateController)
+
+import RouletteController from "./roulette_controller"
+application.register("roulette", RouletteController)
