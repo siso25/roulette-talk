@@ -33,10 +33,11 @@ div.mt-6 data-controller="rotate"
     div.ml-44
       div.flex.justify-end
         div data-controller="clipboard"
-          = button_tag 'data-action'=>'clipboard#copy', class: 'btn bg-neutral-content flex items-center'
-            = image_tag 'copy-link-icon.png', size: '17x16'
-            p.leading-4.tracking-wider.ml-1
-              | リンクのコピー
+          div data-clipboard-target="toolTip" data-tip="コピーしました！"
+            = button_tag 'data-action'=>'clipboard#copy', class: 'btn bg-neutral-content flex items-center'
+              = image_tag 'copy-link-icon.png', size: '17x16'
+              p.leading-4.tracking-wider.ml-1
+                | リンクのコピー
         div.ml-2
           = button_tag onclick: 'help_modal.showModal()', class: 'btn bg-neutral-content flex items-center'
             = image_tag 'help-icon.png', size: '16x16'
