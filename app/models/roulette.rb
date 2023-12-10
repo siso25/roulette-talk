@@ -27,7 +27,7 @@ class Roulette < ApplicationRecord
       color_array
     end
 
-    def label_position_and_angle(radius, count, index, left_plus, top_plus)
+    def label_position_and_angle(text, radius, count, index, left_plus, top_plus)
       angle = 360 / count
       item_position_angle = angle / 2 + angle * index
       radian = calc_radian(item_position_angle) * Math::PI / 180
@@ -43,8 +43,14 @@ class Roulette < ApplicationRecord
         y *= -1
       end
 
+      y -= if text.size > 8
+             top_plus * 2
+           else
+             top_plus
+           end
+      x -= left_plus
       rotate_angle = calc_rotate_angle(item_position_angle)
-      "left: #{x - left_plus}px; top: #{y - top_plus}px; transform: rotate(#{rotate_angle}deg);"
+      "left: #{x}px; top: #{y}px; transform: rotate(#{rotate_angle}deg);"
     end
 
     def calc_radian(angle)
