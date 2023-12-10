@@ -1,13 +1,18 @@
 div.mt-6 data-controller="rotate"
   div.flex
     div
-      div.h-16
-        p.text-2xl.text-left.w-fit.mx-auto.tracking-wider.invisible data-rotate-target="resultText"
-          | トークテーマは
-          span.text-accent.font-bold.mx-3 data-rotate-target="talkThemeResult"
-          | <br>話すのは
-          span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
-          | さんです。
+      div.h-16.invisible data-rotate-target="resultText"
+        div.text-2xl.text-left.w-fit.mx-auto.tracking-wider
+          div.flex
+            p
+              | トークテーマは
+            p.text-accent.font-bold.ml-3.max-w-md.line-clamp-1 data-rotate-target="talkThemeResult"
+          div.flex
+            p
+              | 話すのは
+            p.text-accent.font-bold.mx-3.max-w-sm.line-clamp-1 data-rotate-target="speakerResult"
+            p
+              | さんです。
       div.mt-8 data-controller="roulette"
         div.flex
           div class="flex-initial w-[600px] h-[600px]"
@@ -22,7 +27,7 @@ div.mt-6 data-controller="rotate"
                 ul.absolute.speaker__labelContainer
                   - @speakers.each_with_index do |speaker, idx|
                     li.absolute.speaker__label data-roulette-target="speakerName" data-rotate-target="speakerName" style="#{Roulette.label_position_and_angle(speaker.name, 70, @speakers.count, idx, 50, 10)}"
-                      div.w-16.whitespace-normal.ml-auto.line-clamp-2
+                      div.w-20.whitespace-normal.ml-auto.line-clamp-2
                         = speaker.name
               div.absolute.theme__needle
               div.absolute.speaker__needle
