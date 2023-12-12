@@ -16,17 +16,6 @@ class Roulette < ApplicationRecord
       "background: conic-gradient(#{background_texts.join(',')});"
     end
 
-    def create_color_array(num, color_set)
-      colors = color_set.drop(1)
-      color_array = [color_set.first]
-
-      (1..num - 1).each do |idx|
-        color_array[idx] = colors[idx % 4]
-      end
-
-      color_array
-    end
-
     def label_position_and_angle(text, radius, count, index, left_plus, top_plus)
       angle = 360 / count
       item_position_angle = angle / 2 + angle * index
@@ -51,6 +40,19 @@ class Roulette < ApplicationRecord
       x -= left_plus
       rotate_angle = calc_rotate_angle(item_position_angle)
       "left: #{x}px; top: #{y}px; transform: rotate(#{rotate_angle}deg);"
+    end
+
+    private
+
+    def create_color_array(num, color_set)
+      color_array = [color_set.first]
+      divisor = color_set.size
+
+      (1..num).each do |idx|
+        color_array[idx] = color_set[idx % divisor]
+      end
+
+      color_array
     end
 
     def calc_radian(angle)
