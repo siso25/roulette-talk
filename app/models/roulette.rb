@@ -44,15 +44,22 @@ class Roulette < ApplicationRecord
 
     private
 
-    def create_color_array(num, color_set)
-      color_array = [color_set.first]
-      divisor = color_set.size
+    def create_color_array(num, colors)
+      color_array = colors * (num / colors.size)
+      color_array << case num % colors.size
+                     when 1
+                       colors[2]
+                     when 2
+                       colors[2..3]
+                     when 3
+                       colors[0..2]
+                     when 4
+                       colors[0..3]
+                     else
+                       []
+                     end
 
-      (1..num).each do |idx|
-        color_array[idx] = color_set[idx % divisor]
-      end
-
-      color_array
+      color_array.flatten
     end
 
     def calc_radian(angle)
