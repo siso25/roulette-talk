@@ -3,17 +3,13 @@ require 'rails_helper'
 RSpec.describe TalkTheme, type: :model do
   it 'is valid with a roulette, theme' do
     roulette = Roulette.new
-    talk_theme = roulette.talk_themes.build(
-      theme: 'トークテーマ1'
-    )
+    talk_theme = roulette.talk_themes.build(theme: "トークテーマ1")
     expect(talk_theme).to be_valid
   end
 
   it 'is invalid with a theme' do
     roulette = Roulette.new
-    talk_theme = roulette.talk_themes.build(
-      theme: nil
-    )
+    talk_theme = roulette.talk_themes.build(theme: nil)
     talk_theme.valid?
     expect(talk_theme.errors[:theme]).to include("can't be blank")
   end
