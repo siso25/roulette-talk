@@ -1,0 +1,9 @@
+dialog#term_of_service_modal.modal
+  form.modal-backdrop method="dialog"
+    button
+  div.modal-box.w-2/3.max-w-3xl.h-4/5.overflow-hidden.pr-3.pl-10.pt-10.pb-10
+    div.w-full.h-full.overflow-y-auto
+      form method="dialog"
+        = button_tag class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
+          = image_tag 'delete-icon.png', size: '15x15'
+      div
