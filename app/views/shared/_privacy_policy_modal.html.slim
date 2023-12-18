@@ -1,0 +1,26 @@
+dialog#privacy_policy_modal.modal
+  form.modal-backdrop method="dialog"
+    button
+  div.modal-box.w-2/3.max-w-3xl.h-4/5.overflow-hidden.pr-3.pl-10.pt-10.pb-10
+    div.w-full.h-full.overflow-y-auto
+      form method="dialog"
+        = button_tag class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
+          = image_tag 'delete-icon.png', size: '15x15'
+      div.leading-7.text-base
+        h2.font-bold.text-xl
+          | プライバシーポリシー
+        p.mt-2
+          | 当サイトでは、提供するサービス向上のためにGoogle社のアクセス解析ツール「Google アナリティクス」を使用しています。
+            Google アナリティクスはデータの収集のためにCookie(※)を使用し、取得されたデータはGoogle社により同社のプライバシーポリシーに基づいて管理されます。
+            Googleアナリティクスに関する説明は、
+          = link_to 'Googleアナリティクス利用規約', 'https://marketingplatform.google.com/about/analytics/terms/jp/', class: 'text-primary'
+          | と
+          = link_to 'Googleプライバシーポリシー', 'https://policies.google.com/technologies/ads', class: 'text-primary'
+          | をご確認ください。
+        p
+          | また、Google による情報収集を無効化したい場合は、Google社が提供する
+          = link_to 'Google アナリティクス オプトアウト アドオン', 'https://tools.google.com/dlpage/gaoptout', class: 'text-primary'
+          | からオプトアウトの設定が可能です。
+        p
+          | ※Cookieとは、利用者がウェブサイトに訪問した際、ブラウザーを通して利用者のコンピューターに一時的にデータを記録する仕組みのことです。
+            Cookieには、利用者の端末に関する情報やサイトへの訪問回数といった情報が記録され、サイトへの訪問者としての利用者の識別として利用されます。

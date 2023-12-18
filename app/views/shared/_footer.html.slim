@@ -1,8 +1,10 @@
 footer.footer.absolute.bottom-0
   div.flex.relative.w-screen.justify-center.items-center.p-3.bg-base-300.text-neutral
     div.flex
-      = link_to '利用規約', '#', class: 'mr-3'
-      = link_to 'プライバシーポリシー', '#'
+      = button_tag '利用規約', onclick: 'term_of_service_modal.showModal()', class: 'mr-3'
+      = render partial: 'shared/term_of_service_modal'
+      = button_tag 'プライバシーポリシー', onclick: 'privacy_policy_modal.showModal()'
+      = render partial: 'shared/privacy_policy_modal'
     div.flex.h-6.ml-auto.absolute.right-10
       div.flex.items-center.h-full.mr-3
         p.text-base
