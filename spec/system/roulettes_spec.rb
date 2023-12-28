@@ -35,4 +35,37 @@ RSpec.describe "Roulettes", type: :system do
     expect(result_text).to have_content(session_storage_items['talkResult'])
     expect(result_text).to have_content(session_storage_items['speakerResult'])
   end
+
+  scenario 'user plays roulette more times than the number of roulette elements', js: true do
+    roulette = Roulette.create
+    FactoryBot.create_list(:talk_theme, 2, roulette:)
+    FactoryBot.create_list(:speaker, 2, roulette:)
+    visit roulette_path(roulette)
+    click_button 'スタート'
+    find "[data-rotate-target='resultText']", wait: 10
+    click_button 'スタート'
+    find "[data-rotate-target='resultText']", wait: 10
+    session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('#{roulette.id}')"))
+    expect(session_storage_items1['talk'].size).to eq 0
+    expect(session_storage_items1['speaker'].size).to eq 0
+    click_button 'スタート'
+    find "[data-rotate-target='resultText']", wait: 10
+    # session storageがリセットされた上で一回ルーレットが実行されるのでsizeは1になる
+    session_storage_items2 = JSON.parse(evaluate_script("sessionStorage.getItem('#{roulette.id}')"))
+    expect(session_storage_items2['talk'].size).to eq 1
+    expect(session_storage_items2['speaker'].size).to eq 1
+  end
+
+  scenario 'user reset roulette', js: true do
+    visit roulette_path(@roulette)
+    click_button 'スタート'
+    find "[data-rotate-target='resultText']", wait: 10
+    session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))
+    expect(session_storage_items1['talk'].size).to eq 3
+    expect(session_storage_items1['speaker'].size).to eq 3
+    click_button 'リセット'
+    session_storage_items2 = JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))
+    expect(session_storage_items2['talk'].size).to eq 4
+    expect(session_storage_items2['speaker'].size).to eq 4
+  end
 end
