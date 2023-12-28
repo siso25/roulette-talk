@@ -16,4 +16,5 @@ html
       = render partial: 'shared/header'
     main.w-fit.mx-auto
       = yield
-    = render partial: 'shared/footer'
+    - if current_page?(root_path)
+      = render partial: 'shared/footer'
