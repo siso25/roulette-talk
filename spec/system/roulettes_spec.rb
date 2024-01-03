@@ -68,4 +68,48 @@ RSpec.describe "Roulettes", type: :system do
     expect(session_storage_items2['talk'].size).to eq 4
     expect(session_storage_items2['speaker'].size).to eq 4
   end
+
+  scenario 'user add a talk theme', js: true do
+    visit roulette_path(@roulette)
+    expect do
+      click_link 'トークテーマを追加する'
+      fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
+      click_button '登録'
+      expect(find('#talk_themes_list')).to have_content('トークテーマ テスト')
+    end.to change(@roulette.talk_themes, :count).by(1)
+    expect(find('.theme__labelContainer')).to have_content('トークテーマ テスト')
+  end
+
+  scenario 'user modify a talk theme', js: true do
+    visit roulette_path(@roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: 'トークテーマ 修正'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('トークテーマ 修正')
+    expect(find('.theme__labelContainer')).to have_content('トークテーマ 修正')
+  end
+
+  scenario 'user add a speaker', js: true do
+    visit roulette_path(@roulette)
+    expect do
+      click_link '話す人を追加する'
+      fill_in 'speaker[name]', with: 'ユーザー テスト'
+      click_button '登録'
+      expect(find('#speakers_list')).to have_content('ユーザー テスト')
+    end.to change(@roulette.speakers, :count).by(1)
+    expect(find('.speaker__labelContainer')).to have_content('ユーザー テスト')
+  end
+
+  scenario 'user modify a speaker', js: true do
+    visit roulette_path(@roulette)
+    within '#speakers_list' do
+      click_link 'ユーザー', match: :first
+      fill_in 'speaker[name]', with: 'ユーザー 修正'
+      click_button '更新'
+    end
+    expect(find('#speakers_list')).to have_content('ユーザー 修正')
+    expect(find('.speaker__labelContainer')).to have_content('ユーザー 修正')
+  end
 end
