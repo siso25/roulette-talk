@@ -91,6 +91,20 @@ RSpec.describe "Roulettes", type: :system do
     expect(find('.theme__labelContainer')).to have_content('トークテーマ 修正')
   end
 
+  scenario 'user delete a talk theme', js: true do
+    visit roulette_path(@roulette)
+    talk_theme = find('#talk_themes_list').find('a', match: :first).text
+    expect do
+      within '#talk_themes_list' do
+        find('img', visible: false, match: :first).click
+        expect(page).to_not have_content(talk_theme)
+        expect(page.all('li').count).to eq 3
+      end
+    end.to change(@roulette.talk_themes, :count).by(-1)
+    expect(find('.theme__labelContainer')).to_not have_content(talk_theme)
+    expect(find('.theme__labelContainer').all('li').count).to eq 3
+  end
+
   scenario 'user add a speaker', js: true do
     visit roulette_path(@roulette)
     expect do
@@ -111,5 +125,20 @@ RSpec.describe "Roulettes", type: :system do
     end
     expect(find('#speakers_list')).to have_content('ユーザー 修正')
     expect(find('.speaker__labelContainer')).to have_content('ユーザー 修正')
+  end
+
+  scenario 'user delete a speaker', js: true do
+    visit roulette_path(@roulette)
+    speaker = find('#speakers_list').find('a', match: :first).text
+    expect do
+      within '#speakers_list' do
+        expect(page).to have_content(speaker)
+        find('img', visible: false, match: :first).click
+        expect(page).to_not have_content(speaker)
+        expect(page.all('li').count).to eq 3
+      end
+    end.to change(@roulette.speakers, :count).by(-1)
+    expect(find('.speaker__labelContainer')).to_not have_content(speaker)
+    expect(find('.speaker__labelContainer').all('li').count).to eq 3
   end
 end
