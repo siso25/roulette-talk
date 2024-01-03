@@ -7,6 +7,12 @@ RSpec.describe "Roulettes", type: :system do
     FactoryBot.create_list(:speaker, 4, roulette: @roulette)
   end
 
+  scenario 'user returns to the top page' do
+    visit roulette_path(@roulette)
+    find('header').find('a').click
+    expect(page).to have_content 'ルーレットを作る'
+  end
+
   scenario "user opens help modal", js: true do
     visit roulette_path(@roulette)
     click_button '使い方'
