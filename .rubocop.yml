@@ -1,9 +1,8 @@
-inherit_from: .rubocop_todo.yml
+AllCops:
+  SuggestExtensions: false
 
 inherit_gem:
   rubocop-fjord:
     - "config/rubocop.yml"
     - "config/rails.yml"
 
-require:
-  - rubocop-capybara

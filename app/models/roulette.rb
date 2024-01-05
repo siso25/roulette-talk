@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Roulette < ApplicationRecord
   has_many :talk_themes, dependent: :destroy
   has_many :speakers, dependent: :destroy
@@ -16,30 +18,13 @@ class Roulette < ApplicationRecord
       "background: conic-gradient(#{background_texts.join(',')});"
     end
 
-    def label_position_and_angle(text, radius, count, index, left_plus, top_plus)
+    def label_position_and_angle(text, radius, count, index, left_plus)
       angle = 360 / count
       item_position_angle = angle / 2 + angle * index
-      radian = calc_radian(item_position_angle) * Math::PI / 180
-      x = Math.cos(radian) * radius
-      y = Math.sin(radian) * radius
-
-      if item_position_angle >= 270
-        x *= -1
-        y *= -1
-      elsif item_position_angle >= 180
-        x *= -1
-      elsif item_position_angle < 90
-        y *= -1
-      end
-
-      y -= if text.size > 8
-             top_plus * 2
-           else
-             top_plus
-           end
-      x -= left_plus
+      top_plus = 10 # topの調整用
+      position = calc_top_and_left_postion(text, item_position_angle, radius, left_plus, top_plus)
       rotate_angle = calc_rotate_angle(item_position_angle)
-      "left: #{x}px; top: #{y}px; transform: rotate(#{rotate_angle}deg);"
+      "left: #{position[0]}px; top: #{position[1]}px; transform: rotate(#{rotate_angle}deg);"
     end
 
     private
@@ -74,6 +59,30 @@ class Roulette < ApplicationRecord
       return angle - 540 if (angle - 90) > 270
 
       angle - 90
+    end
+
+    def calc_top_and_left_postion(text, angle, radius, left_plus, top_plus)
+      radian = calc_radian(angle) * Math::PI / 180
+      left_postion = Math.cos(radian) * radius
+      top_position = Math.sin(radian) * radius
+
+      if angle >= 270
+        left_postion *= -1
+        top_position *= -1
+      elsif angle >= 180
+        left_postion *= -1
+      elsif angle < 90
+        top_position *= -1
+      end
+
+      top_position -= if text.size > 8
+                        top_plus * 2
+                      else
+                        top_plus
+                      end
+      left_postion -= left_plus
+
+      [left_postion, top_position]
     end
   end
 end
