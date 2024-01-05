@@ -42,7 +42,7 @@ RSpec.describe "Roulettes", type: :system do
     expect(result_text).to have_content(session_storage_items['speakerResult'])
 
     # TODO: 抽選結果の角度検証をリファクタリングする
-    transform = find('.roulette__theme').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
+    talk_transform = find('.roulette__theme').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
     talk_result = [0, 1, 2, 3].difference(session_storage_items['talk'])
     talk_deg = (45 - 90 * talk_result[0]).to_f
     # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
@@ -51,10 +51,11 @@ RSpec.describe "Roulettes", type: :system do
     talk_min_deg = talk_deg_calc - 44.0
     talk_max_deg = talk_deg_calc + 44.0
     # 点の位置から角度を算出する
-    talk_result_deg = Math.atan2(transform[1], transform[0]) * 180 / Math::PI
+    talk_result_deg = Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI
     expect(talk_result_deg).to be >= talk_min_deg
     expect(talk_result_deg).to be <= talk_max_deg
 
+    speaker_transform = find('.roulette__speaker').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
     speaker_result = [0, 1, 2, 3].difference(session_storage_items['speaker'])
     speaker_deg = (45 - 90 * speaker_result[0]).to_f
     # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
@@ -63,7 +64,7 @@ RSpec.describe "Roulettes", type: :system do
     speaker_min_deg = speaker_deg_calc - 44.0
     speaker_max_deg = speaker_deg_calc + 44.0
     # 点の位置から角度を算出する
-    speaker_result_deg = Math.atan2(transform[1], transform[0]) * 180 / Math::PI
+    speaker_result_deg = Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI
     expect(speaker_result_deg).to be >= speaker_min_deg
     expect(speaker_result_deg).to be <= speaker_max_deg
   end
