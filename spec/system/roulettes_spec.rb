@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Roulettes", type: :system do
+RSpec.describe 'Roulettes', type: :system do
   before do
     @roulette = Roulette.create
     FactoryBot.create_list(:talk_theme, 4, roulette: @roulette)
@@ -13,15 +15,15 @@ RSpec.describe "Roulettes", type: :system do
     expect(page).to have_content 'ルーレットを作る'
   end
 
-  scenario "user opens help modal", js: true do
+  scenario 'user opens help modal', js: true do
     visit roulette_path(@roulette)
     click_button '使い方'
-    expect(page).to have_css "dialog#help_modal"
+    expect(page).to have_css 'dialog#help_modal'
   end
 
-  scenario "user copies link on current page", js: true do
+  scenario 'user copies link on current page', js: true do
     visit roulette_path(@roulette)
-    click_button "リンクのコピー"
+    click_button 'リンクのコピー'
     cdp_permission = {
       origin: page.server_url,
       permission: { name: 'clipboard-read' },

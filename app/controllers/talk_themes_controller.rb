@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TalkThemesController < ApplicationController
   def new
     @roulette = Roulette.find(params[:roulette_id])

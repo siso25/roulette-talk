@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SpeakersController < ApplicationController
   def new
     @roulette = Roulette.find(params[:roulette_id])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TalkTheme < ApplicationRecord
   belongs_to :roulette
   validates :theme, presence: true

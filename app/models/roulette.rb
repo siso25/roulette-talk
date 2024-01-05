@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Roulette < ApplicationRecord
   has_many :talk_themes, dependent: :destroy
   has_many :speakers, dependent: :destroy

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoulettesController < ApplicationController
   def show
     @roulette = Roulette.find(params[:id])

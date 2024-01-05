@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe TalkTheme, type: :model do
   it 'is valid with a roulette, theme' do
     roulette = Roulette.new
-    talk_theme = roulette.talk_themes.build(theme: "トークテーマ1")
+    talk_theme = roulette.talk_themes.build(theme: 'トークテーマ1')
     expect(talk_theme).to be_valid
   end
 
