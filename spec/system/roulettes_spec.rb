@@ -41,32 +41,24 @@ RSpec.describe "Roulettes", type: :system do
     expect(result_text).to have_content(session_storage_items['talkResult'])
     expect(result_text).to have_content(session_storage_items['speakerResult'])
 
-    # TODO: 抽選結果の角度検証をリファクタリングする
     talk_transform = find('.roulette__theme').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
-    talk_result = [0, 1, 2, 3].difference(session_storage_items['talk'])
-    talk_deg = (45 - 90 * talk_result[0]).to_f
-    # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
-    talk_deg_calc = talk_deg < -180 ? talk_deg + 360 : talk_deg
-    # ラベルの中心を0としてプラスマイナス44
-    talk_min_deg = talk_deg_calc - 44.0
-    talk_max_deg = talk_deg_calc + 44.0
     # 点の位置から角度を算出する
-    talk_result_deg = Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI
-    expect(talk_result_deg).to be >= talk_min_deg
-    expect(talk_result_deg).to be <= talk_max_deg
+    talk_rotate_angle = Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI
+    talk_lottery_result = [0, 1, 2, 3].difference(session_storage_items['talk'])
+    talk_deg = (45 - 90 * talk_lottery_result[0]).to_f
+    # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
+    talk_deg_processed = talk_deg < -180 ? talk_deg + 360 : talk_deg
+    # 真ん中で止まった位置を0としてプラスマイナス44の範囲に収まっているか検証
+    expect(talk_rotate_angle).to be >= talk_deg_processed - 44.0
+    expect(talk_rotate_angle).to be <= talk_deg_processed + 44.0
 
     speaker_transform = find('.roulette__speaker').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
-    speaker_result = [0, 1, 2, 3].difference(session_storage_items['speaker'])
-    speaker_deg = (45 - 90 * speaker_result[0]).to_f
-    # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
-    speaker_deg_calc = speaker_deg < -180 ? speaker_deg + 360 : speaker_deg
-    # ラベルの中心を0としてプラスマイナス44
-    speaker_min_deg = speaker_deg_calc - 44.0
-    speaker_max_deg = speaker_deg_calc + 44.0
-    # 点の位置から角度を算出する
-    speaker_result_deg = Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI
-    expect(speaker_result_deg).to be >= speaker_min_deg
-    expect(speaker_result_deg).to be <= speaker_max_deg
+    speaker_rotate_angle = Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI
+    speaker_lottery_result = [0, 1, 2, 3].difference(session_storage_items['speaker'])
+    speaker_deg = (45 - 90 * speaker_lottery_result[0]).to_f
+    speaker_deg_processed = speaker_deg < -180 ? speaker_deg + 360 : speaker_deg
+    expect(speaker_rotate_angle).to be >= speaker_deg_processed - 44.0
+    expect(speaker_rotate_angle).to be <= speaker_deg_processed + 44.0
   end
 
   scenario 'user plays roulette more times than the number of roulette elements', js: true do
