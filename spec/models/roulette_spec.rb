@@ -52,7 +52,8 @@ RSpec.describe Roulette, type: :model do
         talk_themes << FactoryBot.build(:talk_theme, roulette: @roulette)
       end
       css_text = Roulette.conic_gradient_text(talk_themes, color_set)
-      expect(css_text).to eq 'background: conic-gradient(#6EB7DB 0deg 72deg,#E38692 72deg 144deg,#64C99B 144deg 216deg,#E5D972 216deg 288deg,#C97FB4 288deg 360deg);'
+      expect(css_text).to eq 'background: conic-gradient(#6EB7DB 0deg 72deg,#E38692 72deg 144deg,#64C99B 144deg 216deg,#E5D972 216deg 288deg,'\
+                             '#C97FB4 288deg 360deg);'
     end
 
     it 'returns first through fifth colors and third color' do
@@ -62,7 +63,8 @@ RSpec.describe Roulette, type: :model do
         talk_themes << FactoryBot.build(:talk_theme, roulette: @roulette)
       end
       css_text = Roulette.conic_gradient_text(talk_themes, color_set)
-      expect(css_text).to eq 'background: conic-gradient(#6EB7DB 0deg 60deg,#E38692 60deg 120deg,#64C99B 120deg 180deg,#E5D972 180deg 240deg,#C97FB4 240deg 300deg,#64C99B 300deg 360deg);'
+      expect(css_text).to eq 'background: conic-gradient(#6EB7DB 0deg 60deg,#E38692 60deg 120deg,#64C99B 120deg 180deg,#E5D972 180deg 240deg,'\
+                             '#C97FB4 240deg 300deg,#64C99B 300deg 360deg);'
     end
   end
 
@@ -73,8 +75,7 @@ RSpec.describe Roulette, type: :model do
       count = 5
       index = 0
       left_plus = 100
-      top_plus = 10
-      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus, top_plus)
+      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus)
       expect(label_position).to eq 'left: -0.07650711027956447px; top: -147.53288904374108px; transform: rotate(-54deg);'
     end
 
@@ -84,8 +85,7 @@ RSpec.describe Roulette, type: :model do
       count = 5
       index = 0
       left_plus = 100
-      top_plus = 10
-      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus, top_plus)
+      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus)
       expect(label_position).to eq 'left: -0.07650711027956447px; top: -157.53288904374108px; transform: rotate(-54deg);'
     end
   end
