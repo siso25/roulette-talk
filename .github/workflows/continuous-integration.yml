@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
           bundler-cache: true
-      - name: setup Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: intall yarn
+      - name: Intall yarn
         run: npm i -g yarn
       - name: Install dependencies
         run: |
@@ -42,22 +42,24 @@ jobs:
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - uses: actions/checkout@v3
-      - name: setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
           bundler-cache: true
-      - name: setup Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: intall yarn
+      - name: Intall yarn
         run: npm i -g yarn
       - name: Install dependencies
         run: |
           yarn install
           bundle install
-      - name: Rspec
+      - name: Build css
+        run: yarn build:css
+      - name: Run Rspec
         run: |
           bundle exec rails db:schema:load
           bundle exec rspec
