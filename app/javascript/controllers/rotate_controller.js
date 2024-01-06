@@ -22,7 +22,7 @@ export default class extends Controller {
 
   private
 
-  rotate(roulette, rouletteItems, rouletteName, duration_time) {
+  rotate(roulette, rouletteItems, rouletteName, durationTime) {
     const storageTartgets = findByKey(rouletteName)
     const lotteryTargets = storageTartgets.length !== 0 ? storageTartgets : this.createLotteryString(rouletteItems.length)
     const lotteryResultIndex = this.lottery(lotteryTargets)
@@ -37,7 +37,7 @@ export default class extends Controller {
         { transform: `rotate(${endDeg}deg)` }
       ],
       {
-        duration: duration_time,
+        duration: durationTime,
         easing: "cubic-bezier(0,0.4,.3,1)",
         fill: "forwards"
       }
@@ -66,9 +66,9 @@ export default class extends Controller {
     save(rouletteName, targets)
   }
 
-  createLotteryString(element_count) {
-    let numbers = []
-    for (let i = 0; i < element_count; i++) {
+  createLotteryString(elementCount) {
+    const numbers = []
+    for (let i = 0; i < elementCount; i++) {
       numbers.push(i)
     }
 

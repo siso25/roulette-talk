@@ -15,9 +15,9 @@ export default class extends Controller {
 
   private
 
-  createLotteryString(element_count) {
-    let numbers = []
-    for (let i = 0; i < element_count; i++) {
+  createLotteryString(elementCount) {
+    const numbers = []
+    for (let i = 0; i < elementCount; i++) {
       numbers.push(i)
     }
 
