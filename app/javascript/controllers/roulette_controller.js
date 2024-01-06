@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
-import { save } from "../helpers/storage"
+import { Controller } from '@hotwired/stimulus'
+import { save } from '../helpers/storage'
 
 export default class extends Controller {
   static targets = ['talkTheme', 'speakerName']

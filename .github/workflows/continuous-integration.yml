@@ -1,0 +1,67 @@
+name: "Continuous integration"
+on:
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Intall yarn
+        run: npm i -g yarn
+      - name: Install dependencies
+        run: |
+          yarn install
+          bundle install
+      - name: Lint Ruby files and JS files
+        run: |
+          yarn lint
+          bundle exec rubocop
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Intall yarn
+        run: npm i -g yarn
+      - name: Install dependencies
+        run: |
+          yarn install
+          bundle install
+      - name: Build
+        run: |
+          yarn build
+          yarn build:css
+      - name: Run Rspec
+        run: |
+          bundle exec rails db:schema:load
+          bundle exec rspec
