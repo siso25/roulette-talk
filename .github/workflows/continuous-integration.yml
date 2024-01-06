@@ -57,8 +57,10 @@ jobs:
         run: |
           yarn install
           bundle install
-      - name: Build css
-        run: yarn build:css
+      - name: Build
+        run: |
+          yarn build
+          yarn build:css
       - name: Run Rspec
         run: |
           bundle exec rails db:schema:load
