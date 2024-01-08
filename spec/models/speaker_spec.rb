@@ -18,9 +18,7 @@ RSpec.describe Speaker, type: :model do
 
   it 'is invalid insertion of more than 10 records' do
     roulette = Roulette.create
-    9.times do
-      FactoryBot.create(:speaker, roulette:)
-    end
+    FactoryBot.create_list(:speaker, 9, roulette:)
     tenth_speaker = FactoryBot.build(:speaker, roulette:)
     expect(tenth_speaker).to be_valid
     tenth_speaker.save

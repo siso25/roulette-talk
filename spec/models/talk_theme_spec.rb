@@ -18,9 +18,7 @@ RSpec.describe TalkTheme, type: :model do
 
   it 'is invalid insertion of more than 10 records' do
     roulette = Roulette.create
-    9.times do
-      FactoryBot.create(:talk_theme, roulette:)
-    end
+    FactoryBot.create_list(:talk_theme, 9, roulette:)
     tenth_talk_theme = FactoryBot.build(:talk_theme, roulette:)
     expect(tenth_talk_theme).to be_valid
     tenth_talk_theme.save
