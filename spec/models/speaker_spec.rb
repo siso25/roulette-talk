@@ -16,6 +16,20 @@ RSpec.describe Speaker, type: :model do
     expect(speaker.errors[:name]).to include("can't be blank")
   end
 
+  it 'is invalid insertion of more than 10 records' do
+    roulette = Roulette.create
+    9.times do
+      FactoryBot.create(:speaker, roulette:)
+    end
+    tenth_speaker = FactoryBot.build(:speaker, roulette:)
+    expect(tenth_speaker).to be_valid
+    tenth_speaker.save
+    eleventh_speaker = FactoryBot.build(:speaker, roulette:)
+    eleventh_speaker.valid?
+    expect(eleventh_speaker).to be_invalid
+    expect(eleventh_speaker.errors[:roulette]).to include('登録できるのは10件までです')
+  end
+
   it 'create 4 initial records' do
     roulette = Roulette.create
     expect do
