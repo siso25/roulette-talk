@@ -1,19 +1,19 @@
 div.mt-6 data-controller="rotate"
   div.flex
-    div
-      div.h-16.invisible data-rotate-target="resultText"
+    div.relative
+      div.absolute.left-6.z-10.rounded-xl.shadow-lg.bg-primary-content.p-6.w-11/12.invisible data-rotate-target="resultText"
         div.text-2xl.text-left.w-fit.mx-auto.tracking-wider
           div.flex
             p
               | トークテーマは
-            p.text-accent.font-bold.ml-3.max-w-md.line-clamp-1 data-rotate-target="talkThemeResult"
+              span.text-accent.font-bold.ml-3 data-rotate-target="talkThemeResult"
           div.flex
             p
               | 話すのは
-            p.text-accent.font-bold.mx-3.max-w-sm.line-clamp-1 data-rotate-target="speakerResult"
-            p
-              | さんです。
-      div.mt-8 data-controller="roulette"
+              span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
+              span
+                | さんです。
+      div.mt-32 data-controller="roulette"
         div.flex
           div class="flex-initial w-[600px] h-[600px]"
             div class="text-center relative w-[600px]"
@@ -41,14 +41,14 @@ div.mt-6 data-controller="rotate"
       div.flex.justify-end
         div data-controller="clipboard"
           div data-clipboard-target="toolTip" data-tip="コピーしました！"
-            = button_tag 'data-action'=>'clipboard#copy', class: 'btn bg-neutral-content flex items-center'
+            = button_tag 'data-action'=>'clipboard#copy', class: 'w-36 btn bg-neutral-content flex items-center'
               = image_tag 'copy-link-icon.png', size: '17x16'
               p.leading-4.tracking-wider.ml-1
                 | リンクのコピー
         div.ml-2
-          = button_tag onclick: 'help_modal.showModal()', class: 'btn bg-neutral-content flex items-center'
+          = button_tag onclick: 'help_modal.showModal()', class: 'w-36 btn bg-neutral-content flex items-center justify-start'
             = image_tag 'help-icon.png', size: '16x16'
-            p.leading-4.tracking-wider
+            p.leading-4.tracking-wider.ml-4
               | 使い方
       = render partial: 'roulettes/help_modal'
       div.mt-12.h-80
