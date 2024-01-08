@@ -3,6 +3,7 @@
 class Speaker < ApplicationRecord
   belongs_to :roulette
   validates :name, presence: true
+  validate :reached_maximum_count_of_registrations
 
   COLOR_SET = ['#ECACB5', '#9ACDE7', '#DBA6CC', '#E4E0BE', '#91DBB9'].freeze
 
@@ -12,5 +13,9 @@ class Speaker < ApplicationRecord
         roulette.speakers.create(name: "ユーザー#{num}")
       end
     end
+  end
+
+  def reached_maximum_count_of_registrations
+    errors.add(:roulette, '登録できるのは10件までです') if roulette.speakers.count >= 10
   end
 end

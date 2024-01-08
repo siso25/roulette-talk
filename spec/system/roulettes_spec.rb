@@ -132,6 +132,19 @@ RSpec.describe 'Roulettes', type: :system do
     expect(find('.theme__labelContainer').all('li').count).to eq 3
   end
 
+  scenario 'user fails to register 11th talk theme', js: true do
+    FactoryBot.create_list(:talk_theme, 6, roulette: @roulette)
+    visit roulette_path(@roulette)
+    expect(find('#talk_themes_list').all('li').count).to eq 10
+    expect do
+      click_link 'トークテーマを追加する'
+      fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
+      click_button '登録'
+      expect(find('#talk_themes_list')).to_not have_content('トークテーマ テスト')
+    end.to change(@roulette.talk_themes, :count).by(0)
+    expect(find('#talk_themes_list').all('li').count).to eq 10
+  end
+
   scenario 'user add a speaker', js: true do
     visit roulette_path(@roulette)
     expect do
@@ -167,6 +180,19 @@ RSpec.describe 'Roulettes', type: :system do
     end.to change(@roulette.speakers, :count).by(-1)
     expect(find('.speaker__labelContainer')).to_not have_content(speaker)
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
+  end
+
+  scenario 'user fails to register 11th speaker', js: true do
+    FactoryBot.create_list(:speaker, 6, roulette: @roulette)
+    visit roulette_path(@roulette)
+    expect(find('#speakers_list').all('li').count).to eq 10
+    expect do
+      click_link '話す人を追加する'
+      fill_in 'speaker[name]', with: 'ユーザー テスト'
+      click_button '登録'
+      expect(find('#speakers_list')).to_not have_content('ユーザー テスト')
+    end.to change(@roulette.speakers, :count).by(0)
+    expect(find('#speakers_list').all('li').count).to eq 10
   end
 
   scenario 'user registers a one-line talk theme', js: true do
