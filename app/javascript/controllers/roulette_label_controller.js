@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   static values = {
@@ -12,7 +12,13 @@ export default class extends Controller {
   connect() {
     const angle = 360 / this.countValue
     const itemPositionAngle = angle / 2 + angle * this.indexValue
-    const position = this.calcTopAndLeftPosition(this.element, itemPositionAngle, this.radiusValue, this.leftPlusValue, this.topPlusValue)
+    const position = this.calcTopAndLeftPosition(
+      this.element,
+      itemPositionAngle,
+      this.radiusValue,
+      this.leftPlusValue,
+      this.topPlusValue
+    )
     const rotateAngle = this.calcRotateAngle(itemPositionAngle)
 
     this.element.style = `left: ${position[0]}px; top: ${position[1]}px; transform: rotate(${rotateAngle}deg);`
@@ -21,7 +27,7 @@ export default class extends Controller {
   private
 
   calcTopAndLeftPosition(element, angle, radius, leftPlus, topPlus) {
-    const radian = this.calcRadian(angle) * Math.PI / 180
+    const radian = (this.calcRadian(angle) * Math.PI) / 180
     let leftPosition = Math.cos(radian) * radius
     let topPosition = Math.sin(radian) * radius
 
@@ -35,7 +41,11 @@ export default class extends Controller {
     }
 
     const clientHeight = parseFloat(element.clientHeight)
-    const lineHeight = parseFloat(getComputedStyle(element).getPropertyValue('line-height').match(/[0-9.]+/g))
+    const lineHeight = parseFloat(
+      getComputedStyle(element)
+        .getPropertyValue('line-height')
+        .match(/[0-9.]+/g)
+    )
     const lineCount = clientHeight / lineHeight
 
     if (lineCount > 1) {
@@ -50,7 +60,7 @@ export default class extends Controller {
   }
 
   calcRotateAngle(angle) {
-    if ((angle - 90) > 270) {
+    if (angle - 90 > 270) {
       return angle - 540
     }
 
