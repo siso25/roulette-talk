@@ -1,21 +1,25 @@
 h2.font-bold.text-lg.mb-2
   | 話す人
 = turbo_frame_tag 'speakers_list'
-  div.rounded.border.border-gray-400.w-80.overflow-hidden
+  .rounded.border.border-gray-400.w-80.overflow-hidden
     ul.w-full.max-h-60.overflow-y-auto
       - speakers.each do |speaker|
         li.border-b.last:border-b-0.border-gray-400.w-full.group.pl-4.pr-2.py-2
           = turbo_frame_tag speaker do
-            div.flex.items-center.h-full
+            .flex.items-center.h-full
               p.hidden
                 = speaker.id
-              div.flex-1.line-clamp-1
-                = link_to speaker.name, edit_roulette_speaker_path(@roulette, speaker), class: 'w-full block'
-              div.ml-2.opacity-0.group-hover:opacity-80
+              .flex-1.line-clamp-1
+                = link_to speaker.name,
+                  edit_roulette_speaker_path(@roulette, speaker),
+                  class: 'w-full block'
+              .ml-2.opacity-0.group-hover:opacity-80
                 = link_to image_tag('delete-icon.png', size: '10x10'),
                   roulette_speaker_path(@roulette, speaker),
                   data: { turbo_method: :delete, turbo_frame: '_top' },
-                  class: "btn btn-xs btn-circle btn-ghost"
+                  class: 'btn btn-xs btn-circle btn-ghost'
   = turbo_frame_tag 'new_speaker' do
-    div.mt-3.px-1
-      = link_to "＋ 話す人を追加する", new_roulette_speaker_path(@roulette), class: 'text-neutral'
+    .mt-3.px-1
+      = link_to '＋ 話す人を追加する',
+        new_roulette_speaker_path(@roulette),
+        class: 'text-neutral'

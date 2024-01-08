@@ -1,7 +1,9 @@
-div.hero.min-h-screen
-  div.hero-content.text-center
-    div.max-w-lg
+.hero.min-h-screen
+  .hero-content.text-center
+    .max-w-lg
       h2.text-5xl.font-bold.mb-3.text-primary.tracking-wider
         | ルーレットトーーク！
-      = link_to "ルーレットを作る", roulettes_path, data: { "turbo-method": :post }, class: "btn px-10 btn-primary tracking-widest mt-28"
-
+      = link_to 'ルーレットを作る',
+        roulettes_path,
+        data: { "turbo-method": :post },
+        class: 'btn px-10 btn-primary tracking-widest mt-28'

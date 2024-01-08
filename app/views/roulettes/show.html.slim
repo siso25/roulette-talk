@@ -1,57 +1,87 @@
-div.mt-6 data-controller="rotate"
-  div.flex
-    div.relative
-      div.absolute.left-6.z-10.rounded-xl.shadow-lg.bg-primary-content.p-6.w-11/12.invisible data-rotate-target="resultText"
-        div.text-2xl.text-left.w-fit.mx-auto.tracking-wider
-          div.flex
+.mt-6 data-controller="rotate"
+  .flex
+    .relative
+      div[
+        class="absolute left-6 z-10 rounded-xl shadow-lg bg-primary-content\
+               p-6 w-11/12 invisible"
+        data-rotate-target="resultText"]
+        .text-2xl.text-left.w-fit.mx-auto.tracking-wider
+          .flex
             p
               | トークテーマは
-              span.text-accent.font-bold.ml-3 data-rotate-target="talkThemeResult"
-          div.flex
+              span.text-accent.font-bold.ml-3[
+                data-rotate-target="talkThemeResult"]
+          .flex
             p
               | 話すのは
               span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
               span
                 | さんです。
-      div.mt-32 data-controller="roulette"
-        div.flex
+      .mt-32 data-controller="roulette"
+        .flex
           div class="flex-initial w-[600px] h-[600px]"
             div class="text-center relative w-[600px]"
-              div.roulette__theme data-rotate-target="talk" style="#{Roulette.conic_gradient_text(@talk_themes, TalkTheme::COLOR_SET)}"
+              .roulette__theme[
+                data-rotate-target="talk"
+                style="#{Roulette.conic_gradient_text(
+                  @talk_themes, TalkTheme::COLOR_SET
+                )}"]
                 ul.absolute.theme__labelContainer
                   - @talk_themes.each_with_index do |talk_theme, idx|
-                    li.absolute.theme__label data-roulette-target="talkTheme" data-rotate-target="talkTheme" style="#{Roulette.label_position_and_angle(talk_theme.theme, 170, @talk_themes.count, idx, 100)}"
-                      div.w-24.whitespace-normal.ml-auto.line-clamp-2
+                    li.absolute.theme__label[
+                      data-roulette-target="talkTheme"
+                      data-rotate-target="talkTheme"
+                      style="#{Roulette.label_position_and_angle(
+                        talk_theme.theme, 170, @talk_themes.count, idx, 100
+                      )}"]
+                      .w-24.whitespace-normal.ml-auto.line-clamp-2
                         = talk_theme.theme
-              div.absolute.roulette__speaker data-rotate-target="speaker"style="#{Roulette.conic_gradient_text(@speakers, Speaker::COLOR_SET)}"
+              .absolute.roulette__speaker[
+                data-rotate-target="speaker"
+                style="#{Roulette.conic_gradient_text(
+                  @speakers, Speaker::COLOR_SET
+                )}"]
                 ul.absolute.speaker__labelContainer
                   - @speakers.each_with_index do |speaker, idx|
-                    li.absolute.speaker__label data-roulette-target="speakerName" data-rotate-target="speakerName" style="#{Roulette.label_position_and_angle(speaker.name, 70, @speakers.count, idx, 50)}"
-                      div.w-20.whitespace-normal.ml-auto.line-clamp-2
+                    li.absolute.speaker__label[
+                      data-roulette-target="speakerName"
+                      data-rotate-target="speakerName"
+                      style="#{Roulette.label_position_and_angle(
+                        speaker.name, 70, @speakers.count, idx, 50
+                      )}"]
+                      .w-20.whitespace-normal.ml-auto.line-clamp-2
                         = speaker.name
-              div.absolute.theme__needle
-              div.absolute.speaker__needle
-        div.flex.justify-center.mt-8
-          div.flex.justify-center.w-5/6.ml-auto
-            button class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider" data-rotate-target="startButton" data-action="click->rotate#start"
+              .absolute.theme__needle
+              .absolute.speaker__needle
+        .flex.justify-center.mt-8
+          .flex.justify-center.w-5/6.ml-auto
+            button[
+              class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider"
+              data-rotate-target="startButton"
+              data-action="click->rotate#start"]
               | スタート
-            button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6 data-rotate-target="resetButton" data-action="click->roulette#reset"
+            button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6[
+              data-rotate-target="resetButton"
+              data-action="click->roulette#reset"]
               | リセット
-    div.ml-44
-      div.flex.justify-end
+    .ml-44
+      .flex.justify-end
         div data-controller="clipboard"
           div data-clipboard-target="toolTip" data-tip="コピーしました！"
-            = button_tag 'data-action'=>'clipboard#copy', class: 'w-36 btn bg-neutral-content flex items-center'
+            = button_tag 'data-action' => 'clipboard#copy',
+              class: 'w-36 btn bg-neutral-content flex items-center'
               = image_tag 'copy-link-icon.png', size: '17x16'
               p.leading-4.tracking-wider.ml-1
                 | リンクのコピー
-        div.ml-2
-          = button_tag onclick: 'help_modal.showModal()', class: 'w-36 btn bg-neutral-content flex items-center justify-start'
+        .ml-2
+          = button_tag onclick: 'help_modal.showModal()',
+            class: 'w-36 btn bg-neutral-content flex items-center justify-start'
             = image_tag 'help-icon.png', size: '16x16'
             p.leading-4.tracking-wider.ml-4
               | 使い方
       = render partial: 'roulettes/help_modal'
-      div.mt-12.h-80
-        = render partial: 'talk_themes/index', locals: { talk_themes: @talk_themes }
-      div.mt-10.h-80
+      .mt-12.h-80
+        = render partial: 'talk_themes/index',
+          locals: { talk_themes: @talk_themes }
+      .mt-10.h-80
         = render partial: 'speakers/index', locals: { speakers: @speakers }

@@ -24,6 +24,7 @@ jobs:
       - name: Lint Ruby files and JS files
         run: |
           yarn lint
+          bundle exec slim-lint app/views/ -c config/.slim_lint.yml
           bundle exec rubocop
 
   test:
