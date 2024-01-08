@@ -168,4 +168,44 @@ RSpec.describe 'Roulettes', type: :system do
     expect(find('.speaker__labelContainer')).to_not have_content(speaker)
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
   end
+
+  scenario 'user registers a one-line talk theme', js: true do
+    visit roulette_path(@roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: '1行のテーマ'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('トークテーマ')
+    element = find('.theme__label', match: :first)
+    line_count = element['clientHeight'].to_i / element.style('line-height')['line-height'][/[0-9.-]+/].to_i
+    left = element.style('left')['left'][/[0-9.-]+/].to_f
+    top = element.style('top')['top'][/[0-9.-]+/].to_f
+    transform = element.style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
+    rotate_angle = (Math.atan2(transform[1], transform[0]) * 180 / Math::PI).round
+    expect(line_count).to eq 1
+    expect(left).to eq 20.2082
+    expect(top).to eq(-130.208)
+    expect(rotate_angle).to eq(-45)
+  end
+
+  scenario 'user registers a two-line talk theme', js: true do
+    visit roulette_path(@roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: '2行以上のトークテーマを登録する'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('トークテーマ')
+    element = find('.theme__label', match: :first)
+    line_count = element['clientHeight'].to_i / element.style('line-height')['line-height'][/[0-9.-]+/].to_i
+    left = element.style('left')['left'][/[0-9.-]+/].to_f
+    top = element.style('top')['top'][/[0-9.-]+/].to_f
+    transform = element.style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
+    rotate_angle = (Math.atan2(transform[1], transform[0]) * 180 / Math::PI).round
+    expect(line_count).to eq 2
+    expect(left).to eq 20.2082
+    expect(top).to eq(-140.208)
+    expect(rotate_angle).to eq(-45)
+  end
 end
