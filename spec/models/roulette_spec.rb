@@ -67,26 +67,4 @@ RSpec.describe Roulette, type: :model do
                              '#C97FB4 240deg 300deg,#64C99B 300deg 360deg);'
     end
   end
-
-  describe 'calculate label position' do
-    it 'returns a string of label position' do
-      text = 'あいうえおかきく'
-      radius = 170
-      count = 5
-      index = 0
-      left_plus = 100
-      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus)
-      expect(label_position).to eq 'left: -0.07650711027956447px; top: -147.53288904374108px; transform: rotate(-54deg);'
-    end
-
-    it 'add twice top_plus when text longer than 8 characters' do
-      text = 'あいうえおかきくけ'
-      radius = 170
-      count = 5
-      index = 0
-      left_plus = 100
-      label_position = Roulette.label_position_and_angle(text, radius, count, index, left_plus)
-      expect(label_position).to eq 'left: -0.07650711027956447px; top: -157.53288904374108px; transform: rotate(-54deg);'
-    end
-  end
 end

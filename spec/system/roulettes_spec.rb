@@ -47,20 +47,20 @@ RSpec.describe 'Roulettes', type: :system do
     # 点の位置から角度を算出する
     talk_rotate_angle = Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI
     talk_lottery_result = [0, 1, 2, 3].difference(session_storage_items['talk'])
-    talk_deg = (45 - 90 * talk_lottery_result[0]).to_f
+    talk_deg = (45 - 90 * talk_lottery_result[0]).to_f.round
     # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
     talk_deg_processed = talk_deg < -180 ? talk_deg + 360 : talk_deg
     # 真ん中で止まった位置を0としてプラスマイナス44の範囲に収まっているか検証
-    expect(talk_rotate_angle).to be >= talk_deg_processed - 44.0
-    expect(talk_rotate_angle).to be <= talk_deg_processed + 44.0
+    expect(talk_rotate_angle).to be >= talk_deg_processed - 44
+    expect(talk_rotate_angle).to be <= talk_deg_processed + 44
 
     speaker_transform = find('.roulette__speaker').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
     speaker_rotate_angle = Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI
     speaker_lottery_result = [0, 1, 2, 3].difference(session_storage_items['speaker'])
-    speaker_deg = (45 - 90 * speaker_lottery_result[0]).to_f
+    speaker_deg = (45 - 90 * speaker_lottery_result[0]).to_f.round
     speaker_deg_processed = speaker_deg < -180 ? speaker_deg + 360 : speaker_deg
-    expect(speaker_rotate_angle).to be >= speaker_deg_processed - 44.0
-    expect(speaker_rotate_angle).to be <= speaker_deg_processed + 44.0
+    expect(speaker_rotate_angle).to be >= speaker_deg_processed - 44
+    expect(speaker_rotate_angle).to be <= speaker_deg_processed + 44
   end
 
   scenario 'user plays roulette more times than the number of roulette elements', js: true do
@@ -167,5 +167,45 @@ RSpec.describe 'Roulettes', type: :system do
     end.to change(@roulette.speakers, :count).by(-1)
     expect(find('.speaker__labelContainer')).to_not have_content(speaker)
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
+  end
+
+  scenario 'user registers a one-line talk theme', js: true do
+    visit roulette_path(@roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: '1行'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('1行')
+    element = find('.theme__label', match: :first)
+    line_count = element['clientHeight'].to_i / element.style('line-height')['line-height'][/[0-9.-]+/].to_i
+    left = element.style('left')['left'][/[0-9.-]+/].to_f
+    top = element.style('top')['top'][/[0-9.-]+/].to_f
+    transform = element.style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
+    rotate_angle = (Math.atan2(transform[1], transform[0]) * 180 / Math::PI).round
+    expect(line_count).to eq 1
+    expect(left).to eq 20.2082
+    expect(top).to eq(-130.208)
+    expect(rotate_angle).to eq(-45)
+  end
+
+  scenario 'user registers a two-line talk theme', js: true do
+    visit roulette_path(@roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: '2行以上のトークテーマを登録する'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('2行')
+    element = find('.theme__label', match: :first)
+    line_count = element['clientHeight'].to_i / element.style('line-height')['line-height'][/[0-9.-]+/].to_i
+    left = element.style('left')['left'][/[0-9.-]+/].to_f
+    top = element.style('top')['top'][/[0-9.-]+/].to_f
+    transform = element.style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
+    rotate_angle = (Math.atan2(transform[1], transform[0]) * 180 / Math::PI).round
+    expect(line_count).to eq 2
+    expect(left).to eq 20.2082
+    expect(top).to eq(-140.208)
+    expect(rotate_angle).to eq(-45)
   end
 end
