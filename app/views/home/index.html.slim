@@ -2,11 +2,10 @@
   main.w-fit.mx-auto.h-5/6.grow.hero
     .hero-content.text-center
       .max-w-lg
-        h2.text-5xl.font-bold.mb-3.text-primary.tracking-wider
-          | ルーレットトーーク！
+        = image_tag 'logo-header.png'
         = link_to 'ルーレットを作る',
           roulettes_path,
           data: { "turbo-method": :post },
-          class: 'btn px-10 btn-primary tracking-widest mt-28'
+          class: 'btn px-10 btn-primary tracking-widest mt-20 h-16 text-lg'
 
   = render partial: 'shared/footer'
