@@ -13,10 +13,11 @@ html
       "data-turbo-track": 'reload',
       defer: true
 
-  body.relative.min-h-screen.w-screen
-    - unless current_page?(root_path)
-      = render partial: 'shared/header'
-    main.w-fit.mx-auto
-      = yield
+  body
     - if current_page?(root_path)
+      = yield
+    - else
+      = render partial: 'shared/header'
+      main.w-fit.mx-auto
+        = yield
       = render partial: 'shared/footer'

@@ -16,6 +16,18 @@ RSpec.describe TalkTheme, type: :model do
     expect(talk_theme.errors[:theme]).to include("can't be blank")
   end
 
+  it 'is invalid insertion of more than 10 records' do
+    roulette = Roulette.create
+    FactoryBot.create_list(:talk_theme, 9, roulette:)
+    tenth_talk_theme = FactoryBot.build(:talk_theme, roulette:)
+    expect(tenth_talk_theme).to be_valid
+    tenth_talk_theme.save
+    eleventh_talk_theme = FactoryBot.build(:talk_theme, roulette:)
+    eleventh_talk_theme.valid?
+    expect(eleventh_talk_theme).to be_invalid
+    expect(eleventh_talk_theme.errors[:roulette]).to include('登録できるのは10件までです')
+  end
+
   it 'create 4 initial records' do
     roulette = Roulette.create
     expect do
