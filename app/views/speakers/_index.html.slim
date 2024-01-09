@@ -9,7 +9,7 @@ h2.font-bold.text-lg.mb-2
             .flex.items-center.h-full
               p.hidden
                 = speaker.id
-              .flex-1.line-clamp-1
+              .flex-1.text-wrap
                 = link_to speaker.name,
                   edit_roulette_speaker_path(@roulette, speaker),
                   class: 'w-full block'
