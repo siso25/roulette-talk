@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-module SpeakersHelper
+MetaTags.configure do |config|
 end
