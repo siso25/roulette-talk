@@ -132,17 +132,18 @@ RSpec.describe 'Roulettes', type: :system do
     expect(find('.theme__labelContainer').all('li').count).to eq 3
   end
 
-  scenario 'user fails to register 11th talk theme', js: true do
-    FactoryBot.create_list(:talk_theme, 6, roulette: @roulette)
+  scenario 'it toggles a link to text when 10 themes are registered', js: true do
+    FactoryBot.create_list(:talk_theme, 5, roulette: @roulette)
     visit roulette_path(@roulette)
-    expect(find('#talk_themes_list').all('li').count).to eq 10
     expect do
       click_link 'トークテーマを追加する'
       fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
       click_button '登録'
-      expect(find('#talk_themes_list')).to_not have_content('トークテーマ テスト')
-    end.to change(@roulette.talk_themes, :count).by(0)
-    expect(find('#talk_themes_list').all('li').count).to eq 10
+      expect(find('#talk_themes_list')).to have_content('トークテーマ テスト')
+    end.to change(@roulette.talk_themes, :count).by(1)
+    new_link_element = find("[data-testid='new-talk-theme-link']")
+    expect(new_link_element).to have_content('トークテーマは10個以上追加できません')
+    expect(new_link_element).to_not have_selector('a')
   end
 
   scenario 'user add a speaker', js: true do
@@ -182,17 +183,18 @@ RSpec.describe 'Roulettes', type: :system do
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
   end
 
-  scenario 'user fails to register 11th speaker', js: true do
-    FactoryBot.create_list(:speaker, 6, roulette: @roulette)
+  scenario 'it toggles a link to text when 10 speakers are registered', js: true do
+    FactoryBot.create_list(:speaker, 5, roulette: @roulette)
     visit roulette_path(@roulette)
-    expect(find('#speakers_list').all('li').count).to eq 10
     expect do
       click_link '話す人を追加する'
       fill_in 'speaker[name]', with: 'ユーザー テスト'
       click_button '登録'
-      expect(find('#speakers_list')).to_not have_content('ユーザー テスト')
-    end.to change(@roulette.speakers, :count).by(0)
-    expect(find('#speakers_list').all('li').count).to eq 10
+      expect(find('#speakers_list')).to have_content('ユーザー テスト')
+    end.to change(@roulette.speakers, :count).by(1)
+    new_link_element = find("[data-testid='new-speaker-link']")
+    expect(new_link_element).to have_content('話す人は10人以上追加できません')
+    expect(new_link_element).to_not have_selector('a')
   end
 
   scenario 'user registers a one-line talk theme', js: true do
