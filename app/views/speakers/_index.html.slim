@@ -19,7 +19,11 @@ h2.font-bold.text-lg.mb-2
                   data: { turbo_method: :delete, turbo_frame: '_top' },
                   class: 'btn btn-xs btn-circle btn-ghost'
   = turbo_frame_tag 'new_speaker' do
-    .mt-3.px-1
-      = link_to '＋ 話す人を追加する',
-        new_roulette_speaker_path(@roulette),
-        class: 'text-neutral'
+    .mt-3.px-1 data-testid="new-speaker-link"
+      - if speakers.count < 10
+        = link_to '＋ 話す人を追加する',
+          new_roulette_speaker_path(@roulette),
+          class: 'text-neutral'
+      - else
+        p.text-neutral
+          | 話す人は10人以上追加できません
