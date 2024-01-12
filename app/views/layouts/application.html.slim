@@ -10,10 +10,8 @@ html
       defer: true
 
   body
-    - if current_page?(root_path)
-      = yield
-    - else
+    - unless current_page?(root_path)
       = render partial: 'shared/header'
-      main.w-fit.mx-auto
-        = yield
-      = render partial: 'shared/footer'
+    main.w-full
+      = yield
+    = render partial: 'shared/footer'
