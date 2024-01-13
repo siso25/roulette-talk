@@ -1,6 +1,6 @@
-footer.footer.w-full.overflow-x-hidden
-  div[class="flex w-full relative justify-center items-center\
-             p-3 bg-base-300 text-neutral"]
+footer class="footer min-w-[1096px] bg-base-300"
+  div[class="max-w-screen-2xl mx-auto justify-center items-center\
+             py-5 text-neutral"]
     .flex
       = button_tag '利用規約',
         onclick: 'term_of_service_modal.showModal()',
@@ -9,7 +9,7 @@ footer.footer.w-full.overflow-x-hidden
       = button_tag 'プライバシーポリシー',
         onclick: 'privacy_policy_modal.showModal()'
       = render partial: 'shared/privacy_policy_modal'
-    .flex.h-6.ml-auto.absolute.right-10
+    .flex.h-6.mx-auto
       .flex.items-center.h-full.mr-3
         p.text-base
           | © 2023 siso25
