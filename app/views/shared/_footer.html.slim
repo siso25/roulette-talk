@@ -1,10 +1,10 @@
 footer class="footer min-w-[1096px] bg-base-300"
   div[class="max-w-screen-2xl mx-auto justify-center items-center\
-             py-5 text-neutral"]
+             pb-5 pt-6 text-neutral"]
     .flex
       = button_tag '利用規約',
         onclick: 'term_of_service_modal.showModal()',
-        class: 'mr-3'
+        class: 'mr-5'
       = render partial: 'shared/term_of_service_modal'
       = button_tag 'プライバシーポリシー',
         onclick: 'privacy_policy_modal.showModal()'
@@ -14,6 +14,7 @@ footer class="footer min-w-[1096px] bg-base-300"
         p.text-base
           | © 2023 siso25
       = link_to image_tag('github-mark.svg',
-        class: 'h-auto w-full'),
+        class: 'h-auto w-full',
+        alt: 'GitHubのアイコン'),
         'https://github.com/siso25/roulette-talk',
         class: 'w-6'

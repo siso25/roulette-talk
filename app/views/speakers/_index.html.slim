@@ -14,7 +14,9 @@ h2.font-bold.text-lg.mb-2
                   edit_roulette_speaker_path(@roulette, speaker),
                   class: 'w-full block'
               .ml-2.opacity-0.group-hover:opacity-80
-                = link_to image_tag('delete-icon.png', size: '10x10'),
+                = link_to image_tag('delete-icon.png',
+                  size: '10x10',
+                  alt: '話す人を削除'),
                   roulette_speaker_path(@roulette, speaker),
                   data: { turbo_method: :delete, turbo_frame: '_top' },
                   class: 'btn btn-xs btn-circle btn-ghost'
