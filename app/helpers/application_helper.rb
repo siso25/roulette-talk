@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  # rubocop:disable Metrics/MethodLength
   def default_meta_tags
     {
       site: 'RouletteTalk',
@@ -9,7 +10,10 @@ module ApplicationHelper
       charset: 'utf-8',
       description: 'トークテーマと話す人を設定したルーレットを作成・保存できます。オンライン飲み会やイベント等でお使いください。',
       viewport: 'width=device-width,initial-scale=1',
-      icon: { href: image_url('favicon.ico') },
+      icon: [
+        { href: image_url('favicon.ico') },
+        { href: image_url('apple-touch-icon.png') }
+      ],
       og: {
         site_name: :site,
         title: :title,
@@ -23,4 +27,5 @@ module ApplicationHelper
       }
     }
   end
+  # rubocop:enable Metrics/MethodLength
 end
