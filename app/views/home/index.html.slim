@@ -1,17 +1,16 @@
-.text-center.w-fit.mx-auto
-  .max-w-2xl
+.text-center.max-w-2xl.w-5/6.md:w-fit.mx-auto
+  .max-w-lg.mx-auto.mt-5.md:mt-10
     = image_tag 'top-page-logo.png',
-      class: 'mx-auto max-w-lg mt-10',
       alt: 'みんなが話せる場づくりにRouletteTalk'
-    .text-xl.mt-16.text-left.mx-auto.w-fit.pl-4
-      p
-        | トークテーマと話す人を決めるルーレットを作成できます。
-      p
-        | ルーレットは自動的に保存されるので事前にトークテーマを考えておくことができます。
-    = image_tag 'roulette-image',
-      class: 'w-full mt-10 shadow-md rounded-lg',
-      alt: '作成ルーレットのイメージ'
-    = link_to 'ルーレットを作る',
-      roulettes_path,
-      data: { "turbo-method": :post },
-      class: 'btn px-10 btn-primary w-1/2 tracking-widest m-16 h-20 text-xl'
+  .text-left.md:text-xl.text-lg.mx-auto.w-fit.pl-3.md:mt-16.mt-8
+    p
+      | トークテーマと話す人を決めるルーレットを作成できます。
+    p
+      | ルーレットは自動的に保存されるので事前にトークテーマを考えておくことができます。
+  = image_tag 'roulette-image',
+    class: 'mt-5 md:mt-10 shadow-md rounded-lg',
+    alt: '作成ルーレットのイメージ'
+  = link_to 'ルーレットを作る',
+    roulettes_path,
+    data: { "turbo-method": :post },
+    class: 'btn btn-primary w-4/5 md:w-1/2 px-10 tracking-widest my-16 mx-auto h-20 text-lg md:text-xl'
