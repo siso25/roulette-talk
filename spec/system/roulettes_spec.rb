@@ -35,6 +35,26 @@ RSpec.describe 'Roulettes', type: :system do
     expect(copied_url).to eq current_url
   end
 
+  scenario 'it displays warning message when it has no talk themes' do
+    roulette = Roulette.create
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_content('トークテーマと話す人を1件以上登録してください。')
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to_not have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
+  scenario 'it displays warning message when it has no speakers' do
+    roulette = Roulette.create
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_content('トークテーマと話す人を1件以上登録してください。')
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to_not have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
   scenario 'it displays result stored in session storage', js: true do
     visit roulette_path(@roulette)
     click_button 'スタート'
