@@ -39,14 +39,26 @@ export default class extends Controller {
 
   switchByWidth() {
     if (window.matchMedia('(min-width: 1096px)').matches) {
-      return { radius: this.lgRadiusValue, topPlus: this.lgTopPlusValue, leftPlus: this.lgLeftPlusValue }
+      return {
+        radius: this.lgRadiusValue,
+        topPlus: this.lgTopPlusValue,
+        leftPlus: this.lgLeftPlusValue
+      }
     }
 
     if (window.matchMedia('(min-width: 768px)').matches) {
-      return { radius: this.mdRadiusValue, topPlus: this.mdTopPlusValue, leftPlus: this.mdLeftPlusValue }
+      return {
+        radius: this.mdRadiusValue,
+        topPlus: this.mdTopPlusValue,
+        leftPlus: this.mdLeftPlusValue
+      }
     }
 
-    return { radius: this.radiusValue, topPlus: this.topPlusValue, leftPlus: this.leftPlusValue }
+    return {
+      radius: this.radiusValue,
+      topPlus: this.topPlusValue,
+      leftPlus: this.leftPlusValue
+    }
   }
 
   calcTopAndLeftPosition(element, angle, radius, leftPlus, topPlus) {

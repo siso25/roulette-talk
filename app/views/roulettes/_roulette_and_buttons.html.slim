@@ -18,7 +18,8 @@
             | さんです。
   div data-controller="roulette"
     .flex
-      div class="flex-initial w-[350px] md:w-[500px] lg:w-[600px] h-[350px] md:h-[500px] lg:h-[600px]"
+      div class="flex-initial w-[350px] md:w-[500px] lg:w-[600px]\
+                h-[350px] md:h-[500px] lg:h-[600px]"
         div class="text-center relative w-[350px] md:w-[500px] lg:w-[600px]"
           .roulette__theme[
             data-rotate-target="talk"
@@ -68,7 +69,8 @@
                   data-roulette-label-lg-radius-value="80"
                   data-roulette-label-lg-top-plus-value="10"
                   data-roulette-label-lg-left-plus-value="50"]
-                  .w-12.md:w-16.lg:w-20.whitespace-normal.ml-auto.line-clamp-1.text-left
+                  div class="w-12 md:w-16 lg:w-20 whitespace-normal\
+                            ml-auto line-clamp-1 text-left"
                     = speaker.name
           .absolute.theme__needle
           .absolute.speaker__needle
