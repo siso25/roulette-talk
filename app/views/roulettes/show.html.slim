@@ -24,11 +24,13 @@
             .flex
               p
                 | 話すのは
-                span.text-accent.font-bold.mx-3 data-rotate-target="speakerResult"
+                span.text-accent.font-bold.mx-3[
+                  data-rotate-target="speakerResult"]
                 span
                   | さんです。
         .mt-32 data-controller="roulette"
-          = render partial: 'roulettes/roulette', locals: { talk_themes: @talk_themes, speakers: @speakers}
+          = render partial: 'roulettes/roulette',
+            locals: { talk_themes: @talk_themes, speakers: @speakers }
           .flex.justify-center.mt-8
             .flex.justify-center.w-5/6.ml-auto
               button[
