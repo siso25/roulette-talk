@@ -35,6 +35,26 @@ RSpec.describe 'Roulettes', type: :system do
     expect(copied_url).to eq current_url
   end
 
+  scenario 'it displays warning message when it has no talk themes' do
+    roulette = Roulette.create
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_content('トークテーマと話す人を1件以上登録してください。')
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to_not have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
+  scenario 'it displays warning message when it has no speakers' do
+    roulette = Roulette.create
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_content('トークテーマと話す人を1件以上登録してください。')
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to_not have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
   scenario 'it displays result stored in session storage', js: true do
     visit roulette_path(@roulette)
     click_button 'スタート'
@@ -45,7 +65,7 @@ RSpec.describe 'Roulettes', type: :system do
 
     talk_transform = find('.roulette__theme').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
     # 点の位置から角度を算出する
-    talk_rotate_angle = Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI
+    talk_rotate_angle = (Math.atan2(talk_transform[1], talk_transform[0]) * 180 / Math::PI).round
     talk_lottery_result = [0, 1, 2, 3].difference(session_storage_items['talk'])
     talk_deg = (45 - 90 * talk_lottery_result[0]).to_f.round
     # 初期状態で4番目の要素は上側にあるので、4番目の要素が選ばれた時だけ一周分足す
@@ -55,7 +75,7 @@ RSpec.describe 'Roulettes', type: :system do
     expect(talk_rotate_angle).to be <= talk_deg_processed + 44
 
     speaker_transform = find('.roulette__speaker').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
-    speaker_rotate_angle = Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI
+    speaker_rotate_angle = (Math.atan2(speaker_transform[1], speaker_transform[0]) * 180 / Math::PI).round
     speaker_lottery_result = [0, 1, 2, 3].difference(session_storage_items['speaker'])
     speaker_deg = (45 - 90 * speaker_lottery_result[0]).to_f.round
     speaker_deg_processed = speaker_deg < -180 ? speaker_deg + 360 : speaker_deg

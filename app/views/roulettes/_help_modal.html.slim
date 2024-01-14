@@ -6,11 +6,11 @@ dialog#help_modal.modal
       form method="dialog"
         = button_tag '',
           class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
-          = image_tag 'delete-icon.png', size: '15x15'
+          = image_tag 'delete-icon.png', size: '15x15', alt: 'モーダルを閉じる'
       div
         h2.font-bold.text-xl.text-primary
           | トークテーマ、話す人を入力する
-        = image_tag 'help_talk_theme.png', class: 'mt-6'
+        = image_tag 'help_talk_theme.png', class: 'mt-6', alt: 'トークテーマ入力イメージ'
         .flex.mt-6
           .rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
             p class="text-sm leading-[22px]"
@@ -35,7 +35,9 @@ dialog#help_modal.modal
         p.mt-2.leading-7
           | 作成したルーレットを開始するには、ルーレット下部の「スタート」ボタンをクリックしてください。<br>
             ルーレットを最初からやり直す場合は、「リセット」ボタンをクリックしてください。
-        = image_tag 'help_start_reset_button.png', class: 'mt-4'
+        = image_tag 'help_start_reset_button.png',
+          class: 'mt-4',
+          alt: 'スタートボタンとリセットボタン'
       .mt-10
         h2.font-bold.text-xl.text-primary
           | 作成済みのルーレットを表示する

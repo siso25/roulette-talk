@@ -1,11 +1,17 @@
-.min-h-screen.h-px.flex.flex-col
-  main.w-fit.mx-auto.h-5/6.grow.hero
-    .hero-content.text-center
-      .max-w-lg
-        = image_tag 'logo-header.png'
-        = link_to 'ルーレットを作る',
-          roulettes_path,
-          data: { "turbo-method": :post },
-          class: 'btn px-10 btn-primary tracking-widest mt-20 h-16 text-lg'
-
-  = render partial: 'shared/footer'
+.text-center.w-fit.mx-auto
+  .max-w-2xl
+    = image_tag 'top-page-logo.png',
+      class: 'mx-auto max-w-lg mt-10',
+      alt: 'みんなが話せる場づくりにRouletteTalk'
+    .text-xl.mt-16.text-left.mx-auto.w-fit.pl-4
+      p
+        | トークテーマと話す人を決めるルーレットを作成できます。
+      p
+        | ルーレットは自動的に保存されるので事前にトークテーマを考えておくことができます。
+    = image_tag 'roulette-image',
+      class: 'w-full mt-10 shadow-md rounded-lg',
+      alt: '作成ルーレットのイメージ'
+    = link_to 'ルーレットを作る',
+      roulettes_path,
+      data: { "turbo-method": :post },
+      class: 'btn px-10 btn-primary w-1/2 tracking-widest m-16 h-20 text-xl'
