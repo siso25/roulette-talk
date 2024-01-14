@@ -1,6 +1,6 @@
 - set_meta_tags title: 'トークテーマルーレット',
   description: 'トークテーマと話す人を登録してルーレットをスタートしましょう。'
-.mt-6.mb-10.w-fit.mx-auto
+.mt-3.md:mt-6.mb-10.w-fit.mx-auto
   .lg:flex
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
