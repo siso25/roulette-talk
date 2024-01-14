@@ -3,5 +3,7 @@
     = form_with model: [@roulette, @speaker],
       html: { data: { turbo_frame: '_top' } },
       class: 'w-full flex' do |f|
-      = f.text_field :name, class: 'input input-bordered input-sm w-4/5'
+      = f.text_field :name,
+        class: 'input input-bordered input-sm w-4/5',
+        placeholder: '田中さん'
       = f.submit '登録', class: 'btn btn-outline btn-sm btn-primary ml-auto'
