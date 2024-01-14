@@ -43,8 +43,8 @@
 
   .theme__label {
     display: block;
-    width: 150px;
-    font-size: 14px;
+    width: 130px;
+    font-size: 12px;
     font-weight: bold;
     text-align: right;
     white-space: nowrap;
@@ -59,8 +59,8 @@
 
   .speaker__label {
     display: block;
-    width: 70px;
-    font-size: 14px;
+    width: 50px;
+    font-size: 12px;
     font-weight: bold;
     text-align: right;
     white-space: nowrap;
@@ -96,20 +96,15 @@
 
   .theme__labelContainer {
     .theme__label {
-      width: 200px;
-      font-size: 16px;
+      width: 180px;
+      font-size: 15px;
     }
   }
 
   .speaker__labelContainer {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
     .speaker__label {
-      display: block;
-      width: 100px;
-      font-size: 16px;
+      width: 90px;
+      font-size: 15px;
     }
   }
 }
@@ -145,7 +140,6 @@
 
   .theme__labelContainer {
     .theme__label {
-      display: block;
       width: 200px;
       font-size: 16px;
     }
@@ -153,7 +147,6 @@
 
   .speaker__labelContainer {
     .speaker__label {
-      display: block;
       width: 100px;
       font-size: 16px;
     }
