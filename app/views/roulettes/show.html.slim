@@ -3,45 +3,10 @@
 .mt-6.mb-10.w-fit.mx-auto
   .flex
     - if @talk_themes.count.zero? || @speakers.count.zero?
-      div class="min-w-[600px] flex items-center"
-        .alert.alert-error.mx-auto.shadow.w-4/5
-          .flex
-            = image_tag 'error.svg', size: '20x20', class: 'mr-3'
-            p
-              | トークテーマと話す人を1件以上登録してください。
+      = render partial: 'roulettes/no_items'
     - else
-      .relative data-controller="rotate"
-        div[
-          class="absolute left-6 z-10 rounded-xl shadow-lg\
-                 bg-primary-content/[.85] p-6 w-11/12 invisible"
-          data-rotate-target="resultText"]
-          .text-2xl.text-left.w-fit.mx-auto.tracking-wider
-            .flex
-              p
-                | トークテーマは
-                span.text-accent.font-bold.ml-3[
-                  data-rotate-target="talkThemeResult"]
-            .flex
-              p
-                | 話すのは
-                span.text-accent.font-bold.mx-3[
-                  data-rotate-target="speakerResult"]
-                span
-                  | さんです。
-        .mt-32 data-controller="roulette"
-          = render partial: 'roulettes/roulette',
-            locals: { talk_themes: @talk_themes, speakers: @speakers }
-          .flex.justify-center.mt-8
-            .flex.justify-center.w-5/6.ml-auto
-              button[
-                class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider"
-                data-rotate-target="startButton"
-                data-action="click->rotate#start"]
-                | スタート
-              button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6[
-                data-rotate-target="resetButton"
-                data-action="click->roulette#reset"]
-                | リセット
+      = render partial: 'roulettes/roulette_and_buttons',
+        locals: { talk_themes: @talk_themes, speakers: @speakers }
     .ml-44
       .flex.justify-end
         div data-controller="clipboard"

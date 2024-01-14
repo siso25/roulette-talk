@@ -1,0 +1,72 @@
+.relative data-controller="rotate"
+  div[
+    class="absolute left-6 z-10 rounded-xl shadow-lg\
+           bg-primary-content/[.85] p-6 w-11/12 invisible"
+    data-rotate-target="resultText"]
+    .text-2xl.text-left.w-fit.mx-auto.tracking-wider
+      .flex
+        p
+          | トークテーマは
+          span.text-accent.font-bold.ml-3[
+            data-rotate-target="talkThemeResult"]
+      .flex
+        p
+          | 話すのは
+          span.text-accent.font-bold.mx-3[
+            data-rotate-target="speakerResult"]
+          span
+            | さんです。
+      .mt-32 data-controller="roulette"
+  .mt-32 data-controller="roulette"
+    .flex
+      div class="flex-initial w-[600px] h-[600px]"
+        div class="text-center relative w-[600px]"
+          .roulette__theme[
+            data-rotate-target="talk"
+            style="#{Roulette.conic_gradient_text(
+              talk_themes, TalkTheme::COLOR_SET
+            )}"]
+            ul.absolute.theme__labelContainer
+              - talk_themes.each_with_index do |talk_theme, idx|
+                li.absolute.theme__label[
+                  data-roulette-target="talkTheme"
+                  data-rotate-target="talkTheme"
+                  data-controller="roulette-label"
+                  data-roulette-label-index-value="#{idx}"
+                  data-roulette-label-count-value="#{talk_themes.count}"
+                  data-roulette-label-radius-value="170"
+                  data-roulette-label-top-plus-value="10"
+                  data-roulette-label-left-plus-value="100"]
+                  .w-24.whitespace-normal.ml-auto.line-clamp-2.text-left
+                    = talk_theme.theme
+          .absolute.roulette__speaker[
+            data-rotate-target="speaker"
+            style="#{Roulette.conic_gradient_text(
+              speakers, Speaker::COLOR_SET
+            )}"]
+            ul.absolute.speaker__labelContainer
+              - speakers.each_with_index do |speaker, idx|
+                li.absolute.speaker__label[
+                  data-roulette-target="speakerName"
+                  data-rotate-target="speakerName"
+                  data-controller="roulette-label"
+                  data-roulette-label-index-value="#{idx}"
+                  data-roulette-label-count-value="#{speakers.count}"
+                  data-roulette-label-radius-value="70"
+                  data-roulette-label-top-plus-value="10"
+                  data-roulette-label-left-plus-value="50"]
+                  .w-20.whitespace-normal.ml-auto.line-clamp-2.text-left
+                    = speaker.name
+          .absolute.theme__needle
+          .absolute.speaker__needle
+    .flex.justify-center.mt-8
+      .flex.justify-center.w-5/6.ml-auto
+        button[
+          class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider"
+          data-rotate-target="startButton"
+          data-action="click->rotate#start"]
+          | スタート
+        button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6[
+          data-rotate-target="resetButton"
+          data-action="click->roulette#reset"]
+          | リセット
