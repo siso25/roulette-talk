@@ -2,7 +2,7 @@ h2.font-bold.text-lg.mb-2
   | トークテーマ
 = turbo_frame_tag 'talk_themes_list'
   - unless talk_themes.count.zero?
-    .rounded.border.border-gray-400.w-80.overflow-hidden
+    .rounded.border.border-gray-400.overflow-hidden
       ul.w-full.max-h-60.overflow-y-auto
         - talk_themes.each do |talk_theme|
           li class="border-b last:border-b-0 border-gray-400 w-full group\

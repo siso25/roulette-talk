@@ -5,6 +5,13 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    extend: {
+      screens: {
+        lg: '1096px',
+      }
+    }
+  },
   plugins: [
     require('daisyui')
   ],

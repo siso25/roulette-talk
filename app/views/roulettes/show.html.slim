@@ -1,14 +1,14 @@
 - set_meta_tags title: 'トークテーマルーレット',
   description: 'トークテーマと話す人を登録してルーレットをスタートしましょう。'
 .mt-6.mb-10.w-fit.mx-auto
-  .flex
+  .lg:flex
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
     - else
       = render partial: 'roulettes/roulette_and_buttons',
         locals: { talk_themes: @talk_themes, speakers: @speakers }
-    .ml-44
-      .flex.justify-end
+    .w-80.mx-auto.lg:ml-44
+      .flex.justify-between.lg:justify-end.mt-10.lg:mt-0
         div data-controller="clipboard"
           div data-clipboard-target="toolTip" data-tip="コピーしました！"
             = button_tag 'data-action' => 'clipboard#copy',
@@ -23,8 +23,8 @@
             p.leading-4.tracking-wider.ml-4
               | 使い方
       = render partial: 'roulettes/help_modal'
-      .mt-20.h-80
+      .mt-10.lg:mt-20.lg:h-80
         = render partial: 'talk_themes/index',
           locals: { talk_themes: @talk_themes }
-      .mt-10.h-80
+      .mt-10.lg:h-80
         = render partial: 'speakers/index', locals: { speakers: @speakers }
