@@ -22,6 +22,8 @@ RSpec.describe TalkTheme, type: :model do
     tenth_talk_theme = FactoryBot.build(:talk_theme, roulette:)
     expect(tenth_talk_theme).to be_valid
     tenth_talk_theme.save
+    tenth_talk_theme.theme = 'update talk theme'
+    expect(tenth_talk_theme.save).to eq true
     eleventh_talk_theme = FactoryBot.build(:talk_theme, roulette:)
     eleventh_talk_theme.valid?
     expect(eleventh_talk_theme).to be_invalid
