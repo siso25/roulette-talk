@@ -1,30 +1,30 @@
 - set_meta_tags title: 'トークテーマルーレット',
   description: 'トークテーマと話す人を登録してルーレットをスタートしましょう。'
-.mt-6.mb-10.w-fit.mx-auto
-  .flex
+.mt-3.mb-10.w-fit.mx-auto
+  .w-fit.lg:flex.lg:justify-end.ml-auto
+    div class="w-fit" data-controller="clipboard"
+      div data-clipboard-target="toolTip" data-tip="コピーしました！"
+        = button_tag 'data-action' => 'clipboard#copy',
+          class: 'w-36 btn bg-neutral-content flex items-center'
+          = image_tag 'copy-link-icon.png', size: '17x16'
+          p.leading-4.tracking-wider.ml-1
+            | リンクのコピー
+    .lg:ml-2.mt-1.lg:mt-0.w-fit
+      = button_tag onclick: 'help_modal.showModal()',
+        class: 'w-36 btn bg-neutral-content flex items-center justify-start'
+        = image_tag 'help-icon.png', size: '16x16'
+        p.leading-4.tracking-wider.ml-4
+          | 使い方
+      = render partial: 'roulettes/help_modal'
+  .lg:flex.mt-8.lg:mt-0
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
     - else
       = render partial: 'roulettes/roulette_and_buttons',
         locals: { talk_themes: @talk_themes, speakers: @speakers }
-    .ml-44
-      .flex.justify-end
-        div data-controller="clipboard"
-          div data-clipboard-target="toolTip" data-tip="コピーしました！"
-            = button_tag 'data-action' => 'clipboard#copy',
-              class: 'w-36 btn bg-neutral-content flex items-center'
-              = image_tag 'copy-link-icon.png', size: '17x16'
-              p.leading-4.tracking-wider.ml-1
-                | リンクのコピー
-        .ml-2
-          = button_tag onclick: 'help_modal.showModal()',
-            class: 'w-36 btn bg-neutral-content flex items-center justify-start'
-            = image_tag 'help-icon.png', size: '16x16'
-            p.leading-4.tracking-wider.ml-4
-              | 使い方
-      = render partial: 'roulettes/help_modal'
-      .mt-20.h-80
+    .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0
+      .mt-10.lg:mt-28.lg:h-80
         = render partial: 'talk_themes/index',
           locals: { talk_themes: @talk_themes }
-      .mt-10.h-80
+      .mt-10.lg:h-80
         = render partial: 'speakers/index', locals: { speakers: @speakers }

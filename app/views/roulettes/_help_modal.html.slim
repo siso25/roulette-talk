@@ -1,36 +1,38 @@
 dialog#help_modal.modal
   form.modal-backdrop method="dialog"
     button
-  .modal-box.w-2/3.max-w-3xl.h-4/5.overflow-hidden.pr-3.pl-10.pt-10.pb-10
-    .w-full.h-full.overflow-y-auto
+  / .modal-box.w-2/3.max-w-3xl.h-4/5.overflow-hidden.pr-10.pl-16.py-16
+  div class="modal-box w-4/5 md:w-2/3 max-w-3xl h-4/5 overflow-hidden\
+            pr-5 md:pr-10 pl-8 md:pl-16 py-12 md:py-16"
+    .w-full.h-full.overflow-y-auto.pr-4
       form method="dialog"
         = button_tag '',
-          class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
+          class: 'btn btn-sm btn-circle btn-ghost absolute right-4 top-4'
           = image_tag 'delete-icon.png', size: '15x15', alt: 'モーダルを閉じる'
-      div
-        h2.font-bold.text-xl.text-primary
+      .text-base
+        h2.font-bold.text-lg.md:text-xl.text-primary
           | トークテーマ、話す人を入力する
         = image_tag 'help_talk_theme.png', class: 'mt-6', alt: 'トークテーマ入力イメージ'
         .flex.mt-6
-          .rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
-            p class="text-sm leading-[22px]"
+          .rounded-full.border.border-neutral.h-6.text-center.bg-white
+            p class="text-sm leading-[22px] w-[22px]"
               | 1
           p.ml-2
             | 既存の選択肢をクリックすると、文言を編集できます。
         .flex.mt-3
-          .rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
-            p class="text-sm leading-[22px]"
+          .rounded-full.border.border-neutral.h-6.text-center.bg-white
+            p class="text-sm leading-[22px] w-[22px]"
               | 2
           p.ml-2
             | ルーレットの選択肢が一件追加されます。
         .flex.mt-3
-          .rounded-full.border.border-neutral.h-6.w-6.text-center.bg-white
-            p class="text-sm leading-[22px]"
+          .rounded-full.border.border-neutral.h-6.text-center.bg-white
+            p class="text-sm leading-[22px] w-[22px]"
               | 3
           p.ml-2
             | ルーレットの選択肢が削除されます。
       .mt-10
-        h2.font-bold.text-xl.text-primary
+        h2.font-bold.text-lg.md:text-xl.text-primary
           | ルーレットを開始する
         p.mt-2.leading-7
           | 作成したルーレットを開始するには、ルーレット下部の「スタート」ボタンをクリックしてください。<br>
@@ -39,7 +41,7 @@ dialog#help_modal.modal
           class: 'mt-4',
           alt: 'スタートボタンとリセットボタン'
       .mt-10
-        h2.font-bold.text-xl.text-primary
+        h2.font-bold.text-lg.md:text-xl.text-primary
           | 作成済みのルーレットを表示する
         p.mt-2.leading-7
           | 作成したルーレットのURLにアクセスすることで、入力済みのルーレットを表示できます。<br>

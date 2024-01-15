@@ -1,26 +1,26 @@
 .theme__needle {
-  border-top: 10px solid transparent;
-  border-right: 24px solid #475569;
-  border-bottom: 10px solid transparent;
+  border-top: 8px solid transparent;
+  border-right: 20px solid #475569;
+  border-bottom: 8px solid transparent;
   margin: 0 auto;
-  top: 290px;
-  right: -5px;
+  top: 167px;
+  right: -4px;
   z-index: 2;
 }
 
 .speaker__needle {
-  border-top: 10px solid transparent;
-  border-right: 24px solid #475569;
-  border-bottom: 10px solid transparent;
+  border-top: 8px solid transparent;
+  border-right: 20px solid #475569;
+  border-bottom: 8px solid transparent;
   margin: 0 auto;
-  top: 290px;
-  right: 145px;
+  top: 167px;
+  right: 85px;
   z-index: 4;
 }
 
 .roulette__theme {
-  width: 600px;
-  height: 600px;
+  width: 350px;
+  height: 350px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 0;
@@ -29,8 +29,8 @@
 .roulette__speaker {
   top: 25%;
   left: 25%;
-  width: 300px;
-  height: 300px;
+  width: 175px;
+  height: 175px;
   margin: 0 auto;
   border-radius: 50%;
   z-index: 2;
@@ -43,8 +43,8 @@
 
   .theme__label {
     display: block;
-    width: 200px;
-    font-size: 16px;
+    width: 130px;
+    font-size: 12px;
     font-weight: bold;
     text-align: right;
     white-space: nowrap;
@@ -59,10 +59,96 @@
 
   .speaker__label {
     display: block;
-    width: 100px;
-    font-size: 16px;
+    width: 50px;
+    font-size: 12px;
     font-weight: bold;
     text-align: right;
     white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .theme__needle {
+    border-top: 10px solid transparent;
+    border-right: 24px solid #475569;
+    border-bottom: 10px solid transparent;
+    top: 240px;
+    right: -5px;
+  }
+
+  .speaker__needle {
+    border-top: 10px solid transparent;
+    border-right: 24px solid #475569;
+    border-bottom: 10px solid transparent;
+    top: 240px;
+    right: 120px;
+  }
+
+  .roulette__theme {
+    width: 500px;
+    height: 500px;
+  }
+
+  .roulette__speaker {
+    width: 250px;
+    height: 250px;
+  }
+
+  .theme__labelContainer {
+    .theme__label {
+      width: 180px;
+      font-size: 15px;
+    }
+  }
+
+  .speaker__labelContainer {
+    .speaker__label {
+      width: 90px;
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 1096px) {
+  .theme__needle {
+    border-top: 10px solid transparent;
+    border-right: 24px solid #475569;
+    border-bottom: 10px solid transparent;
+    top: 290px;
+    right: -5px;
+  }
+
+  .speaker__needle {
+    border-top: 10px solid transparent;
+    border-right: 24px solid #475569;
+    border-bottom: 10px solid transparent;
+    top: 290px;
+    right: 145px;
+  }
+
+  .roulette__theme {
+    width: 600px;
+    height: 600px;
+  }
+
+  .roulette__speaker {
+    top: 25%;
+    left: 25%;
+    width: 300px;
+    height: 300px;
+  }
+
+  .theme__labelContainer {
+    .theme__label {
+      width: 200px;
+      font-size: 16px;
+    }
+  }
+
+  .speaker__labelContainer {
+    .speaker__label {
+      width: 100px;
+      font-size: 16px;
+    }
   }
 }

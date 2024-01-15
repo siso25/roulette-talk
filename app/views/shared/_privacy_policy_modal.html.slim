@@ -1,14 +1,15 @@
 dialog#privacy_policy_modal.modal
   form.modal-backdrop method="dialog"
     button
-  .modal-box.w-2/3.max-w-3xl.h-4/5.overflow-hidden.pr-3.pl-10.pt-10.pb-10
+  div class="modal-box w-4/5 md:w-2/3 max-w-3xl h-4/5 overflow-hidden\
+            pr-5 md:pr-16 pl-8 md:pl-16 py-12 md:py-16"
     .w-full.h-full.overflow-y-auto
       form method="dialog"
         = button_tag '',
-          class: 'btn btn-sm btn-circle btn-ghost absolute right-8 top-4'
+          class: 'btn btn-sm btn-circle btn-ghost absolute right-4 top-4'
           = image_tag 'delete-icon.png', size: '15x15', alt: 'モーダルを閉じる'
-      .leading-7.text-base
-        h2.font-bold.text-xl
+      .leading-7.text-base.pr-4
+        h2.font-bold.text-lg.md:text-xl
           | プライバシーポリシー
         p.mt-2
           | 当サイトでは、提供するサービス向上のためにGoogle社のアクセス解析ツール「Google アナリティクス」を使用しています。
