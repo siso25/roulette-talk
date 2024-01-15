@@ -3,7 +3,7 @@
 class TalkTheme < ApplicationRecord
   belongs_to :roulette
   validates :theme, presence: true
-  validate :reached_maximum_count_of_registrations
+  validate :reached_maximum_count_of_registrations, on: :create
 
   COLOR_SET = ['#E38692', '#6EB7DB', '#C97FB4', '#E5D972', '#64C99B'].freeze
 

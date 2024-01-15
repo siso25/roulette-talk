@@ -3,7 +3,7 @@
 class Speaker < ApplicationRecord
   belongs_to :roulette
   validates :name, presence: true
-  validate :reached_maximum_count_of_registrations
+  validate :reached_maximum_count_of_registrations, on: :create
 
   COLOR_SET = ['#ECACB5', '#9ACDE7', '#DBA6CC', '#E4E0BE', '#91DBB9'].freeze
 

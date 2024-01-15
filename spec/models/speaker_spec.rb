@@ -22,6 +22,8 @@ RSpec.describe Speaker, type: :model do
     tenth_speaker = FactoryBot.build(:speaker, roulette:)
     expect(tenth_speaker).to be_valid
     tenth_speaker.save
+    tenth_speaker.name = 'update name'
+    expect(tenth_speaker.save).to eq true
     eleventh_speaker = FactoryBot.build(:speaker, roulette:)
     eleventh_speaker.valid?
     expect(eleventh_speaker).to be_invalid
