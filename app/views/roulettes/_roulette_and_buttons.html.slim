@@ -74,14 +74,13 @@
                     = speaker.name
           .absolute.theme__needle
           .absolute.speaker__needle
-    .flex.justify-center.mt-8
-      .flex.justify-center.w-5/6.ml-auto
-        button[
-          class="btn btn-lg btn-primary mb-0.5 mr-4 px-10 tracking-wider"
-          data-rotate-target="startButton"
-          data-action="click->rotate#start"]
-          | スタート
-        button.btn.bg-neutral-content.mt-auto.tracking-wider.px-6[
-          data-rotate-target="resetButton"
-          data-action="click->roulette#reset"]
-          | リセット
+    .flex.justify-center.md:w-3/4.md:ml-auto.mt-8
+      button[
+        class="btn md:btn-lg btn-primary w-36 mr-4 tracking-wider"
+        data-rotate-target="startButton"
+        data-action="click->rotate#start"]
+        | スタート
+      button.btn.bg-neutral-content.mt-auto.tracking-wider.w-36.md:w-32[
+        data-rotate-target="resetButton"
+        data-action="click->roulette#reset"]
+        | リセット
