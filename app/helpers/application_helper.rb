@@ -12,7 +12,7 @@ module ApplicationHelper
       viewport: 'width=device-width,initial-scale=1',
       icon: [
         { href: image_url('favicon.ico') },
-        { href: image_url('apple-touch-icon.png') }
+        { href: image_url('apple-touch-icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' }
       ],
       og: {
         site_name: :site,
