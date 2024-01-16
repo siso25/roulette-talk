@@ -9,6 +9,8 @@ class TalkThemesController < ApplicationController
   def create
     @roulette = Roulette.find(params[:roulette_id])
     @roulette.talk_themes.create(talk_theme_params)
+    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:id)
   end
 
   def edit
@@ -17,17 +19,17 @@ class TalkThemesController < ApplicationController
   end
 
   def update
-    roulette = Roulette.find(params[:roulette_id])
-    talk_theme = roulette.talk_themes.find(params[:id])
-    talk_theme.update(talk_theme_params)
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.talk_themes.find(params[:id]).update(talk_theme_params)
+    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:id)
   end
 
   def destroy
-    roulette = Roulette.find(params[:roulette_id])
-    talk_theme = roulette.talk_themes.find(params[:id])
-    talk_theme.destroy
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.talk_themes.find(params[:id]).destroy
+    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:id)
   end
 
   private
