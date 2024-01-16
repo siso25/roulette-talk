@@ -7,13 +7,13 @@
         = button_tag 'data-action' => 'clipboard#copy',
           class: 'w-40 btn bg-neutral-content flex items-center justify-start'
           = image_tag 'copy-link-icon.png', size: '17x16'
-          p.leading-4.tracking-wider.ml-2
+          p.leading-4.tracking-wider.mx-auto
             | リンクのコピー
     .lg:ml-2.mt-1.lg:mt-0.w-fit
       = button_tag onclick: 'help_modal.showModal()',
         class: 'w-40 btn bg-neutral-content flex items-center justify-start'
         = image_tag 'help-icon.png', size: '16x16'
-        p.leading-4.tracking-wider.ml-6
+        p.leading-4.tracking-wider.mx-auto
           | 使い方
       = render partial: 'roulettes/help_modal'
   .lg:flex.mt-8.lg:mt-0
