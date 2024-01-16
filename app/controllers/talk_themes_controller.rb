@@ -7,9 +7,8 @@ class TalkThemesController < ApplicationController
   end
 
   def create
-    roulette = Roulette.find(params[:roulette_id])
-    roulette.talk_themes.create(talk_theme_params)
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.talk_themes.create(talk_theme_params)
   end
 
   def edit

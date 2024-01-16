@@ -20,11 +20,45 @@
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
     - else
-      = render partial: 'roulettes/roulette_and_buttons',
-        locals: { talk_themes: @talk_themes, speakers: @speakers }
+      .relative.pt-24.md:pt-32 data-controller="rotate"
+        div[
+          class="absolute top-0 left-4 lg:left-6 z-10 rounded-xl shadow-lg\
+                 bg-primary-content/[.85] p-3 md:p-6 w-11/12 invisible"
+          data-rotate-target="resultText"]
+          .text-xl.md:text-2xl.text-left.w-fit.mx-auto.tracking-wider
+            .flex
+              p
+                | トークテーマは
+                span.text-accent.font-bold.ml-3[
+                  data-rotate-target="talkThemeResult"]
+            .flex
+              p
+                | 話すのは
+                span.text-accent.font-bold.mx-3[
+                  data-rotate-target="speakerResult"]
+                span
+                  | さんです。
+        div data-controller="roulette"
+          .flex
+            = render partial: 'roulettes/roulette',
+              locals: { talk_themes: @talk_themes, speakers: @speakers }
+          .flex.justify-center.md:w-3/4.md:ml-auto.mt-8
+            button[
+              class="btn md:btn-lg btn-primary w-36 mr-4 tracking-wider"
+              data-rotate-target="startButton"
+              data-action="click->rotate#start"]
+              | スタート
+            button.btn.bg-neutral-content.mt-auto.tracking-wider.w-36.md:w-32[
+              data-rotate-target="resetButton"
+              data-action="click->roulette#reset"]
+              | リセット
     .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0
       .mt-10.lg:mt-28.lg:h-80
+        h2.font-bold.text-lg.mb-2
+          | トークテーマ
         = render partial: 'talk_themes/index',
-          locals: { talk_themes: @talk_themes }
+          locals: { roulette: @roulette, talk_themes: @talk_themes }
       .mt-10.lg:h-80
+        h2.font-bold.text-lg.mb-2
+          | 話す人
         = render partial: 'speakers/index', locals: { speakers: @speakers }
