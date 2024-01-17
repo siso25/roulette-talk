@@ -1,0 +1,5 @@
+= turbo_stream.update 'speakers_list' do
+  = render partial: 'speakers/index', locals: { roulette: @roulette, speakers: @speakers }
+
+= turbo_stream.replace 'roulette' do
+  = render partial: 'roulettes/roulette', locals: { talk_themes: @talk_themes, speakers: @speakers }

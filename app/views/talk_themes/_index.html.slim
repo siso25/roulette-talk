@@ -17,7 +17,7 @@
                   size: '10x10',
                   alt: 'トークテーマを削除'),
                   roulette_talk_theme_path(roulette, talk_theme),
-                  data: { turbo_method: :delete, turbo_frame: '_top' },
+                  data: { turbo_method: :delete },
                   class: 'btn btn-xs btn-circle btn-ghost'
   = turbo_frame_tag 'new_talk_theme' do
     .mt-3.px-1 data-testid="new-talk-theme-link"

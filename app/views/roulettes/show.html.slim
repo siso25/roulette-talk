@@ -61,4 +61,5 @@
       .mt-10.lg:h-80
         h2.font-bold.text-lg.mb-2
           | 話す人
-        = render partial: 'speakers/index', locals: { speakers: @speakers }
+        = render partial: 'speakers/index',
+          locals: { roulette: @roulette, speakers: @speakers }
