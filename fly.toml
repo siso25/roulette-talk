@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for roulette-talk on 2024-01-11T20:31:22+09:00
+# fly.toml app configuration file generated for roulette-talk on 2024-01-17T22:41:38+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -19,6 +19,11 @@ console_command = "/rails/bin/rails console"
   auto_start_machines = true
   min_machines_running = 1
   processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
 
 [[statics]]
   guest_path = "/rails/public"
