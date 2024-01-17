@@ -1,5 +1,3 @@
-h2.font-bold.text-lg.mb-2
-  | 話す人
 = turbo_frame_tag 'speakers_list'
   - unless speakers.count.zero?
     .rounded.border.border-gray-400.overflow-hidden
@@ -13,20 +11,20 @@ h2.font-bold.text-lg.mb-2
                   = speaker.id
                 .flex-1.text-wrap
                   = link_to speaker.name,
-                    edit_roulette_speaker_path(@roulette, speaker),
+                    edit_roulette_speaker_path(roulette, speaker),
                     class: 'w-full block'
                 .ml-2.opacity-0.group-hover:opacity-80
                   = link_to image_tag('delete-icon.png',
                     size: '10x10',
                     alt: '話す人を削除'),
-                    roulette_speaker_path(@roulette, speaker),
-                    data: { turbo_method: :delete, turbo_frame: '_top' },
+                    roulette_speaker_path(roulette, speaker),
+                    data: { turbo_method: :delete },
                     class: 'btn btn-xs btn-circle btn-ghost'
   = turbo_frame_tag 'new_speaker' do
     .mt-3.px-1 data-testid="new-speaker-link"
       - if speakers.count < 10
         = link_to '＋ 話す人を追加する',
-          new_roulette_speaker_path(@roulette),
+          new_roulette_speaker_path(roulette),
           class: 'text-neutral'
       - else
         p.text-neutral

@@ -1,32 +1,29 @@
-h2.font-bold.text-lg.mb-2
-  | トークテーマ
 = turbo_frame_tag 'talk_themes_list'
-  - unless talk_themes.count.zero?
-    .rounded.border.border-gray-400.overflow-hidden
-      ul.w-full.max-h-60.overflow-y-auto
-        - talk_themes.each do |talk_theme|
-          li class="border-b last:border-b-0 border-gray-400 w-full group\
-                    pl-4 pr-2 py-2 hover:bg-base-200"
-            = turbo_frame_tag talk_theme do
-              .flex.items-center.h-full
-                p.hidden
-                  = talk_theme.id
-                .flex-1.text-wrap
-                  = link_to talk_theme.theme,
-                    edit_roulette_talk_theme_path(@roulette, talk_theme),
-                    class: 'w-full block'
-                .ml-2.opacity-0.group-hover:opacity-80
-                  = link_to image_tag('delete-icon.png',
-                    size: '10x10',
-                    alt: 'トークテーマを削除'),
-                    roulette_talk_theme_path(@roulette, talk_theme),
-                    data: { turbo_method: :delete, turbo_frame: '_top' },
-                    class: 'btn btn-xs btn-circle btn-ghost'
+  .rounded.border.border-gray-400.overflow-hidden
+    ul.w-full.max-h-60.overflow-y-auto
+      - talk_themes.each do |talk_theme|
+        li class="border-b last:border-b-0 border-gray-400 w-full group\
+                  pl-4 pr-2 py-2 hover:bg-base-200"
+          = turbo_frame_tag talk_theme do
+            .flex.items-center.h-full
+              p.hidden
+                = talk_theme.id
+              .flex-1.text-wrap
+                = link_to talk_theme.theme,
+                  edit_roulette_talk_theme_path(roulette, talk_theme),
+                  class: 'w-full block'
+              .ml-2.opacity-0.group-hover:opacity-80
+                = link_to image_tag('delete-icon.png',
+                  size: '10x10',
+                  alt: 'トークテーマを削除'),
+                  roulette_talk_theme_path(roulette, talk_theme),
+                  data: { turbo_method: :delete },
+                  class: 'btn btn-xs btn-circle btn-ghost'
   = turbo_frame_tag 'new_talk_theme' do
     .mt-3.px-1 data-testid="new-talk-theme-link"
       - if talk_themes.count < 10
         = link_to '＋ トークテーマを追加する',
-          new_roulette_talk_theme_path(@roulette),
+          new_roulette_talk_theme_path(roulette),
           class: 'text-neutral'
       - else
         p.text-neutral

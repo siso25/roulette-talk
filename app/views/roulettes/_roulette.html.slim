@@ -1,0 +1,57 @@
+= turbo_frame_tag 'roulette'
+  div class="flex-initial w-[350px] md:w-[500px] lg:w-[600px]\
+            h-[350px] md:h-[500px] lg:h-[600px]"
+    div class="text-center relative w-[350px] md:w-[500px] lg:w-[600px]"
+      .roulette__theme[
+        data-rotate-target="talk"
+        style="#{Roulette.conic_gradient_text(
+          talk_themes, TalkTheme::COLOR_SET
+        )}"]
+        ul.absolute.theme__labelContainer
+          - talk_themes.each_with_index do |talk_theme, idx|
+            li.absolute.theme__label[
+              data-roulette-target="talkTheme"
+              data-rotate-target="talkTheme"
+              data-controller="roulette-label"
+              data-action="resize@window->roulette-label#setLabelPosition"
+              data-roulette-label-index-value="#{idx}"
+              data-roulette-label-count-value="#{talk_themes.count}"
+              data-roulette-label-radius-value="95"
+              data-roulette-label-top-plus-value="10"
+              data-roulette-label-left-plus-value="65"
+              data-roulette-label-md-radius-value="150"
+              data-roulette-label-md-top-plus-value="6"
+              data-roulette-label-md-left-plus-value="98"
+              data-roulette-label-lg-radius-value="170"
+              data-roulette-label-lg-top-plus-value="10"
+              data-roulette-label-lg-left-plus-value="100"]
+              .w-16.md:w-24.whitespace-normal.ml-auto.line-clamp-2.text-left
+                = talk_theme.theme
+      .absolute.roulette__speaker[
+        data-rotate-target="speaker"
+        style="#{Roulette.conic_gradient_text(
+          speakers, Speaker::COLOR_SET
+        )}"]
+        ul.absolute.speaker__labelContainer
+          - speakers.each_with_index do |speaker, idx|
+            li.absolute.speaker__label[
+              data-roulette-target="speakerName"
+              data-rotate-target="speakerName"
+              data-controller="roulette-label"
+              data-action="resize@window->roulette-label#setLabelPosition"
+              data-roulette-label-index-value="#{idx}"
+              data-roulette-label-count-value="#{speakers.count}"
+              data-roulette-label-radius-value="50"
+              data-roulette-label-top-plus-value="8"
+              data-roulette-label-left-plus-value="25"
+              data-roulette-label-md-radius-value="70"
+              data-roulette-label-md-top-plus-value="6"
+              data-roulette-label-md-left-plus-value="48"
+              data-roulette-label-lg-radius-value="80"
+              data-roulette-label-lg-top-plus-value="10"
+              data-roulette-label-lg-left-plus-value="50"]
+              div class="w-12 md:w-16 lg:w-20 whitespace-normal\
+                        ml-auto line-clamp-1 text-left"
+                = speaker.name
+      .absolute.theme__needle
+      .absolute.speaker__needle

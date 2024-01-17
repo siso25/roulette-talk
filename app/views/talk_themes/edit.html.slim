@@ -1,7 +1,6 @@
 = turbo_frame_tag @talk_theme
   .flex.items-center.h-full
     = form_with model: [@roulette, @talk_theme],
-      html: { data: { turbo_frame: '_top' } },
       class: 'w-full flex' do |f|
       = f.text_field :theme, class: 'input input-bordered input-sm w-4/5'
       = f.submit '更新', class: 'btn btn-outline btn-sm btn-primary ml-2'

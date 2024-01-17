@@ -1,7 +1,6 @@
 = turbo_frame_tag 'new_talk_theme'
   .mt-3
     = form_with model: [@roulette, @talk_theme],
-      html: { data: { turbo_frame: '_top' } },
       class: 'w-full flex' do |f|
       = f.text_field :theme,
         class: 'input input-bordered input-sm w-4/5',

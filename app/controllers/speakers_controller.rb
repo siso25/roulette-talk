@@ -7,9 +7,10 @@ class SpeakersController < ApplicationController
   end
 
   def create
-    roulette = Roulette.find(params[:roulette_id])
-    roulette.speakers.create(speaker_params)
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.speakers.create(speaker_params)
+    @speakers = @roulette.speakers.order(:id)
+    @talk_themes = @roulette.talk_themes.order(:id)
   end
 
   def edit
@@ -18,17 +19,17 @@ class SpeakersController < ApplicationController
   end
 
   def update
-    roulette = Roulette.find(params[:roulette_id])
-    speaker = roulette.speakers.find(params[:id])
-    speaker.update(speaker_params)
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.speakers.find(params[:id]).update(speaker_params)
+    @speakers = @roulette.speakers.order(:id)
+    @talk_themes = @roulette.talk_themes.order(:id)
   end
 
   def destroy
-    roulette = Roulette.find(params[:roulette_id])
-    speaker = roulette.speakers.find(params[:id])
-    speaker.destroy
-    redirect_to roulette_path(roulette)
+    @roulette = Roulette.find(params[:roulette_id])
+    @roulette.speakers.find(params[:id]).destroy
+    @speakers = @roulette.speakers.order(:id)
+    @talk_themes = @roulette.talk_themes.order(:id)
   end
 
   private
