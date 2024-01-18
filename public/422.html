@@ -1,67 +1,79 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <meta charset="utf-8">
+  <title>ページが表示できません</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+  <style type="text/css">
+    html {
+      box-sizing: border-box;
+      font-family: "ui-sans-serif", "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      line-height: 1;
+      font-size: 100%;
+    }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    body {
+      padding-top: 6rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .error-message {
+      max-width: 24rem;
+      margin-inline: auto;
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    .error-message__header {
+      margin-bottom: 1.75rem;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .error-message__title {
+      font-size: 5rem;
+      color: #0086AB;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .error-message__subtitle {
+      font-size: 2rem;
+      text-align: center;
+      color: #0086AB;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .error-message__body {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .error-message__content {
+      margin-bottom: 3.5rem;
+    }
+
+    .error-message__body p {
+      line-height: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
+<body>
+  <div class="error-message">
+    <header class="error-message__header">
+      <h1 class="error-message__title">422</h1>
+      <h2 class="error-message__subtitle">Unprocessable Entity</h2>
+    </header>
+    <div class="error-message__body">
+      <div class="error-message__content">
+        <p>ご不便をおかけし申し訳ございません。</p>
+        <p>正常にご覧いただけるよう、解決に取り組んでおります。</p>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
+
 </html>
