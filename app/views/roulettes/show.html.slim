@@ -26,18 +26,16 @@
                  bg-primary-content/[.85] p-3 md:p-6 w-11/12 invisible"
           data-rotate-target="resultText"]
           .text-xl.md:text-2xl.text-left.w-fit.mx-auto.tracking-wider
-            .flex
-              p
-                | トークテーマは
-                span.text-accent.font-bold.ml-3[
-                  data-rotate-target="talkThemeResult"]
-            .flex
-              p
-                | 話すのは
-                span.text-accent.font-bold.mx-3[
-                  data-rotate-target="speakerResult"]
-                span
-                  | さんです。
+            p
+              | トークテーマは
+              span.text-accent.font-bold.ml-3[
+                data-rotate-target="talkThemeResult"]
+            p
+              | 話すのは
+              span.text-accent.font-bold.mx-3[
+                data-rotate-target="speakerResult"]
+              span
+                | さんです。
         div data-controller="roulette"
           .flex
             = render partial: 'roulettes/roulette',
