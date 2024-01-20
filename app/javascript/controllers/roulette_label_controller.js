@@ -21,7 +21,6 @@ export default class extends Controller {
 
   setLabelPosition() {
     const obj = this.switchByWidth()
-    console.log(obj)
     const angle = 360 / this.countValue
     const itemPositionAngle = angle / 2 + angle * this.indexValue
     const position = this.calcTopAndLeftPosition(
