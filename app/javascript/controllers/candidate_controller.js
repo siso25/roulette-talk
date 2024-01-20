@@ -2,11 +2,17 @@ import { Controller } from '@hotwired/stimulus'
 import { save } from '../helpers/storage'
 
 export default class extends Controller {
-  static targets = ['talkTheme', 'speakerName']
+  static outlets = ['roulette']
 
-  connect() {
-    save('talk', this.createLotteryString(this.talkThemeTargets.length))
-    save('speaker', this.createLotteryString(this.speakerNameTargets.length))
+  reset() {
+    save(
+      'talk',
+      this.createLotteryString(this.rouletteOutlet.talkThemeTargets.length)
+    )
+    save(
+      'speaker',
+      this.createLotteryString(this.rouletteOutlet.speakerNameTargets.length)
+    )
   }
 
   private

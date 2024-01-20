@@ -36,7 +36,7 @@
                 data-rotate-target="speakerResult"]
               span
                 | さんです。
-        div data-controller="roulette"
+        div
           .flex
             = render partial: 'roulettes/roulette',
               locals: { talk_themes: @talk_themes, speakers: @speakers }
@@ -48,7 +48,9 @@
               | スタート
             button.btn.bg-neutral-content.mt-auto.tracking-wider.w-36.md:w-32[
               data-rotate-target="resetButton"
-              data-action="click->roulette#reset"]
+              data-controller="candidate"
+              data-candidate-roulette-outlet="#roulette"
+              data-action="click->candidate#reset"]
               | リセット
     .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0
       .mt-10.lg:mt-28.lg:h-80
