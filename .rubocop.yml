@@ -6,3 +6,5 @@ inherit_gem:
     - "config/rubocop.yml"
     - "config/rails.yml"
 
+require:
+  - rubocop-performance
