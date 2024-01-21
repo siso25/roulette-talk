@@ -11,6 +11,7 @@ RSpec.describe 'Speakers', type: :system do
 
   scenario 'user adds a speaker', js: true do
     visit roulette_path(@roulette)
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 4
     expect do
       click_link '話す人を追加する'
       fill_in 'speaker[name]', with: 'ユーザー テスト'
@@ -18,6 +19,7 @@ RSpec.describe 'Speakers', type: :system do
       expect(find('#speakers_list')).to have_content('ユーザー テスト')
     end.to change(@roulette.speakers, :count).by(1)
     expect(find('.speaker__labelContainer')).to have_content('ユーザー テスト')
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 5
   end
 
   scenario 'user modifies a speaker', js: true do
@@ -33,6 +35,7 @@ RSpec.describe 'Speakers', type: :system do
 
   scenario 'user deletes a speaker', js: true do
     visit roulette_path(@roulette)
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 4
     speaker = find('#speakers_list').find('a', match: :first).text
     expect do
       within '#speakers_list' do
@@ -44,6 +47,7 @@ RSpec.describe 'Speakers', type: :system do
     end.to change(@roulette.speakers, :count).by(-1)
     expect(find('.speaker__labelContainer')).to_not have_content(speaker)
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 3
   end
 
   scenario 'it toggles a link to text when 10 speakers are registered', js: true do

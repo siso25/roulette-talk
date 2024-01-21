@@ -11,6 +11,7 @@ RSpec.describe 'Talk Themes', type: :system do
 
   scenario 'user adds a talk theme', js: true do
     visit roulette_path(@roulette)
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 4
     expect do
       click_link 'トークテーマを追加する'
       fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
@@ -18,6 +19,7 @@ RSpec.describe 'Talk Themes', type: :system do
       expect(find('#talk_themes_list')).to have_content('トークテーマ テスト')
     end.to change(@roulette.talk_themes, :count).by(1)
     expect(find('.theme__labelContainer')).to have_content('トークテーマ テスト')
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 5
   end
 
   scenario 'user modifies a talk theme', js: true do
@@ -34,6 +36,7 @@ RSpec.describe 'Talk Themes', type: :system do
   scenario 'user deletes a talk theme', js: true do
     visit roulette_path(@roulette)
     talk_theme = find('#talk_themes_list').find('a', match: :first).text
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 4
     expect do
       within '#talk_themes_list' do
         find('img', visible: false, match: :first).click
@@ -43,6 +46,7 @@ RSpec.describe 'Talk Themes', type: :system do
     end.to change(@roulette.talk_themes, :count).by(-1)
     expect(find('.theme__labelContainer')).to_not have_content(talk_theme)
     expect(find('.theme__labelContainer').all('li').count).to eq 3
+    expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 3
   end
 
   scenario 'it toggles a link to text when 10 themes are registered', js: true do
