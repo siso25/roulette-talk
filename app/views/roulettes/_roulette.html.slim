@@ -5,7 +5,7 @@
     div class="text-center relative w-[350px] md:w-[500px] lg:w-[600px]"
       .roulette__theme[
         data-rotate-target="talk"
-        style="#{Roulette.conic_gradient_text(
+        style="#{Roulette.generate_background_color_text(
           talk_themes, TalkTheme::COLOR_SET
         )}"]
         ul.absolute.theme__labelContainer
@@ -30,7 +30,7 @@
                 = talk_theme.theme
       .absolute.roulette__speaker[
         data-rotate-target="speaker"
-        style="#{Roulette.conic_gradient_text(
+        style="#{Roulette.generate_background_color_text(
           speakers, Speaker::COLOR_SET
         )}"]
         ul.absolute.speaker__labelContainer
