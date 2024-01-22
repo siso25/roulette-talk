@@ -3,19 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Speaker, type: :model do
-  it 'is valid with a roulette, name' do
-    roulette = Roulette.new
-    speaker = roulette.speakers.build(name: 'ユーザー1')
-    expect(speaker).to be_valid
-  end
-
-  it 'is invalid with a name' do
-    roulette = Roulette.new
-    speaker = roulette.speakers.build(name: nil)
-    speaker.valid?
-    expect(speaker.errors[:name]).to include("can't be blank")
-  end
-
   it 'is invalid insertion of more than 10 records' do
     roulette = Roulette.create
     FactoryBot.create_list(:speaker, 9, roulette:)

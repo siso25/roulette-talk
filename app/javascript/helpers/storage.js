@@ -12,6 +12,15 @@ export function findByKey(key) {
   return obj[key]
 }
 
+export function resetLotteryCandidates(key, targets) {
+  const numbers = []
+  for (let i = 0; i < targets.length; i++) {
+    numbers.push(i)
+  }
+
+  save(key, numbers)
+}
+
 function findObject(rouletteId) {
   return JSON.parse(sessionStorage.getItem(rouletteId))
 }

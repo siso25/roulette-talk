@@ -1,8 +1,6 @@
 = turbo_frame_tag 'new_speaker'
   .mt-3
-    = form_with model: [@roulette, @speaker],
-      class: 'w-full flex' do |f|
-      = f.text_field :name,
-        class: 'input input-bordered input-sm w-4/5',
-        placeholder: '田中さん'
-      = f.submit '登録', class: 'btn btn-outline btn-sm btn-primary ml-auto'
+    = render partial: 'form',
+      locals: { roulette: @roulette,
+                speaker: @speaker,
+                button_label: '登録' }

@@ -5,7 +5,7 @@ class Roulette < ApplicationRecord
   has_many :speakers, dependent: :destroy
 
   class << self
-    def conic_gradient_text(targets, color_set)
+    def generate_background_color_text(targets, color_set)
       targets_count = targets.count
       angle = 360 / targets_count
       colors = create_color_array(targets_count, color_set)
