@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root "home#index"
+  root 'home#index'
   resources :roulettes, only: %i[show create] do
-    resources :talk_themes
-    resources :speakers
+    resources :talk_themes, only: %i[new create edit update destroy]
+    resources :speakers, only: %i[new create edit update destroy]
   end
 end
