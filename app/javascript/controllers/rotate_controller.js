@@ -2,6 +2,8 @@ import { Controller } from '@hotwired/stimulus'
 import { save, findByKey } from '../helpers/storage'
 
 export default class extends Controller {
+  static outlets = ['roulette-items']
+
   static targets = [
     'resultText',
     'talkThemeResult',
@@ -38,6 +40,7 @@ export default class extends Controller {
         this.talkThemeResultTarget.innerText = findByKey('talkResult')
         this.speakerResultTarget.innerText = findByKey('speakerResult')
         this.resultTextTarget.style.visibility = 'visible'
+        this.rouletteItemsOutlets.forEach(element => element.changeBackgroundColor())
       }
     )
   }
@@ -52,6 +55,7 @@ export default class extends Controller {
         : this.createLotteryString(rouletteItems.length)
     const lotteryResultIndex = this.lottery(lotteryTargets)
     const lotteryResult = lotteryTargets[lotteryResultIndex]
+    save(`${rouletteName}ResultIndex`, lotteryResultIndex)
     save(`${rouletteName}Result`, rouletteItems[lotteryResult].innerText)
     this.deleteTarget(rouletteName, lotteryTargets, lotteryResultIndex)
     const rotateDeg = 360 / rouletteItems.length

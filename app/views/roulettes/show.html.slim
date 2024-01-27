@@ -20,7 +20,9 @@
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
     - else
-      .relative.pt-24.md:pt-32 data-controller="rotate"
+      .relative.pt-24.md:pt-32[
+        data-controller="rotate"
+        data-rotate-roulette-items-outlet='.roulette-items']
         div[
           class="absolute top-0 left-4 lg:left-6 z-10 rounded-xl shadow-lg\
                  bg-primary-content/[.85] p-3 md:p-6 w-11/12 invisible"
@@ -50,6 +52,7 @@
               data-rotate-target="resetButton"
               data-controller="candidate"
               data-candidate-roulette-outlet="#roulette"
+              data-candidate-roulette-items-outlet='.roulette-items'
               data-action="click->candidate#reset"]
               | リセット
     .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0

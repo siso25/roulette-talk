@@ -1,4 +1,4 @@
-= turbo_stream.update 'speakers_list' do
+= turbo_stream.replace 'speakers_list' do
   = render partial: 'speakers/index',
     locals: { roulette: @roulette, speakers: @speakers }
 

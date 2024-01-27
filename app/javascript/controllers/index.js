@@ -16,5 +16,8 @@ application.register("rotate", RotateController)
 import RouletteController from "./roulette_controller"
 application.register("roulette", RouletteController)
 
+import RouletteItemsController from "./roulette_items_controller"
+application.register("roulette-items", RouletteItemsController)
+
 import RouletteLabelController from "./roulette_label_controller"
 application.register("roulette-label", RouletteLabelController)
