@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_15_111733) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_27_091718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_15_111733) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_speakers_on_created_at"
     t.index ["roulette_id"], name: "index_speakers_on_roulette_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_15_111733) do
     t.string "theme"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_talk_themes_on_created_at"
     t.index ["roulette_id"], name: "index_talk_themes_on_roulette_id"
   end
 
