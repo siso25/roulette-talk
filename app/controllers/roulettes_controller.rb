@@ -3,8 +3,8 @@
 class RoulettesController < ApplicationController
   def show
     @roulette = Roulette.find(params[:id])
-    @talk_themes = @roulette.talk_themes.order(:id)
-    @speakers = @roulette.speakers.order(:id)
+    @talk_themes = @roulette.talk_themes.order(:created_at)
+    @speakers = @roulette.speakers.order(:created_at)
   end
 
   def create

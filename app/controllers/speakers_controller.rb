@@ -9,8 +9,8 @@ class SpeakersController < ApplicationController
 
   def create
     @roulette.speakers.create(speaker_params)
-    @speakers = @roulette.speakers.order(:id)
-    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:created_at)
+    @talk_themes = @roulette.talk_themes.order(:created_at)
   end
 
   def edit
@@ -19,14 +19,14 @@ class SpeakersController < ApplicationController
 
   def update
     @roulette.speakers.find(params[:id]).update(speaker_params)
-    @speakers = @roulette.speakers.order(:id)
-    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:created_at)
+    @talk_themes = @roulette.talk_themes.order(:created_at)
   end
 
   def destroy
     @roulette.speakers.find(params[:id]).destroy
-    @speakers = @roulette.speakers.order(:id)
-    @talk_themes = @roulette.talk_themes.order(:id)
+    @speakers = @roulette.speakers.order(:created_at)
+    @talk_themes = @roulette.talk_themes.order(:created_at)
   end
 
   private
