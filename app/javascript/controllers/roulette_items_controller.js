@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus'
 import { findByKey } from '../helpers/storage'
 
 export default class extends Controller {
@@ -17,6 +17,8 @@ export default class extends Controller {
 
   resetBackgroundColor() {
     console.log('reset')
-    this.itemTargets.forEach(element => element.classList.remove('bg-base-300'))
+    this.itemTargets.forEach((element) =>
+      element.classList.remove('bg-base-300')
+    )
   }
 }

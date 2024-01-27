@@ -40,7 +40,9 @@ export default class extends Controller {
         this.talkThemeResultTarget.innerText = findByKey('talkResult')
         this.speakerResultTarget.innerText = findByKey('speakerResult')
         this.resultTextTarget.style.visibility = 'visible'
-        this.rouletteItemsOutlets.forEach(element => element.changeBackgroundColor())
+        this.rouletteItemsOutlets.forEach((element) =>
+          element.changeBackgroundColor()
+        )
       }
     )
   }

@@ -8,6 +8,8 @@ export default class extends Controller {
   connect() {
     resetLotteryCandidates('talk', this.talkThemeTargets)
     resetLotteryCandidates('speaker', this.speakerNameTargets)
-    this.rouletteItemsOutlets.forEach(element => element.resetBackgroundColor())
+    this.rouletteItemsOutlets.forEach((element) =>
+      element.resetBackgroundColor()
+    )
   }
 }
