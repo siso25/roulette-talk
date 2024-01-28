@@ -1,7 +1,16 @@
-= turbo_stream.update 'talk_themes_list' do
+= turbo_stream.replace 'talk_themes_list' do
   = render partial: 'talk_themes/index',
     locals: { roulette: @roulette, talk_themes: @talk_themes }
 
-= turbo_stream.replace 'roulette' do
-  = render partial: 'roulettes/roulette',
-    locals: { talk_themes: @talk_themes, speakers: @speakers }
+- if @talk_themes.count == 1 && !@speakers.count.zero?
+  = turbo_stream.remove 'no_items_roulette'
+  = turbo_stream.prepend 'roulette_area' do
+    = render partial: 'roulettes/roulettes_and_buttons',
+      locals: { roulette: @roulette,
+                talk_themes: @talk_themes,
+                speakers: @speakers }
+
+- elsif !@speakers.count.zero?
+  = turbo_stream.replace 'roulette' do
+    = render partial: 'roulettes/roulette',
+      locals: { talk_themes: @talk_themes, speakers: @speakers }

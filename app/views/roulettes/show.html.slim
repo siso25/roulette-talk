@@ -17,6 +17,7 @@
           | 使い方
       = render partial: 'roulettes/help_modal'
   .lg:flex.mt-8.lg:mt-0
+    = turbo_frame_tag 'roulette_area'
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render partial: 'roulettes/no_items'
     - else
