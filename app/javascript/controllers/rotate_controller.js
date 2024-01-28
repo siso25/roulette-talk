@@ -54,10 +54,13 @@ export default class extends Controller {
     const lotteryTargets =
       storageTartgets.length !== 0
         ? storageTartgets
-        : this.createLotteryString(rouletteItems.length)
+        : this.createLotteryString(rouletteName, rouletteItems.length)
     const lotteryResultIndex = this.lottery(lotteryTargets)
     const lotteryResult = lotteryTargets[lotteryResultIndex]
-    save(`${rouletteName}ResultIndex`, findByKey(rouletteName)[lotteryResultIndex])
+    save(
+      `${rouletteName}ResultIndex`,
+      findByKey(rouletteName)[lotteryResultIndex]
+    )
     save(`${rouletteName}Result`, rouletteItems[lotteryResult].innerText)
     this.deleteTarget(rouletteName, lotteryTargets, lotteryResultIndex)
     const rotateDeg = 360 / rouletteItems.length
@@ -98,12 +101,13 @@ export default class extends Controller {
     save(rouletteName, targets)
   }
 
-  createLotteryString(elementCount) {
+  createLotteryString(rouletteName, elementCount) {
     const numbers = []
     for (let i = 0; i < elementCount; i++) {
       numbers.push(i)
     }
 
+    save(rouletteName, numbers)
     return numbers
   }
 }
