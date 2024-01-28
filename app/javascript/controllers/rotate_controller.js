@@ -2,6 +2,8 @@ import { Controller } from '@hotwired/stimulus'
 import { save, findByKey } from '../helpers/storage'
 
 export default class extends Controller {
+  static outlets = ['roulette-items']
+
   static targets = [
     'resultText',
     'talkThemeResult',
@@ -38,6 +40,9 @@ export default class extends Controller {
         this.talkThemeResultTarget.innerText = findByKey('talkResult')
         this.speakerResultTarget.innerText = findByKey('speakerResult')
         this.resultTextTarget.style.visibility = 'visible'
+        this.rouletteItemsOutlets.forEach((element) =>
+          element.changeBackgroundColor()
+        )
       }
     )
   }
@@ -49,9 +54,13 @@ export default class extends Controller {
     const lotteryTargets =
       storageTartgets.length !== 0
         ? storageTartgets
-        : this.createLotteryString(rouletteItems.length)
+        : this.createLotteryString(rouletteName, rouletteItems.length)
     const lotteryResultIndex = this.lottery(lotteryTargets)
     const lotteryResult = lotteryTargets[lotteryResultIndex]
+    save(
+      `${rouletteName}ResultIndex`,
+      findByKey(rouletteName)[lotteryResultIndex]
+    )
     save(`${rouletteName}Result`, rouletteItems[lotteryResult].innerText)
     this.deleteTarget(rouletteName, lotteryTargets, lotteryResultIndex)
     const rotateDeg = 360 / rouletteItems.length
@@ -92,12 +101,13 @@ export default class extends Controller {
     save(rouletteName, targets)
   }
 
-  createLotteryString(elementCount) {
+  createLotteryString(rouletteName, elementCount) {
     const numbers = []
     for (let i = 0; i < elementCount; i++) {
       numbers.push(i)
     }
 
+    save(rouletteName, numbers)
     return numbers
   }
 }
