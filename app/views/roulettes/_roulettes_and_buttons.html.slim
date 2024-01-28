@@ -1,0 +1,33 @@
+= turbo_frame_tag 'roulettes_and_buttons'
+  .relative.pt-24.md:pt-32 data-controller="rotate"
+    div[
+      class="absolute top-0 left-4 lg:left-6 z-10 rounded-xl shadow-lg\
+             bg-primary-content/[.85] p-3 md:p-6 w-11/12 invisible"
+      data-rotate-target="resultText"]
+      .text-xl.md:text-2xl.text-left.w-fit.mx-auto.tracking-wider
+        p
+          | トークテーマは
+          span.text-accent.font-bold.ml-3[
+            data-rotate-target="talkThemeResult"]
+        p
+          | 話すのは
+          span.text-accent.font-bold.mx-3[
+            data-rotate-target="speakerResult"]
+          span
+            | さんです。
+    div
+      .flex
+        = render partial: 'roulettes/roulette',
+          locals: { talk_themes:, speakers: }
+      .flex.justify-center.md:w-3/4.md:ml-auto.mt-8
+        button[
+          class="btn md:btn-lg btn-primary w-36 mr-4 tracking-wider"
+          data-rotate-target="startButton"
+          data-action="click->rotate#start"]
+          | スタート
+        button.btn.bg-neutral-content.mt-auto.tracking-wider.w-36.md:w-32[
+          data-rotate-target="resetButton"
+          data-controller="candidate"
+          data-candidate-roulette-outlet="#roulette"
+          data-action="click->candidate#reset"]
+          | リセット

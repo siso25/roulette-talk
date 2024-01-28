@@ -22,6 +22,32 @@ RSpec.describe 'Speakers', type: :system do
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 5
   end
 
+  scenario 'user adds a speaker when no speaker is registered and there is one talk theme', js: true do
+    roulette = Roulette.create
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to_not have_selector '#speakers'
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+    click_link '話す人を追加する'
+    fill_in 'speaker[name]', with: 'ユーザー テスト'
+    click_button '登録'
+    expect(find('#speakers_list')).to have_content('ユーザー テスト')
+    expect(find('.speaker__labelContainer')).to have_content('ユーザー テスト')
+  end
+
+  scenario 'user adds a speaker when no speaker is registered and there are no talk themes', js: true do
+    roulette = Roulette.create
+    visit roulette_path(roulette)
+    expect(page).to_not have_selector '#speakers'
+    expect(page).to_not have_selector '#talk_themes'
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+    click_link '話す人を追加する'
+    fill_in 'speaker[name]', with: 'ユーザー テスト'
+    click_button '登録'
+    expect(find('#speakers_list')).to have_content('ユーザー テスト')
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
   scenario 'user modifies a speaker', js: true do
     visit roulette_path(@roulette)
     within '#speakers_list' do
@@ -48,6 +74,28 @@ RSpec.describe 'Speakers', type: :system do
     expect(find('.speaker__labelContainer')).to_not have_content(speaker)
     expect(find('.speaker__labelContainer').all('li').count).to eq 3
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 3
+  end
+
+  scenario 'user deletes a speaker when one speaker is registered', js: true do
+    roulette = Roulette.create
+    FactoryBot.create(:talk_theme, roulette:)
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_selector '#speakers'
+    find('#speakers_list').find('img', visible: false).click
+    expect(page).to_not have_selector '#speakers'
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
+  scenario 'user deletes a speaker when one speaker is registered and there are no talk themes', js: true do
+    roulette = Roulette.create
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    expect(page).to have_selector '#speakers'
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+    find('#speakers_list').find('img', visible: false).click
+    expect(page).to_not have_selector '#speakers'
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
   end
 
   scenario 'it toggles a link to text when 10 speakers are registered', js: true do
