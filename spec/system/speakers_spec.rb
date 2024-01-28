@@ -12,6 +12,10 @@ RSpec.describe 'Speakers', type: :system do
   scenario 'user adds a speaker', js: true do
     visit roulette_path(@roulette)
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 4
+    click_button 'スタート'
+    find "[data-rotate-target='resultText']", wait: 10
+    expect(find('#talk_themes_list')).to have_selector '.bg-base-300'
+    expect(find('#speakers_list')).to have_selector '.bg-base-300'
     expect do
       click_link '話す人を追加する'
       fill_in 'speaker[name]', with: 'ユーザー テスト'
@@ -20,6 +24,8 @@ RSpec.describe 'Speakers', type: :system do
     end.to change(@roulette.speakers, :count).by(1)
     expect(find('.speaker__labelContainer')).to have_content('ユーザー テスト')
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 5
+    expect(find('#talk_themes_list')).not_to have_selector '.bg-base-300'
+    expect(find('#speakers_list')).not_to have_selector '.bg-base-300'
   end
 
   scenario 'user adds a speaker when no speaker is registered and there is one talk theme', js: true do
