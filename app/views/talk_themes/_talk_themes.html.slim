@@ -12,9 +12,14 @@
               p.hidden
                 = talk_theme.id
               .flex-1.text-wrap
-                = link_to talk_theme.theme,
-                  edit_roulette_talk_theme_path(roulette, talk_theme),
-                  class: 'w-full block'
+                = link_to edit_roulette_talk_theme_path(roulette, talk_theme),
+                  class: 'w-full block' do
+                  .flex
+                    p class="hidden text-xs bg-neutral-content py-1 px-2\
+                            rounded-md mr-2 group-hover:block"
+                      | 編集
+                    p
+                      = talk_theme.theme
               .ml-2.opacity-0.group-hover:opacity-80
                 = link_to image_tag('delete-icon.png',
                   size: '10x10',
