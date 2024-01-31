@@ -14,8 +14,10 @@ RSpec.describe 'Talk Themes', type: :system do
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 4
     click_button 'スタート'
     find "[data-rotate-target='resultText']", wait: 10
-    expect(find('#talk_themes_list')).to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).to have_selector '.text-gray-500'
+    expect(find('#talk_themes_list')).to have_selector '.line-through'
+    expect(find('#speakers_list')).to have_selector '.text-gray-500'
+    expect(find('#speakers_list')).to have_selector '.line-through'
     expect do
       click_link 'トークテーマを追加する'
       fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
@@ -24,8 +26,10 @@ RSpec.describe 'Talk Themes', type: :system do
     end.to change(@roulette.talk_themes, :count).by(1)
     expect(find('.theme__labelContainer')).to have_content('トークテーマ テスト')
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['talk'].size).to eq 5
-    expect(find('#talk_themes_list')).not_to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).not_to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).to_not have_selector '.text-gray-500'
+    expect(find('#talk_themes_list')).to_not have_selector '.line-through'
+    expect(find('#speakers_list')).to_not have_selector '.text-gray-500'
+    expect(find('#speakers_list')).to_not have_selector '.line-through'
   end
 
   scenario 'user adds a talk theme when no talk theme is registered and there is one speaker', js: true do

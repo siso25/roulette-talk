@@ -12,12 +12,12 @@ export default class extends Controller {
     }
 
     const index = findByKey(`${this.keyValue}ResultIndex`)
-    this.itemTargets[index].classList.add('bg-base-300')
+    this.itemTargets[index].classList.add('text-gray-500', 'line-through')
   }
 
   resetBackgroundColor() {
     this.itemTargets.forEach((element) =>
-      element.classList.remove('bg-base-300')
+      element.classList.remove('text-gray-500', 'line-through')
     )
   }
 }
