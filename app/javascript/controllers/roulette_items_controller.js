@@ -7,7 +7,7 @@ export default class extends Controller {
 
   addStrikethrough() {
     if (findByKey(this.keyValue).length === 0) {
-      this.resetBackgroundColor()
+      this.removeAllStrikethrough()
       return
     }
 
