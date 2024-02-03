@@ -9,16 +9,15 @@
       .text-xl.md:text-2xl.text-left.w-fit.mx-auto.tracking-wider
         p
           | トークテーマは
-          span.text-accent.font-bold.ml-3[
+          span.text-accent.font-bold.ml-1.md:ml-3[
             data-rotate-target="talkThemeResult"]
         p
           | 話すのは
-          span.text-accent.font-bold.mx-3[
+          span.text-accent.font-bold.mx-1.md:mx-3[
             data-rotate-target="speakerResult"]
-          span
-            | さんです。
+          | さんです。
     div
-      .flex
+      .flex.justify-center
         = render partial: 'roulettes/roulette',
           locals: { talk_themes:, speakers: }
       .flex.justify-center.md:w-3/4.md:ml-auto.mt-8

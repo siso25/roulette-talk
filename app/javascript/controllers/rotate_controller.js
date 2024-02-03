@@ -37,8 +37,8 @@ export default class extends Controller {
       () => {
         this.startButtonTarget.disabled = false
         this.resetButtonTarget.disabled = false
-        this.talkThemeResultTarget.innerText = findByKey('talkResult')
-        this.speakerResultTarget.innerText = findByKey('speakerResult')
+        this.talkThemeResultTarget.textContent = findByKey('talkResult')
+        this.speakerResultTarget.textContent = findByKey('speakerResult')
         this.resultTextTarget.style.visibility = 'visible'
         this.rouletteItemsOutlets.forEach((element) =>
           element.addStrikethrough()
