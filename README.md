@@ -6,11 +6,11 @@
 トークテーマと話す人のルーレットを作成でき、主催者は予めトークテーマを設定したルーレットを作成できる機能が備わっていることが特徴です。
 
 ## URL
-https://roulette-talk.fly.dev/
+https://roulette-talk.com/
 
 ## 使い方
 ### 1. トップページで「ルーレットを作る」をクリックする
-![image](https://github.com/siso25/roulette-talk/assets/47073105/c8893965-a60a-47bb-8615-7354586a3dca)
+![image](https://github.com/siso25/roulette-talk/assets/47073105/106981ac-3ed9-4212-8f27-eb84f147246a)
 
 ### 2. トークテーマと話す人を設定する
 ![image](https://github.com/siso25/roulette-talk/assets/47073105/8e1368d2-5699-4eb1-a66d-9b0349a4568e)
