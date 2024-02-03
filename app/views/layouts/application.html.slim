@@ -1,6 +1,13 @@
 doctype html
 html
   head
+    / Google tag (gtag.js)
+    script[async src="https://www.googletagmanager.com/gtag/js?id=G-CY044DKV24"]
+    script
+      | window.dataLayer = window.dataLayer || [];
+      | function gtag(){dataLayer.push(arguments);}
+      | gtag('js', new Date());
+      | gtag('config', 'G-CY044DKV24');
     = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
     = csp_meta_tag
