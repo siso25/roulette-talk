@@ -9,7 +9,7 @@ export default class extends Controller {
     resetLotteryCandidates('talk', this.talkThemeTargets)
     resetLotteryCandidates('speaker', this.speakerNameTargets)
     this.rouletteItemsOutlets.forEach((element) =>
-      element.resetBackgroundColor()
+      element.removeAllStrikethrough()
     )
   }
 }

@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = { key: String }
   static targets = ['item']
 
-  changeBackgroundColor() {
+  addStrikethrough() {
     if (findByKey(this.keyValue).length === 0) {
       this.resetBackgroundColor()
       return
@@ -15,7 +15,7 @@ export default class extends Controller {
     this.itemTargets[index].classList.add('text-gray-500', 'line-through')
   }
 
-  resetBackgroundColor() {
+  removeAllStrikethrough() {
     this.itemTargets.forEach((element) =>
       element.classList.remove('text-gray-500', 'line-through')
     )
