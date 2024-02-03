@@ -2,10 +2,10 @@ import { Controller } from '@hotwired/stimulus'
 
 // Connects to data-controller="clipboard"
 export default class extends Controller {
-  static targets = ['toolTip']
+  static targets = ['toolTip', 'source']
 
   copy() {
-    navigator.clipboard.writeText(location.href)
+    navigator.clipboard.writeText(this.sourceTarget.value)
     this.displayToolTip()
   }
 

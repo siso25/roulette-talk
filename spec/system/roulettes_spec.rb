@@ -23,7 +23,7 @@ RSpec.describe 'Roulettes', type: :system do
 
   scenario 'user copies link on current page', js: true do
     visit roulette_path(@roulette)
-    click_button 'リンクのコピー'
+    click_button 'コピー'
     cdp_permission = {
       origin: page.server_url,
       permission: { name: 'clipboard-read' },
@@ -32,6 +32,7 @@ RSpec.describe 'Roulettes', type: :system do
     page.driver.browser.execute_cdp('Browser.setPermission', **cdp_permission)
     copied_url = evaluate_async_script('navigator.clipboard.readText().then(arguments[0])')
     current_url = evaluate_script('location.href')
+    expect(page.find('input').value).to eq current_url
     expect(copied_url).to eq current_url
   end
 
@@ -62,8 +63,8 @@ RSpec.describe 'Roulettes', type: :system do
     session_storage_items = JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))
     expect(result_text).to have_content(session_storage_items['talkResult'])
     expect(result_text).to have_content(session_storage_items['speakerResult'])
-    expect(find('#talk_themes_list').find('.bg-base-300')).to have_content session_storage_items['talkResult']
-    expect(find('#speakers_list').find('.bg-base-300')).to have_content session_storage_items['speakerResult']
+    expect(find('#talk_themes_list').find('.line-through')).to have_content session_storage_items['talkResult']
+    expect(find('#speakers_list').find('.line-through')).to have_content session_storage_items['speakerResult']
 
     talk_transform = find('.roulette__theme').style('transform')['transform'].delete(' ')[/[0-9.,-]+/].split(',').map(&:to_f)
     # 点の位置から角度を算出する
@@ -92,15 +93,15 @@ RSpec.describe 'Roulettes', type: :system do
     visit roulette_path(roulette)
     click_button 'スタート'
     find "[data-rotate-target='resultText']", wait: 10
-    expect(find('#talk_themes_list')).to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).to have_selector '.line-through'
+    expect(find('#speakers_list')).to have_selector '.line-through'
     click_button 'スタート'
     find "[data-rotate-target='resultText']", wait: 10
     session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('#{roulette.id}')"))
     expect(session_storage_items1['talk'].size).to eq 0
     expect(session_storage_items1['speaker'].size).to eq 0
-    expect(find('#talk_themes_list')).not_to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).not_to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).not_to have_selector '.line-through'
+    expect(find('#speakers_list')).not_to have_selector '.line-through'
     click_button 'スタート'
     find "[data-rotate-target='resultText']", wait: 10
     # session storageがリセットされた上で一回ルーレットが実行されるのでsizeは1になる
@@ -116,14 +117,14 @@ RSpec.describe 'Roulettes', type: :system do
     session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))
     expect(session_storage_items1['talk'].size).to eq 3
     expect(session_storage_items1['speaker'].size).to eq 3
-    expect(find('#talk_themes_list')).to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).to have_selector '.line-through'
+    expect(find('#speakers_list')).to have_selector '.line-through'
     click_button 'リセット'
     session_storage_items2 = JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))
     expect(session_storage_items2['talk'].size).to eq 4
     expect(session_storage_items2['speaker'].size).to eq 4
-    expect(find('#talk_themes_list')).not_to have_selector '.bg-base-300'
-    expect(find('#speakers_list')).not_to have_selector '.bg-base-300'
+    expect(find('#talk_themes_list')).not_to have_selector '.line-through'
+    expect(find('#speakers_list')).not_to have_selector '.line-through'
   end
 
   scenario 'user registers a one-line talk theme', js: true do

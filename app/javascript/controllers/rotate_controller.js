@@ -41,7 +41,7 @@ export default class extends Controller {
         this.speakerResultTarget.innerText = findByKey('speakerResult')
         this.resultTextTarget.style.visibility = 'visible'
         this.rouletteItemsOutlets.forEach((element) =>
-          element.changeBackgroundColor()
+          element.addStrikethrough()
         )
       }
     )
