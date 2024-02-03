@@ -35,7 +35,7 @@ $ bin/dev
 
 ## テスト
 ```
-$ be rspec
+$ bundle exec rspec
 ```
 
 ## Lint
