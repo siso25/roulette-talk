@@ -16,7 +16,7 @@ https://roulette-talk.com/
 ![image](https://github.com/siso25/roulette-talk/assets/47073105/8e1368d2-5699-4eb1-a66d-9b0349a4568e)
 
 ### 3.「スタート」ボタンをクリックする
-![image](https://github.com/siso25/roulette-talk/assets/47073105/0b09221b-5abe-4aa5-9e55-856861b9f3dd)
+![image](https://github.com/siso25/roulette-talk/assets/47073105/9be9cb44-d4b6-4bec-8801-0693d538f92e)
 
 ## 動作環境
 - Ruby 3.2.2
