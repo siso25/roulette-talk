@@ -94,10 +94,6 @@ export default class extends Controller {
   }
 
   calcRotateAngle(angle) {
-    if (angle - 90 > 270) {
-      return angle - 540
-    }
-
     return angle - 90
   }
 
