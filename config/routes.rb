@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :talk_themes, only: %i[new create edit update destroy]
     resources :speakers, only: %i[new create edit update destroy]
   end
+  resources :templates, only: :show
 end
