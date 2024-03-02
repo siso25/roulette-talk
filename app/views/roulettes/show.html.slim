@@ -21,12 +21,14 @@
           = button_tag 'コピー', 'data-action' => 'clipboard#copy',
             class: 'w-20 font-semibold text-sm tracking-widest\
                     bg-neutral-content hover:bg-base-300 duration-200'
-      div
-        = button_tag onclick: 'template_modal.showModal()'
-          p
-            | このルーレットを配布する
+      .mt-2
+        = button_tag onclick: 'template_modal.showModal()',
+          class: 'flex items-center ml-auto hover:underline'
+          = image_tag 'template-icon.png', size: '16x16'
+          p.pl-1
+            | ルーレットを配布する
         = render partial: 'roulettes/template_modal', locals: { roulette: @roulette }
-      .mt-8.lg:mt-20.lg:h-80
+      .mt-8.lg:mt-16.lg:h-80
         h2.font-bold.text-lg.mb-2
           | トークテーマ
         = render partial: 'talk_themes/index',
