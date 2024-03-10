@@ -1,13 +1,21 @@
 header class="min-w-80 shadow"
-  div class="flex justify-between max-w-lg lg:max-w-screen-lg\
+  div class="lg:relative navbar max-w-lg lg:max-w-screen-lg\
             mx-auto items-center py-2 pl-3 pr-3 lg:pr-2"
-    = link_to image_tag('logo-header.png', size: '200x40', alt: 'RouletteTalk'),
-      root_path,
-      class: 'text-primary font-bold text-2xl'
-    = button_tag onclick: 'help_modal.showModal()',
-      class: 'w-32 btn bg-neutral-content flex items-center\
-              justify-start px-3'
-      = image_tag 'help-icon.png', size: '16x16'
-      p.leading-4.tracking-wider.ml-3
-        | 使い方
+    .flex-1
+      = link_to image_tag('logo-header.png', size: '200x40', alt: 'RouletteTalk'),
+        root_path
+    ul.flex-none.menu.menu-horizontal.font-bold.px-0.py-0
+      li
+        = button_tag '使い方',
+          onclick: 'help_modal.showModal()'
+      li
+        = link_to 'トークテーマをコピーして新規作成',
+          roulette_templates_path(@roulette),
+          data: { "turbo-method": :post }
     = render partial: 'roulettes/help_modal'
+    - if flash[:notice]
+      .absolute.top-4.right-2.w-80.shadow-xl.alert.alert-success.z-10.opacity-90.pointer-events-none[
+          data-controller="toast"
+        ]
+        p
+          = notice

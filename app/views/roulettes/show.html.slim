@@ -1,6 +1,6 @@
 - set_meta_tags title: 'トークテーマルーレット',
   description: 'トークテーマと話す人を登録してルーレットをスタートしましょう。'
-.mt-3.mb-10.w-fit.mx-auto.max-w-lg.lg:max-w-screen-lg
+.mt-3.mb-10.w-fit.mx-auto.max-w-lg.lg:max-w-screen-lg.relative
   .lg:flex.mt-8.lg:mt-0
     = turbo_frame_tag 'roulette_area'
     - if @talk_themes.count.zero? || @speakers.count.zero?
@@ -21,13 +21,6 @@
           = button_tag 'コピー', 'data-action' => 'clipboard#copy',
             class: 'w-20 font-semibold text-sm tracking-widest\
                     bg-neutral-content hover:bg-base-300 duration-200'
-      .mt-2
-        = button_tag onclick: 'template_modal.showModal()',
-          class: 'flex items-center ml-auto hover:underline'
-          = image_tag 'template-icon.png', size: '16x16'
-          p.pl-1
-            | ルーレットを配布する
-        = render partial: 'roulettes/template_modal', locals: { roulette: @roulette }
       .mt-8.lg:mt-16.lg:h-80
         h2.font-bold.text-lg.mb-2
           | トークテーマ

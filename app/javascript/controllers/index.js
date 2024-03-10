@@ -21,3 +21,6 @@ application.register("roulette-items", RouletteItemsController)
 
 import RouletteLabelController from "./roulette_label_controller"
 application.register("roulette-label", RouletteLabelController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
