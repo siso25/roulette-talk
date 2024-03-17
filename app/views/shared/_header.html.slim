@@ -1,6 +1,6 @@
 header class="min-w-80 shadow"
   div class="lg:relative navbar max-w-lg lg:max-w-screen-lg\
-            mx-auto items-center py-2 pl-3 pr-3 lg:pr-2"
+            mx-auto items-center py-2 pl-3"
     .flex-1
       = link_to image_tag('logo-header.png', size: '200x40', alt: 'RouletteTalk'),
         root_path
@@ -8,14 +8,16 @@ header class="min-w-80 shadow"
       li
         = button_tag '使い方',
           onclick: 'help_modal.showModal()'
-      li
-        = link_to 'トークテーマをコピーして新規作成',
-          roulette_templates_path(@roulette),
-          data: { "turbo-method": :post }
     = render partial: 'roulettes/help_modal'
     - if flash[:notice]
-      .absolute.top-4.right-2.w-80.shadow-xl.alert.alert-success.z-10.opacity-90.pointer-events-none[
+      .absolute.top-4.right-2.w-72.shadow-xl.alert.alert-success.z-10.opacity-90.pointer-events-none[
           data-controller="toast"
         ]
         p
           = notice
+    - if flash[:alert]
+      .absolute.top-4.right-2.w-72.shadow-xl.alert.alert-error.z-10.opacity-90.pointer-events-none[
+          data-controller="toast"
+        ]
+        p
+          = alert
