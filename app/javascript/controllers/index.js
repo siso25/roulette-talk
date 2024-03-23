@@ -7,9 +7,6 @@ import { application } from "./application"
 import CandidateController from "./candidate_controller"
 application.register("candidate", CandidateController)
 
-import ClipboardController from "./clipboard_controller"
-application.register("clipboard", ClipboardController)
-
 import RotateController from "./rotate_controller"
 application.register("rotate", RotateController)
 
@@ -21,3 +18,6 @@ application.register("roulette-items", RouletteItemsController)
 
 import RouletteLabelController from "./roulette_label_controller"
 application.register("roulette-label", RouletteLabelController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)

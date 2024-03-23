@@ -1,6 +1,6 @@
 - set_meta_tags title: 'トークテーマルーレット',
   description: 'トークテーマと話す人を登録してルーレットをスタートしましょう。'
-.mt-3.mb-10.w-fit.mx-auto.max-w-lg.lg:max-w-screen-lg
+.mt-3.mb-10.w-fit.mx-auto.max-w-lg.lg:max-w-screen-lg.relative
   .lg:flex.mt-8.lg:mt-0
     = turbo_frame_tag 'roulette_area'
     - if @talk_themes.count.zero? || @speakers.count.zero?
@@ -9,25 +9,18 @@
       = render partial: 'roulettes/roulettes_and_buttons',
         locals: { talk_themes: @talk_themes, speakers: @speakers }
     .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0
-      .w-full.mt-12.lg:mt-2[
-        data-controller="clipboard"
-        data-clipboard-target="toolTip"
-        data-tip="コピーしました！"]
-        div class="flex w-full h-10 border border-solid border-gray-400\
-                  rounded-md overflow-hidden"
-          input.w-full.px-3.inline-block.outline-none[
-            type="text" value="#{request.url}"
-            data-clipboard-target="source"]
-          = button_tag 'コピー', 'data-action' => 'clipboard#copy',
-            class: 'w-20 font-semibold text-sm tracking-widest\
-                    bg-neutral-content hover:bg-base-300 duration-200'
-      .mt-8.lg:mt-20.lg:h-80
+      .mt-8.lg:mt-24.lg:h-80
         h2.font-bold.text-lg.mb-2
           | トークテーマ
         = render partial: 'talk_themes/index',
           locals: { roulette: @roulette, talk_themes: @talk_themes }
-      .mt-10.lg:h-80
+      .mt-6.lg:h-80
         h2.font-bold.text-lg.mb-2
           | 話す人
         = render partial: 'speakers/index',
           locals: { roulette: @roulette, speakers: @speakers }
+      .w-full.mt-10.text-right
+        = link_to 'トークテーマをコピーして新規作成',
+          roulette_templates_path(@roulette),
+          data: { "turbo-method": :post },
+          class: 'font-bold hover:underline'

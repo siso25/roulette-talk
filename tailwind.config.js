@@ -23,6 +23,8 @@ module.exports = {
           primary: "#0086AB",
           "primary-content": "#FFFFFF",
           accent: "#B61972",
+          "success-content": "#FFFFFF",
+          "error-content": "#FFFFFF"
         },
       }
     ]
