@@ -1,12 +1,12 @@
 - if notice
-  .absolute.top-4.right-2.w-72.shadow-xl.alert.alert-success.z-10.opacity-90.pointer-events-none[
-      data-controller="toast"
-    ]
+  div[class='absolute top-4 right-2 w-72 shadow-xl alert alert-success\
+            z-10 opacity-90 pointer-events-none'
+      data-controller="toast"]
     p
       = notice
 - if alert
-  .absolute.top-4.right-2.w-72.shadow-xl.alert.alert-error.z-10.opacity-90.pointer-events-none[
-      data-controller="toast"
-    ]
+  div[class='absolute top-4 right-2 w-72 shadow-xl alert alert-error\
+            z-10 opacity-90 pointer-events-none'
+      data-controller="toast"]
     p
       = alert
