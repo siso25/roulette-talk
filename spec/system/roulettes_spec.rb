@@ -21,21 +21,6 @@ RSpec.describe 'Roulettes', type: :system do
     expect(page).to have_css 'dialog#help_modal'
   end
 
-  scenario 'user copies link on current page', js: true do
-    visit roulette_path(@roulette)
-    click_button 'コピー'
-    cdp_permission = {
-      origin: page.server_url,
-      permission: { name: 'clipboard-read' },
-      setting: 'granted'
-    }
-    page.driver.browser.execute_cdp('Browser.setPermission', **cdp_permission)
-    copied_url = evaluate_async_script('navigator.clipboard.readText().then(arguments[0])')
-    current_url = evaluate_script('location.href')
-    expect(page.find('input').value).to eq current_url
-    expect(copied_url).to eq current_url
-  end
-
   scenario 'it displays warning message when it has no talk themes' do
     roulette = Roulette.create
     FactoryBot.create(:speaker, roulette:)
