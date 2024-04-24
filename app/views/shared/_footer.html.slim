@@ -7,8 +7,11 @@ footer class="footer min-w-80 bg-base-300 mt-auto"
         class: 'mr-5'
       = render partial: 'shared/term_of_service_modal'
       = button_tag 'プライバシーポリシー',
-        onclick: 'privacy_policy_modal.showModal()'
+        onclick: 'privacy_policy_modal.showModal()',
+        class: 'mr-5'
       = render partial: 'shared/privacy_policy_modal'
+      = link_to 'リリース情報',
+        'https://siso255.hatenablog.com/archive/category/RouletteTalk'
     .flex.h-6.mx-auto
       .flex.items-center.h-full.mr-3
         p.text-base
