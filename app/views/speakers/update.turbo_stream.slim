@@ -2,6 +2,7 @@
   = render partial: 'speakers/index',
     locals: { roulette: @roulette, speakers: @speakers }
 
-= turbo_stream.replace 'roulette' do
-  = render partial: 'roulettes/roulette',
-    locals: { talk_themes: @talk_themes, speakers: @speakers }
+- if !@talk_themes.count.zero?
+  = turbo_stream.replace 'roulette' do
+    = render partial: 'roulettes/roulette',
+      locals: { talk_themes: @talk_themes, speakers: @speakers }

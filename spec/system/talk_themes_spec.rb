@@ -69,6 +69,19 @@ RSpec.describe 'Talk Themes', type: :system do
     expect(find('.theme__labelContainer')).to have_content('トークテーマ 修正')
   end
 
+  scenario 'user modifies a talk theme when no speaker is registered', js: true do
+    roulette = Roulette.create
+    FactoryBot.create(:talk_theme, roulette:)
+    visit roulette_path(roulette)
+    within '#talk_themes_list' do
+      click_link 'トークテーマ', match: :first
+      fill_in 'talk_theme[theme]', with: 'トークテーマ 修正'
+      click_button '更新'
+    end
+    expect(find('#talk_themes_list')).to have_content('トークテーマ 修正')
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
   scenario 'user deletes a talk theme', js: true do
     visit roulette_path(@roulette)
     talk_theme = find('#talk_themes_list').find('a', match: :first).text

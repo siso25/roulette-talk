@@ -69,6 +69,19 @@ RSpec.describe 'Speakers', type: :system do
     expect(find('.speaker__labelContainer')).to have_content('ユーザー 修正')
   end
 
+  scenario 'user modifies a speaker when no talk theme is registered', js: true do
+    roulette = Roulette.create
+    FactoryBot.create(:speaker, roulette:)
+    visit roulette_path(roulette)
+    within '#speakers_list' do
+      click_link 'ユーザー', match: :first
+      fill_in 'speaker[name]', with: 'ユーザー 修正'
+      click_button '更新'
+    end
+    expect(find('#speakers_list')).to have_content('ユーザー 修正')
+    expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
+  end
+
   scenario 'user deletes a speaker', js: true do
     visit roulette_path(@roulette)
     expect(JSON.parse(evaluate_script("sessionStorage.getItem('#{@roulette.id}')"))['speaker'].size).to eq 4
