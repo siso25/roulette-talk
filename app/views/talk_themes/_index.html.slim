@@ -1,7 +1,6 @@
 = turbo_frame_tag 'talk_themes_list'
-  - unless talk_themes.count.zero?
-    = render partial: 'talk_themes/talk_themes',
-      locals: { talk_themes:, roulette: }
+  = render partial: 'talk_themes/talk_themes',
+    locals: { talk_themes:, roulette: }
   = turbo_frame_tag 'new_talk_theme' do
     .mt-3.px-1 data-testid="new-talk-theme-link"
       - if talk_themes.count < 10
