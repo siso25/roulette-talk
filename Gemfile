@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'concurrent-ruby', '1.3.4' # Rails7.1にアップグレードした後に最新バージョンに上げる
   gem 'dockerfile-rails', '>= 1.6'
   gem 'rubocop', require: false
   gem 'rubocop-fjord', require: false
