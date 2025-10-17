@@ -5,8 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.4.7'
 
-gem 'bootsnap', require: false
 gem 'bigdecimal'
+gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'drb'
 gem 'jbuilder'
