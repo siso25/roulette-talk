@@ -15,7 +15,7 @@ gem 'meta-tags'
 gem 'mutex_m'
 gem 'pg'
 gem 'puma'
-gem 'rails', '7.1.5.2'
+gem 'rails', '7.2.2.2'
 gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
@@ -29,7 +29,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'concurrent-ruby', '1.3.4' # Rails7.1にアップグレードした後に最新バージョンに上げる
+  gem 'concurrent-ruby'
   gem 'dockerfile-rails', '>= 1.6'
   gem 'rubocop', require: false
   gem 'rubocop-fjord', require: false
