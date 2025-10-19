@@ -19,8 +19,8 @@ https://roulette-talk.com/
 ![image](https://github.com/siso25/roulette-talk/assets/47073105/9be9cb44-d4b6-4bec-8801-0693d538f92e)
 
 ## 動作環境
-- Ruby 3.2.2
-- Ruby on Rails 7.0.7.2
+- Ruby 3.4.7
+- Ruby on Rails 7.1.5.2
 - Hotwire
 - Node.js 20.10.0
 - Yarn 1.22.21
