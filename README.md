@@ -20,7 +20,7 @@ https://roulette-talk.com/
 
 ## 動作環境
 - Ruby 3.4.7
-- Ruby on Rails 7.1.5.2
+- Ruby on Rails 7.2.2.2
 - Hotwire
 - Node.js 20.10.0
 - Yarn 1.22.21
