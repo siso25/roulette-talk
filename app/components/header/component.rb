@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HeaderComponent < ViewComponent::Base
+class Header::Component < ViewComponent::Base
   def initialize(flash:)
     @flash = flash
   end

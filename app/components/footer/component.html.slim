@@ -5,11 +5,11 @@ footer class="footer min-w-80 bg-base-300 mt-auto"
       = button_tag '利用規約',
         onclick: 'term_of_service_modal.showModal()',
         class: 'mr-5'
-      = render(TermOfServiceModalComponent.new)
+      = render(TermOfServiceModal::Component.new)
       = button_tag 'プライバシーポリシー',
         onclick: 'privacy_policy_modal.showModal()',
         class: 'mr-5'
-      = render(PrivacyPolicyModalComponent.new)
+      = render(PrivacyPolicyModal::Component.new)
       = link_to 'リリース情報',
         'https://siso255.hatenablog.com/archive/category/RouletteTalk',
         target: :_blank,
