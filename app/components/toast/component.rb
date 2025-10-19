@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToastComponent < ViewComponent::Base
+class Toast::Component < ViewComponent::Base
   def initialize(flash:)
     @flash = flash
   end
