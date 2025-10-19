@@ -17,8 +17,7 @@ html
       defer: true
 
   body.min-h-screen.flex.flex-col
-    - unless current_page?(root_path)
-      = render partial: 'shared/header'
+    = render(HeaderComponent.new(flash: flash))
     main.w-full
       = yield
     = render partial: 'shared/footer'

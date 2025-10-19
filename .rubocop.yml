@@ -6,5 +6,9 @@ inherit_gem:
     - "config/rubocop.yml"
     - "config/rails.yml"
 
-require:
+plugins:
   - rubocop-performance
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*'
