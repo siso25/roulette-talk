@@ -20,4 +20,4 @@ html
     = render(HeaderComponent.new(flash: flash))
     main.w-full
       = yield
-    = render partial: 'shared/footer'
+    = render(FooterComponent.new)
