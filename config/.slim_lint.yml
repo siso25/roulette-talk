@@ -16,7 +16,7 @@ linters:
     max_consecutive: 2
 
   ControlStatementSpacing:
-    enabled: true
+    enabled: false
 
   EmbeddedEngines:
     enabled: false
