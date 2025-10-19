@@ -4,7 +4,7 @@
   .lg:flex.mt-8.lg:mt-0
     = turbo_frame_tag 'roulette_area'
     - if @talk_themes.count.zero? || @speakers.count.zero?
-      = render partial: 'roulettes/no_items'
+      = render(Roulettes::NoItems::Component.new)
     - else
       = render partial: 'roulettes/roulettes_and_buttons',
         locals: { talk_themes: @talk_themes, speakers: @speakers }
