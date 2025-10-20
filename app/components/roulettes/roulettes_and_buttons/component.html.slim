@@ -18,8 +18,7 @@
           | さんです。
     div
       .flex.justify-center
-        = render partial: 'roulettes/roulette',
-          locals: { talk_themes:, speakers: }
+        = render(Roulettes::Roulette::Component.new(talk_themes: @talk_themes, speakers: @speakers))
       .flex.justify-center.md:w-3/4.md:ml-auto.mt-8
         button[
           class="btn md:btn-lg btn-primary w-36 mr-4 tracking-wider"

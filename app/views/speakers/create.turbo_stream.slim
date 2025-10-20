@@ -5,12 +5,10 @@
 - if @speakers.count == 1 && !@talk_themes.count.zero?
   = turbo_stream.remove 'no_items_roulette'
   = turbo_stream.prepend 'roulette_area' do
-    = render partial: 'roulettes/roulettes_and_buttons',
-      locals: { roulette: @roulette,
-                talk_themes: @talk_themes,
-                speakers: @speakers }
+    = render(Roulettes::RoulettesAndButtons::Component.new(\
+      talk_themes: @talk_themes, speakers: @speakers))
 
 - elsif !@talk_themes.count.zero?
   = turbo_stream.replace 'roulette' do
-    = render partial: 'roulettes/roulette',
-      locals: { talk_themes: @talk_themes, speakers: @speakers }
+    = render(Roulettes::Roulette::Component.new(\
+      talk_themes: @talk_themes, speakers: @speakers))
