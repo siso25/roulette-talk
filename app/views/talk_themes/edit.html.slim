@@ -1,6 +1,6 @@
 = turbo_frame_tag @talk_theme
   .flex.items-center.h-full
-    = render(TalkTheme::Form::Component.new \
+    = render(TalkTheme::Form::Component.new( \
       roulette: @roulette,
       talk_theme: @talk_theme,
-      button_label: '更新')
+      button_label: '更新'))
