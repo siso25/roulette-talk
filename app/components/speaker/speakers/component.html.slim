@@ -3,7 +3,7 @@
     ul.w-full.max-h-60.overflow-y-auto.roulette-items[
       data-controller="roulette-items"
       data-roulette-items-key-value="speaker"]
-      - speakers.each do |speaker|
+      - @speakers.each do |speaker|
         li[class="border-b last:border-b-0 border-gray-400 w-full group\
                   pl-4 pr-2 py-2 hover:bg-base-200"
           data-roulette-items-target="item"]
@@ -12,7 +12,7 @@
               p.hidden
                 = speaker.id
               .flex-1.text-wrap
-                = link_to edit_roulette_speaker_path(roulette, speaker),
+                = link_to edit_roulette_speaker_path(@roulette, speaker),
                   class: 'w-full block' do
                   .flex
                     p class="hidden text-xs bg-neutral-content py-1 px-2\
@@ -24,6 +24,6 @@
                 = link_to image_tag('delete-icon.png',
                   size: '10x10',
                   alt: '話す人を削除'),
-                  roulette_speaker_path(roulette, speaker),
+                  roulette_speaker_path(@roulette, speaker),
                   data: { turbo_method: :delete },
                   class: 'btn btn-xs btn-circle btn-ghost'

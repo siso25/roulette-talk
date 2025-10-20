@@ -1,7 +1,7 @@
 = turbo_frame_tag 'speakers_list'
   - unless speakers.count.zero?
-    = render partial: 'speakers/speakers',
-      locals: { speakers:, roulette: }
+    = render(Speaker::Speakers::Component.new( \
+      speakers: speakers, roulette: roulette))
   = turbo_frame_tag 'new_speaker' do
     .mt-3.px-1 data-testid="new-speaker-link"
       - if speakers.count < 10
