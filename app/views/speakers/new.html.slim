@@ -1,6 +1,6 @@
 = turbo_frame_tag 'new_speaker'
   .mt-3
-    = render partial: 'form',
-      locals: { roulette: @roulette,
-                speaker: @speaker,
-                button_label: '登録' }
+    = render(Speaker::Form::Component.new( \
+      roulette: @roulette,
+      speaker: @speaker,
+      button_label: '登録'))

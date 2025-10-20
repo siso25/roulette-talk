@@ -1,12 +1,12 @@
 = turbo_frame_tag 'speakers_list'
-  - unless speakers.count.zero?
-    = render partial: 'speakers/speakers',
-      locals: { speakers:, roulette: }
+  - unless @speakers.count.zero?
+    = render(Speaker::Speakers::Component.new( \
+      speakers: @speakers, roulette: @roulette))
   = turbo_frame_tag 'new_speaker' do
     .mt-3.px-1 data-testid="new-speaker-link"
-      - if speakers.count < 10
+      - if @speakers.count < 10
         = link_to '＋ 話す人を追加する',
-          new_roulette_speaker_path(roulette),
+          new_roulette_speaker_path(@roulette),
           class: 'text-neutral hover:underline'
       - else
         p.text-neutral
