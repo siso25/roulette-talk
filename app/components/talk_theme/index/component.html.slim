@@ -1,12 +1,12 @@
 = turbo_frame_tag 'talk_themes_list'
-  - unless talk_themes.count.zero?
-    = render partial: 'talk_themes/talk_themes',
-      locals: { talk_themes:, roulette: }
+  - unless @talk_themes.count.zero?
+    = render(TalkTheme::TalkThemes::Component.new( \
+      talk_themes: @talk_themes, roulette: @roulette))
   = turbo_frame_tag 'new_talk_theme' do
     .mt-3.px-1 data-testid="new-talk-theme-link"
-      - if talk_themes.count < 10
+      - if @talk_themes.count < 10
         = link_to '＋ トークテーマを追加する',
-          new_roulette_talk_theme_path(roulette),
+          new_roulette_talk_theme_path(@roulette),
           class: 'text-neutral hover:underline'
       - else
         p.text-neutral
