@@ -6,8 +6,8 @@
     - if @talk_themes.count.zero? || @speakers.count.zero?
       = render(Roulettes::NoItems::Component.new)
     - else
-      = render partial: 'roulettes/roulettes_and_buttons',
-        locals: { talk_themes: @talk_themes, speakers: @speakers }
+      = render(Roulettes::RoulettesAndButtons::Component.new(\
+        talk_themes: @talk_themes, speakers: @speakers))
     .mx-auto.lg:w-96.lg:ml-24.px-6.lg:px-0
       .mt-8.lg:mt-24.lg:h-80
         h2.font-bold.text-lg.mb-2
