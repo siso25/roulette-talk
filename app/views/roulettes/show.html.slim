@@ -12,8 +12,8 @@
       .mt-8.lg:mt-24.lg:h-80
         h2.font-bold.text-lg.mb-2
           | トークテーマ
-        = render partial: 'talk_themes/index',
-          locals: { roulette: @roulette, talk_themes: @talk_themes }
+        = render(TalkTheme::Index::Component.new(\
+          roulette: @roulette, talk_themes: @talk_themes))
       .mt-6.lg:h-80
         h2.font-bold.text-lg.mb-2
           | 話す人
