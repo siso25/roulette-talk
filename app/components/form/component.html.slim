@@ -1,7 +1,7 @@
-= form_with model: [@roulette, @speaker],
+= form_with model: [@roulette, @model],
   class: 'w-full flex' do |f|
-  = f.text_field :name,
+  = f.text_field @column,
     class: 'input input-bordered input-sm w-4/5',
-    placeholder: '田中さん'
+    placeholder: @placeholder
   = f.submit @button_label,
     class: 'btn btn-outline btn-sm btn-primary ml-auto'

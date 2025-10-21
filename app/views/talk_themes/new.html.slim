@@ -1,6 +1,8 @@
 = turbo_frame_tag 'new_talk_theme'
   .mt-3
-    = render(TalkTheme::Form::Component.new( \
+    = render(Form::Component.new( \
       roulette: @roulette,
-      talk_theme: @talk_theme,
+      model: @talk_theme,
+      column: :theme,
+      placeholder: '最近買ってよかったもの',
       button_label: '登録'))

@@ -1,6 +1,8 @@
 = turbo_frame_tag @talk_theme
   .flex.items-center.h-full
-    = render(TalkTheme::Form::Component.new( \
+    = render(Form::Component.new( \
       roulette: @roulette,
-      talk_theme: @talk_theme,
+      model: @talk_theme,
+      column: :theme,
+      placeholder: '最近買ってよかったもの',
       button_label: '更新'))
