@@ -12,12 +12,12 @@
       .mt-8.lg:mt-24.lg:h-80
         h2.font-bold.text-lg.mb-2
           | トークテーマ
-        = render(TalkTheme::Index::Component.new(\
+        = render(TalkThemes::Component.new(\
           roulette: @roulette, talk_themes: @talk_themes))
       .mt-6.lg:h-80
         h2.font-bold.text-lg.mb-2
           | 話す人
-        = render(Speaker::Index::Component.new(\
+        = render(Speakers::Component.new(\
           roulette: @roulette, speakers: @speakers))
       .w-full.mt-10.text-right
         = link_to 'トークテーマをコピーして新規作成',

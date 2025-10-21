@@ -1,7 +1,11 @@
 = turbo_frame_tag 'talk_themes_list'
   - unless @talk_themes.count.zero?
-    = render(TalkTheme::TalkThemes::Component.new( \
-      talk_themes: @talk_themes, roulette: @roulette))
+    = turbo_frame_tag 'talk_themes'
+      .rounded.border.border-gray-400.overflow-hidden
+        ul.w-full.max-h-60.overflow-y-auto.roulette-items[
+          data-controller="roulette-items"
+          data-roulette-items-key-value="talk"]
+          = render(TalkThemes::TalkTheme::Component.with_collection(@talk_themes, roulette: @roulette))
   = turbo_frame_tag 'new_talk_theme' do
     .mt-3.px-1 data-testid="new-talk-theme-link"
       - if @talk_themes.count < 10

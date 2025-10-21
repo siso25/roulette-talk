@@ -1,5 +1,5 @@
 = turbo_stream.replace 'speakers_list' do
-  = render(Speaker::Index::Component.new(\
+  = render(Speakers::Component.new(\
     roulette: @roulette, speakers: @speakers))
 
 - if @speakers.count == 1 && !@talk_themes.count.zero?

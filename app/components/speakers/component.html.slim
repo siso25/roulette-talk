@@ -1,7 +1,11 @@
 = turbo_frame_tag 'speakers_list'
   - unless @speakers.count.zero?
-    = render(Speaker::Speakers::Component.new( \
-      speakers: @speakers, roulette: @roulette))
+    = turbo_frame_tag 'speakers'
+      .rounded.border.border-gray-400.overflow-hidden
+        ul.w-full.max-h-60.overflow-y-auto.roulette-items[
+          data-controller="roulette-items"
+          data-roulette-items-key-value="speaker"]
+          = render(Speakers::Speaker::Component.with_collection(@speakers, roulette: @roulette))
   = turbo_frame_tag 'new_speaker' do
     .mt-3.px-1 data-testid="new-speaker-link"
       - if @speakers.count < 10
