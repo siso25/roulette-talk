@@ -8,7 +8,7 @@
 
 - else
   = turbo_stream.replace 'talk_themes_list' do
-    = render(TalkTheme::Index::Component.new(\
+    = render(TalkThemes::Component.new(\
       roulette: @roulette, talk_themes: @talk_themes))
 
   - unless @speakers.count.zero?
