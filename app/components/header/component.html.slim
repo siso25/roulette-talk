@@ -11,4 +11,6 @@ header class="min-w-80 shadow"
         = button_tag '使い方',
           onclick: 'help_modal.showModal()'
     = render(HelpModal::Component.new)
-    = render(Toast::Component.new(flash: @flash))
+    - if @flash.any?
+      - @flash.each do |type, message|
+        = render(Toast::Component.new(type: type, message: message))
