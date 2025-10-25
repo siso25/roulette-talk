@@ -31,14 +31,14 @@ RSpec.describe TalkThemes::Component, type: :component do
 
   context 'トークテーマ追加ボタンの表示・非表示' do
     it 'トークテーマ9件の場合は追加ボタンを表示' do
-      talk_themes = 9.times.map { |i| build(:talk_theme, id: i, roulette: roulette) }
+      talk_themes = Array.new(9) { |i| build(:talk_theme, id: i, roulette: roulette) }
       render_inline(described_class.new(talk_themes: talk_themes, roulette: roulette))
       expect(page).to have_text('トークテーマを追加する')
       expect(page).to_not have_text('トークテーマは10個以上追加できません')
     end
 
     it 'トークテーマ10件の場合は追加ボタンを非表示' do
-      talk_themes = 10.times.map { |i| build(:talk_theme, id: i, roulette: roulette) }
+      talk_themes = Array.new(10) { |i| build(:talk_theme, id: i, roulette: roulette) }
       render_inline(described_class.new(talk_themes: talk_themes, roulette: roulette))
       expect(page).to_not have_text('トークテーマを追加する')
       expect(page).to have_text('トークテーマは10個以上追加できません')
