@@ -34,5 +34,6 @@ module RouletteTalk
       g.factory_bot false
       g.factory_bot dir: "spec/factories"
     end
+    config.view_component.previews.paths << "#{Rails.root}/spec/components/previews"
   end
 end
