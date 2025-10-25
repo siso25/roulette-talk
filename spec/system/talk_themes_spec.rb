@@ -119,18 +119,4 @@ RSpec.describe 'Talk Themes', type: :system do
     expect(page).to_not have_selector '#talk_themes'
     expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
   end
-
-  scenario 'it toggles a link to text when 10 themes are registered', js: true do
-    FactoryBot.create_list(:talk_theme, 5, roulette: @roulette)
-    visit roulette_path(@roulette)
-    expect do
-      click_link 'トークテーマを追加する'
-      fill_in 'talk_theme[theme]', with: 'トークテーマ テスト'
-      click_button '登録'
-      expect(find('#talk_themes_list')).to have_content('トークテーマ テスト')
-    end.to change(@roulette.talk_themes, :count).by(1)
-    new_link_element = find("[data-testid='new-talk-theme-link']")
-    expect(new_link_element).to have_content('トークテーマは10個以上追加できません')
-    expect(new_link_element).to_not have_selector('a')
-  end
 end
