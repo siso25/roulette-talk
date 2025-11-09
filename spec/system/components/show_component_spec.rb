@@ -9,9 +9,9 @@ RSpec.describe 'Show', type: :system do
   let!(:talk_themes) { create_list(:talk_theme, 4, roulette: roulette) }
 
   scenario 'Session storageに保存された結果を表示する', js: true do
-    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette.id}"
+    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette.id}&talk_theme_rotate_time=0&speaker_rotate_time=0"
     click_button 'スタート'
-    result_text = find "[data-rotate-target='resultText']", wait: 10
+    result_text = find "[data-rotate-target='resultText']"
     session_storage_items = JSON.parse(evaluate_script("sessionStorage.getItem('view_components')"))
     expect(result_text).to have_content(session_storage_items['talkResult'])
     expect(result_text).to have_content(session_storage_items['speakerResult'])
@@ -44,20 +44,20 @@ RSpec.describe 'Show', type: :system do
     roulette2 = Roulette.create
     create_list(:talk_theme, 2, roulette: roulette2)
     create_list(:speaker, 2, roulette: roulette2)
-    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette2.id}"
+    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette2.id}&talk_theme_rotate_time=0&speaker_rotate_time=0"
     click_button 'スタート'
-    find "[data-rotate-target='resultText']", wait: 10
+    find "[data-rotate-target='resultText']"
     expect(find('#talk_themes_list')).to have_selector '.line-through'
     expect(find('#speakers_list')).to have_selector '.line-through'
     click_button 'スタート'
-    find "[data-rotate-target='resultText']", wait: 10
+    find "[data-rotate-target='resultText']"
     session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('view_components')"))
     expect(session_storage_items1['talk'].size).to eq 0
     expect(session_storage_items1['speaker'].size).to eq 0
     expect(find('#talk_themes_list')).not_to have_selector '.line-through'
     expect(find('#speakers_list')).not_to have_selector '.line-through'
     click_button 'スタート'
-    find "[data-rotate-target='resultText']", wait: 10
+    find "[data-rotate-target='resultText']"
     # session storageがリセットされた上で一回ルーレットが実行されるのでsizeは1になる
     session_storage_items2 = JSON.parse(evaluate_script("sessionStorage.getItem('view_components')"))
     expect(session_storage_items2['talk'].size).to eq 1
@@ -65,9 +65,9 @@ RSpec.describe 'Show', type: :system do
   end
 
   scenario 'リセットボタンを押すと選択状態がリセットされる', js: true do
-    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette.id}"
+    visit "/rails/view_components/show/component/with_roulette_id?roulette_id=#{roulette.id}&talk_theme_rotate_time=0&speaker_rotate_time=0"
     click_button 'スタート'
-    find "[data-rotate-target='resultText']", wait: 10
+    find "[data-rotate-target='resultText']"
     session_storage_items1 = JSON.parse(evaluate_script("sessionStorage.getItem('view_components')"))
     expect(session_storage_items1['talk'].size).to eq 3
     expect(session_storage_items1['speaker'].size).to eq 3
