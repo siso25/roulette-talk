@@ -5,10 +5,9 @@ require 'rails_helper'
 RSpec.describe 'RoulettesAndButtons', type: :system do
   let!(:roulette) { create(:roulette) }
   let!(:speakers) { create_list(:speaker, 4, roulette: roulette) }
-  let!(:talk_themes) { create_list(:talk_theme, 4, roulette: roulette) }
 
   scenario '1行のトークテーマの表示', js: true do
-    talk_themes.first.update(theme: '1行')
+    create_list(:talk_theme, 4, roulette: roulette, theme: '1行')
 
     visit "/rails/view_components/roulette/component/with_roulette_id?roulette_id=#{roulette.id}"
 
@@ -28,7 +27,7 @@ RSpec.describe 'RoulettesAndButtons', type: :system do
   end
 
   scenario '2行のトークテーマの表示', js: true do
-    talk_themes.first.update(theme: 'とても長いトークテーマのタイトルです。改行されることを確認します。')
+    create_list(:talk_theme, 4, roulette: roulette, theme: 'とても長いトークテーマのタイトルです。改行されることを確認します。')
 
     visit "/rails/view_components/roulette/component/with_roulette_id?roulette_id=#{roulette.id}"
 
