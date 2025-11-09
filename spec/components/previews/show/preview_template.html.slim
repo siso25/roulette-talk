@@ -1,0 +1,3 @@
+= render(Roulettes::RoulettesAndButtons::Component.new(talk_themes: talk_themes, speakers: speakers))
+= render(TalkThemes::Component.new(talk_themes: talk_themes, roulette: roulette))
+= render(Speakers::Component.new(speakers: speakers, roulette: roulette))
