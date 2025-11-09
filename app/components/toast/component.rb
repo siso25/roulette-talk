@@ -5,17 +5,4 @@ class Toast::Component < ViewComponent::Base
     @type = type
     @message = message
   end
-
-  private
-
-  def color_class
-    case @type
-    when 'notice'
-      'alert-success'
-    when 'alert'
-      'alert-error'
-    else
-      ''
-    end
-  end
 end
