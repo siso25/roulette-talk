@@ -1,6 +1,12 @@
-= turbo_stream.replace 'talk_themes_list' do
-  = render partial: 'talk_themes/index',
-    locals: { roulette: @roulette, talk_themes: @talk_themes }
+- unless @talk_themes.count.zero?
+  = turbo_stream.replace 'talk_themes' do
+    = render partial: 'talk_themes/talk_themes',
+      locals: { roulette: @roulette, talk_themes: @talk_themes }
+
+/ - if @talk_themes.count < 10
+/   = turbo_stream.replace 'new_talk_theme' do
+/     = render partial: 'talk_themes/form',
+/       locals: { roulette: @roulette, talk_theme: Task.new }
 
 - if @talk_themes.count == 1 && !@speakers.count.zero?
   = turbo_stream.remove 'no_items_roulette'
