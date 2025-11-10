@@ -1,0 +1,17 @@
+= turbo_frame_tag 'speakers_list'
+  - unless @speakers.count.zero?
+    = turbo_frame_tag 'speakers'
+      .rounded.border.border-gray-400.overflow-hidden
+        ul.w-full.max-h-60.overflow-y-auto.roulette-items[
+          data-controller="roulette-items"
+          data-roulette-items-key-value="speaker"]
+          = render(Speakers::Speaker::Component.with_collection(@speakers, roulette: @roulette))
+  = turbo_frame_tag 'new_speaker' do
+    .mt-3.px-1 data-testid="new-speaker-link"
+      - if @speakers.count < 10
+        = link_to '＋ 話す人を追加する',
+          new_roulette_speaker_path(@roulette),
+          class: 'text-neutral hover:underline'
+      - else
+        p.text-neutral
+          | 話す人は10人以上追加できません

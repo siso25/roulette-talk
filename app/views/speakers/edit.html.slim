@@ -1,6 +1,8 @@
 = turbo_frame_tag @speaker
   .flex.items-center.h-full
-    = render partial: 'form',
-      locals: { roulette: @roulette,
-                speaker: @speaker,
-                button_label: '更新' }
+    = render(Form::Component.new( \
+      roulette: @roulette,
+      model: @speaker,
+      column: :name,
+      placeholder: '田中さん',
+      button_label: '更新'))

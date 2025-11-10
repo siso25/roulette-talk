@@ -7,17 +7,17 @@
       .roulette__theme[
         data-rotate-target="talk"
         style="#{Roulette.generate_background_color_text(
-          talk_themes, TalkTheme::COLOR_SET
+          @talk_themes, TalkTheme::COLOR_SET
         )}"]
         ul.absolute.theme__labelContainer
-          - talk_themes.each_with_index do |talk_theme, idx|
+          - @talk_themes.each_with_index do |talk_theme, idx|
             li.absolute.theme__label[
               data-roulette-target="talkTheme"
               data-rotate-target="talkTheme"
               data-controller="roulette-label"
               data-action="resize@window->roulette-label#setLabelPosition"
               data-roulette-label-index-value="#{idx}"
-              data-roulette-label-count-value="#{talk_themes.count}"
+              data-roulette-label-count-value="#{@talk_themes.count}"
               data-roulette-label-radius-value="95"
               data-roulette-label-top-plus-value="10"
               data-roulette-label-left-plus-value="65"
@@ -32,17 +32,17 @@
       .absolute.roulette__speaker[
         data-rotate-target="speaker"
         style="#{Roulette.generate_background_color_text(
-          speakers, Speaker::COLOR_SET
+          @speakers, Speaker::COLOR_SET
         )}"]
         ul.absolute.speaker__labelContainer
-          - speakers.each_with_index do |speaker, idx|
+          - @speakers.each_with_index do |speaker, idx|
             li.absolute.speaker__label[
               data-roulette-target="speakerName"
               data-rotate-target="speakerName"
               data-controller="roulette-label"
               data-action="resize@window->roulette-label#setLabelPosition"
               data-roulette-label-index-value="#{idx}"
-              data-roulette-label-count-value="#{speakers.count}"
+              data-roulette-label-count-value="#{@speakers.count}"
               data-roulette-label-radius-value="50"
               data-roulette-label-top-plus-value="8"
               data-roulette-label-left-plus-value="25"

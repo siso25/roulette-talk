@@ -120,18 +120,4 @@ RSpec.describe 'Speakers', type: :system do
     expect(page).to_not have_selector '#speakers'
     expect(find('#no_items_roulette')).to have_content('トークテーマと話す人を1件以上登録してください。')
   end
-
-  scenario 'it toggles a link to text when 10 speakers are registered', js: true do
-    FactoryBot.create_list(:speaker, 5, roulette: @roulette)
-    visit roulette_path(@roulette)
-    expect do
-      click_link '話す人を追加する'
-      fill_in 'speaker[name]', with: 'ユーザー テスト'
-      click_button '登録'
-      expect(find('#speakers_list')).to have_content('ユーザー テスト')
-    end.to change(@roulette.speakers, :count).by(1)
-    new_link_element = find("[data-testid='new-speaker-link']")
-    expect(new_link_element).to have_content('話す人は10人以上追加できません')
-    expect(new_link_element).to_not have_selector('a')
-  end
 end

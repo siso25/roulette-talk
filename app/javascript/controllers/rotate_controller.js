@@ -4,6 +4,11 @@ import { save, findByKey } from '../helpers/storage'
 export default class extends Controller {
   static outlets = ['roulette-items']
 
+  static values = {
+    talkThemeRotateTime: Number,
+    speakerRotateTime: Number
+  }
+
   static targets = [
     'resultText',
     'talkThemeResult',
@@ -24,13 +29,13 @@ export default class extends Controller {
       this.talkTarget,
       this.talkThemeTargets,
       'talk',
-      2800
+      this.talkThemeRotateTimeValue
     )
     const speakerAnimation = this.rotate(
       this.speakerTarget,
       this.speakerNameTargets,
       'speaker',
-      3000
+      this.speakerRotateTimeValue
     )
 
     Promise.all([talkAnimation.finished, speakerAnimation.finished]).then(

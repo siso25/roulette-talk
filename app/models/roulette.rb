@@ -4,6 +4,9 @@ class Roulette < ApplicationRecord
   has_many :talk_themes, dependent: :destroy
   has_many :speakers, dependent: :destroy
 
+  TALK_THEME_ROTATE_TIME = 2800
+  SPEAKER_ROTATE_TIME = 3000
+
   class << self
     def generate_background_color_text(targets, color_set)
       targets_count = targets.count
