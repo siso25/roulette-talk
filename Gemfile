@@ -30,6 +30,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'concurrent-ruby'
   gem 'dockerfile-rails', '>= 1.6'
   gem 'rubocop', require: false
