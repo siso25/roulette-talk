@@ -4,32 +4,42 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
-    "autoprefixer": "^10.4.15",
-    "daisyui": "^3.6.5",
-    "esbuild": "^0.19.2",
-    "postcss": "^8.4.29",
+    "autoprefixer": "^10.6.1",
+    "daisyui": "^3.9.4",
+    "esbuild": "0.25.12",
+    "postcss": "8.5.28",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.1",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.4.19"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "lint": "run-p lint:eslint lint:prettier",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint 'app/javascript/**/*.js'",
     "lint:prettier": "prettier app/javascript/**/*.js --check"
   },
   "devDependencies": {
-    "eslint": "^8.48.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.1",
     "eslint-plugin-promise": "^6.1.1",
-    "npm-run-all": "^4.1.5",
     "prettier": "3.0.3",
     "prettier-config-standard": "^7.0.0"
+  },
+  "resolutions": {
+    "brace-expansion": "1.1.18",
+    "braces": "3.0.3",
+    "cross-spawn": "7.0.5",
+    "flatted": "3.4.2",
+    "js-yaml": "4.3.2",
+    "minimatch": "3.1.4",
+    "nanoid": "3.3.18",
+    "picomatch": "2.3.2",
+    "postcss": "8.5.28"
   },
   "packageManager": "yarn@1.22.21"
 }

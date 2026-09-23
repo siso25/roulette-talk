@@ -22,7 +22,7 @@ https://roulette-talk.com/
 - Ruby 3.4.7
 - Ruby on Rails 7.2.2.2
 - Hotwire
-- Node.js 20.10.0
+- Node.js 24.14.0
 - Yarn 1.22.21
 
 ## インストールと起動
