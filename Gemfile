@@ -11,6 +11,8 @@ gem 'cssbundling-rails'
 gem 'drb'
 gem 'jbuilder'
 gem 'jsbundling-rails'
+# https://github.com/rails/rails/issues/58685
+gem 'json', '< 3'
 gem 'meta-tags'
 gem 'mutex_m'
 gem 'pg'
